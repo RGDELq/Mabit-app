@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "334816241104",
+    "project_id": "mabit-project-b5653",
+    "storage_bucket": "mabit-project-b5653.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334816241104:android:a0a8f5d97a0c32d196c5d5",
+        "android_client_info": {
+          "package_name": "com.example.mabitt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334816241104-h42ti43h8ai13o2233c9v5mqfnej3e6s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4OwHqGRqMfNg2OftUu732dULmmUVmZGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334816241104-h42ti43h8ai13o2233c9v5mqfnej3e6s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
