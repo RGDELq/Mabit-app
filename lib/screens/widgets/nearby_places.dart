@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/widgets/distance.dart';
 
-
 import '../../models/nearby_places_model.dart';
 import '../tourist_details_page.dart';
 
@@ -52,13 +51,13 @@ class NearbyPlaces extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              "Sea of Peace",
+                              "benghazi",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const Text("Portic Team"),
+                            const Text(" al nakill"),
                             const SizedBox(height: 10),
                             // DISTANCE WIDGET
                             const Distance(),

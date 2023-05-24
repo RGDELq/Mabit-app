@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:mabitt/screens/testt.dart';
 import 'package:mabitt/screens/widgets/customized_button.dart';
 import 'package:mabitt/screens/widgets/customized_textfield.dart';
 import 'package:mabitt/utils/theme.dart';
 
+import '../routes/routes.dart';
 import 'home_screen.dart';
 import 'login_screen.dart';
 
@@ -82,8 +85,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 buttonColor: ColorManager.darkblue,
                 textColor: ColorManager.lightPrimary,
                 onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => HomePage()));
+                  // Navigator.push(
+                  //     context, MaterialPageRoute(builder: (_) => HomePage()));
+                  Get.offNamed(Routes.homepage);
                 },
               ),
               Padding(
@@ -174,7 +178,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) => const LoginScreen()));
+                                builder: (_) =>  HomePage()));
+                        // Get.offNamed(Routes.loginScreen);
                       },
                       child: const Text("  Login Now",
                           style: TextStyle(

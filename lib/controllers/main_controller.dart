@@ -13,7 +13,7 @@ class MainController extends GetxController {
     HomePage(),
     Favuirate(),
     PostsScreen(),
-    profile(),
+    ProfileScreen(),
   ].obs;
 
   var title = [

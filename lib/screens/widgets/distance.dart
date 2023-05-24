@@ -16,7 +16,7 @@ class Distance extends StatelessWidget {
           size: 14,
         ),
         const Text(
-          "Accra",
+          "ras alhilal",
           style: TextStyle(
             color: Colors.black54,
           ),
@@ -41,7 +41,7 @@ class Distance extends StatelessWidget {
         ),
         const SizedBox(width: 2),
         Text(
-          "Kumasi",
+          "benghazi",
           style: TextStyle(
             color: ColorManager.darkblue,
           ),

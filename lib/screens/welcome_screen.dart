@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mabitt/screens/signup_screen.dart';
 import 'package:mabitt/screens/widgets/customized_button.dart';
 import 'package:mabitt/utils/theme.dart';
+import '../routes/routes.dart';
 import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -30,6 +32,8 @@ class WelcomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => const LoginScreen()));
+
+                // Get.offNamed(Routes.loginScreen);
               },
             ),
             CustomizedButton(
@@ -39,6 +43,8 @@ class WelcomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => const SignUpScreen()));
+
+                Get.offNamed(Routes.signUpScreen);
               },
             ),
             const SizedBox(height: 20),

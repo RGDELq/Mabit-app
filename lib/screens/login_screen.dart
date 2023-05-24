@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:mabitt/screens/signup_screen.dart';
+import 'package:mabitt/screens/tabs.dart';
 import 'package:mabitt/screens/widgets/customized_button.dart';
 import 'package:mabitt/screens/widgets/customized_textfield.dart';
 
+import '../routes/routes.dart';
 import '../utils/theme.dart';
 import 'forgot_passwor.dart';
 import 'home_screen.dart';
@@ -93,7 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (_) => HomePage()));
+                                      builder: (_) => TabsScreen()));
+                              // Get.offNamed(Routes.homepage);
                             }),
                       ]),
                 ))));

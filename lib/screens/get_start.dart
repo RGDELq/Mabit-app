@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:mabitt/screens/welcome_screen.dart';
+import '../routes/routes.dart';
 
-class Getstart extends StatefulWidget {
+class Getstart extends StatelessWidget {
   const Getstart({super.key});
 
-  @override
-  State<Getstart> createState() => _GetstartState();
-}
-
-class _GetstartState extends State<Getstart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,12 +46,10 @@ class _GetstartState extends State<Getstart> {
                     width: double.maxFinite,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const WelcomeScreen(),
-                          ),
-                        );
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => WelcomeScreen()));
+
+                        // Get.offNamed(Routes.welcomeScreen);
                       },
                       style: ElevatedButton.styleFrom(
                         elevation: 0,

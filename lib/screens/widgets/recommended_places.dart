@@ -4,7 +4,6 @@ import 'package:ionicons/ionicons.dart';
 import '../../models/recommended_places_model.dart';
 import '../tourist_details_page.dart';
 
-
 class RecommendedPlaces extends StatelessWidget {
   const RecommendedPlaces({Key? key}) : super(key: key);
 
@@ -53,7 +52,7 @@ class RecommendedPlaces extends StatelessWidget {
                         Row(
                           children: [
                             const Text(
-                              "St Regis Bora Bora",
+                              "tripoli",
                               style: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
@@ -83,7 +82,7 @@ class RecommendedPlaces extends StatelessWidget {
                             ),
                             const SizedBox(width: 5),
                             const Text(
-                              "French Polynesia",
+                              "hay el saraj",
                               style: TextStyle(
                                 fontSize: 12,
                               ),

@@ -82,12 +82,12 @@ class TouristDetailsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Sea of Peace",
+                      "benghazi",
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(height: 5),
                     Text(
-                      "Portic Team 8km",
+                      "nakill",
                       style: Theme.of(context).textTheme.bodySmall,
                     )
                   ],
@@ -128,7 +128,8 @@ class TouristDetailsPage extends StatelessWidget {
                     Text(
                       "01d:32h:56m",
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: ColorManager.darkblue,                          ),
+                            color: ColorManager.darkblue,
+                          ),
                     ),
                     const SizedBox(height: 5),
                     Text(
@@ -156,11 +157,9 @@ class TouristDetailsPage extends StatelessWidget {
             const Distance(),
             const SizedBox(height: 20),
             CustomizedButton(
-
                 buttonText: "Get directions",
                 buttonColor: const Color.fromARGB(255, 17, 77, 95),
                 textColor: Colors.white,
-
                 onPressed: () {
                   // Navigator.push(
                   //     context,
