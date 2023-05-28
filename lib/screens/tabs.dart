@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/FavoritesScreen.dart';
 import 'package:mabitt/screens/home_screen.dart';
 import 'package:mabitt/screens/postScreen.dart';
-import 'package:mabitt/screens/profileScreen.dart';
-
+import 'package:mabitt/screens/profile_screen.dart';
 import '../helpers/consts.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -23,15 +21,15 @@ class _TabsScreenState extends State<TabsScreen> {
       body: AnimatedSwitcher(
         duration: animationDuration,
         child: currentIndex == 0
-            ? const ProfileScreen()
+            ? const HomePage()
             : currentIndex == 1
-                ? const PostsScreen()
+                ? const Favuirate()
                 : currentIndex == 2
-                    ? const Favuirate()
-                    : const HomePage(),
+                    ? const PostsScreen()
+                    : ProfileScreen(),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xffF9EEc8),
         elevation: 0,
         currentIndex: currentIndex,
         onTap: (index) {
@@ -45,7 +43,7 @@ class _TabsScreenState extends State<TabsScreen> {
           BottomNavigationBarItem(
               label: '',
               icon: Image.asset(
-                'assets/icons/beach.png',
+                'assets/icons/house.png',
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,
@@ -55,7 +53,7 @@ class _TabsScreenState extends State<TabsScreen> {
           BottomNavigationBarItem(
               label: '',
               icon: Image.asset(
-                'assets/icons/beach.png',
+                'assets/icons/heart.png',
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,
@@ -65,7 +63,7 @@ class _TabsScreenState extends State<TabsScreen> {
           BottomNavigationBarItem(
               label: '',
               icon: Image.asset(
-                'assets/icons/beach.png',
+                'assets/icons/edit.png',
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,
@@ -75,7 +73,7 @@ class _TabsScreenState extends State<TabsScreen> {
           BottomNavigationBarItem(
               label: '',
               icon: Image.asset(
-                'assets/icons/beach.png',
+                'assets/icons/profile.png',
                 width: size.width / 13,
                 height: size.width / 13,
                 color:

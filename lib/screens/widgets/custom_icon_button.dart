@@ -11,13 +11,13 @@ class CustomIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.blueAccent),
+        border: Border.all(color: Color(0xffF5CEBE)),
         shape: BoxShape.circle,
       ),
       child: IconButton(
         onPressed: () {},
         constraints: const BoxConstraints.tightFor(width: 40),
-        color: Colors.white,
+      color  :  Colors.white,
         icon: icon,
         splashRadius: 22,
       ),

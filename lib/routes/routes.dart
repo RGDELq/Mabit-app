@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
-import 'package:mabitt/screens/get_start.dart';
 import 'package:mabitt/screens/home_screen.dart';
 import '../binding/main_binding.dart';
 import '../screens/forgot_passwor.dart';
-import '../screens/get_start.dart';
 import '../screens/login_screen.dart';
 import '../screens/signup_screen.dart';
 import '../screens/welcome_screen.dart';

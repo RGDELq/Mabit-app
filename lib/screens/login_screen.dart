@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:mabitt/screens/signup_screen.dart';
+
 import 'package:mabitt/screens/tabs.dart';
 import 'package:mabitt/screens/widgets/customized_button.dart';
 import 'package:mabitt/screens/widgets/customized_textfield.dart';
 
-import '../routes/routes.dart';
 import '../utils/theme.dart';
 import 'forgot_passwor.dart';
-import 'home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -90,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         CustomizedButton(
                             buttonText: "Login",
-                            buttonColor: const Color.fromARGB(255, 17, 77, 95),
+                            buttonColor: ColorManager.primary,
                             textColor: Colors.white,
                             onPressed: () {
                               Navigator.push(

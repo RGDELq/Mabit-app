@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 import 'package:mabitt/screens/welcome_screen.dart';
-import '../routes/routes.dart';
 
 class Getstart extends StatelessWidget {
   const Getstart({super.key});
@@ -14,14 +11,14 @@ class Getstart extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(1),
             child: Column(
               children: [
                 const Spacer(),
                 Image.asset(
                   'assets/rentl.png',
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
                 const Text(
                   "Explore all the places  \nonly with us",
                   textAlign: TextAlign.center,
@@ -30,7 +27,7 @@ class Getstart extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 20),
+                // const SizedBox(height: 20),
                 const Text(
                   " Find your new home to rent on Mabit  ,\nfrom all destinations",
                   textAlign: TextAlign.center,
@@ -41,7 +38,7 @@ class Getstart extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 30),
+                  padding: const EdgeInsets.only(bottom: 60),
                   child: SizedBox(
                     width: double.maxFinite,
                     child: ElevatedButton(
@@ -69,6 +66,5 @@ class Getstart extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

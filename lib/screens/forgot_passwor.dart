@@ -28,7 +28,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 height: 50,
                 width: 50,
                 decoration: BoxDecoration(
-                  border: Border.all(color: ColorManager.darkblue, width: 1),
+                  border: Border.all(color: ColorManager.primary, width: 1),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: IconButton(
@@ -42,7 +42,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
               padding: EdgeInsets.all(10.0),
               child: Text("Forgot Password?",
                   style: TextStyle(
-                    color: Color.fromARGB(255, 17, 77, 95),
+                    color: Color.fromARGB(255, 44, 73, 121),
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   )),
@@ -64,7 +64,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             CustomizedButton(
               buttonText: "Send Code",
-              buttonColor: ColorManager.darkblue,
+              buttonColor: ColorManager.primary,
               textColor: Colors.white,
               onPressed: () {
                 Navigator.pop(context);
@@ -87,7 +87,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     onTap: () {},
                     child: const Text("  Login",
                         style: TextStyle(
-                          color: Color(0xff35C2C1),
+                          color: Color.fromARGB(255, 44, 73, 121),
                           fontSize: 15,
                         )),
                   ),

@@ -1,108 +1,255 @@
 import 'package:flutter/material.dart';
-import 'package:ionicons/ionicons.dart';
-import 'package:mabitt/screens/widgets/custom_icon_button.dart';
-import 'package:mabitt/screens/widgets/location_card.dart';
-import 'package:mabitt/screens/widgets/nearby_places.dart';
-import 'package:mabitt/screens/widgets/recommended_places.dart';
-import 'package:mabitt/screens/widgets/tourist_places.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:mabitt/screens/category_page.dart';
+import 'package:mabitt/screens/details_page.dart';
+import '../models/category_model.dart';
+import '../models/property_model.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black,
-        title: Column(
+      backgroundColor: Color(0xffF9EEc8),
+      body: Builder(builder: (context) {
+        // your conditions to render the widgets!
+        if (_currentIndex == 0) {
+          return SingleChildScrollView(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        // const CircleAvatar(
+                        //   backgroundImage: AssetImage('images/user1.jpeg'),
+                        // ),
+                        const SizedBox(
+                          width: 12,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Welcome !",
+                              style: Theme.of(context).textTheme.caption,
+                            ),
+                            Text(
+                              "Mabit user",
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        const Icon(LineIcons.bellAlt)
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                        horizontal: 8,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          prefixIcon: Icon(LineIcons.search),
+                          hintText: "Search...",
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1 / 0.4,
+                      ),
+                      itemCount: categories.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return CategoryButton(categoryModel: categories[index]);
+                      },
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Text(
+                      "Recommendations",
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    SizedBox(
+                      height: 270,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: properties.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final PropertyModel propertyModel = properties[index];
+                          return RecommendationCard(
+                              propertyModel: propertyModel);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }
+        // this will not be the case but for null safety we are using this
+        return const SizedBox();
+      }),
+    );
+  }
+}
+
+class RecommendationCard extends StatelessWidget {
+  const RecommendationCard({
+    Key? key,
+    required this.propertyModel,
+  }) : super(key: key);
+
+  final PropertyModel propertyModel;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => DetailsPage(propertyModel: propertyModel),
+        ),
+      ),
+      child: Container(
+        width: 200,
+        padding: const EdgeInsets.all(16),
+        margin: const EdgeInsets.only(right: 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Good Morning"),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image(
+                height: 120,
+                width: double.infinity,
+                image: AssetImage(propertyModel.thumbnail),
+                fit: BoxFit.cover,
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: const Color(0xffF9EEc8),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Text(
+                "Check",
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+            ),
+            // const SizedBox(
+            //   height: 6,
+            // ),
             Text(
-              "Tetteh Jeron Asiedu",
-              style: Theme.of(context).textTheme.labelMedium,
+              propertyModel.title,
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+            // const SizedBox(
+            //   height: 9,
+            // ),
+            Text(
+              "${propertyModel.rooms} rooms - ${propertyModel.area} square foots - ${propertyModel.floors} floors",
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ],
         ),
-        actions: const [
-          CustomIconButton(
-            icon: Icon(Ionicons.search_outline),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 8.0, right: 12),
-            child: CustomIconButton(
-              icon: Icon(Ionicons.notifications_outline),
+      ),
+    );
+  }
+}
+
+class CategoryButton extends StatelessWidget {
+  final CategoryModel categoryModel;
+  const CategoryButton({
+    Key? key,
+    required this.categoryModel,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryPage(
+              categoryModel: categoryModel,
             ),
           ),
-        ],
-      ),
-      body: ListView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.all(14),
-        children: [
-          // LOCATION CARD
-          const LocationCard(),
-          const SizedBox(
-            height: 15,
-          ),
-          const TouristPlaces(),
-          // CATEGORIES
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Recommendation",
-                style: Theme.of(context).textTheme.titleLarge,
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.all(4),
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.15),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              categoryModel.title,
+              style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
+            Flexible(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image(
+                  height: 50,
+                  width: 50,
+                  image: AssetImage('images/${categoryModel.assetPath}'),
+                  fit: BoxFit.cover,
+                ),
               ),
-              TextButton(onPressed: () {}, child: const Text("View All"))
-            ],
-          ),
-          const SizedBox(height: 10),
-          const RecommendedPlaces(),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Nearby From You",
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              TextButton(onPressed: () {}, child: const Text("View All"))
-            ],
-          ),
-          const SizedBox(height: 10),
-          const NearbyPlaces(),
-        ],
+            ),
+          ],
+        ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   type: BottomNavigationBarType.fixed,
-      //   showSelectedLabels: false,
-      //   showUnselectedLabels: false,
-      //   onTap:(value) {
-
-      //   },
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Ionicons.home_outline),
-      //       label: "Home",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Ionicons.bookmark_outline),
-      //       label: "Bookmark",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Ionicons.ticket_outline),
-      //       label: "Ticket",
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Ionicons.person_outline),
-      //       label: "Profile",
-      //     )
-      //   ],
-      // ),
     );
   }
 }

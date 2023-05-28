@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mabitt/screens/get_start.dart';
-import 'package:mabitt/screens/welcome_screen.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'mabit',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: GoogleFonts.mulishTextTheme(

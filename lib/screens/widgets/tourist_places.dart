@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/utils/theme.dart';
-
 import '../../models/tourist_places_model.dart';
 
 class TouristPlaces extends StatelessWidget {
@@ -19,7 +18,7 @@ class TouristPlaces extends StatelessWidget {
             avatar: CircleAvatar(
               backgroundImage: AssetImage(touristPlaces[index].image),
             ),
-            backgroundColor: ColorManager.lightPrimary,
+            backgroundColor: ColorManager.thirdPrimary,
             elevation: 0.4,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),

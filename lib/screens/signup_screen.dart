@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:mabitt/screens/testt.dart';
+import 'package:mabitt/screens/tabs.dart';
 import 'package:mabitt/screens/widgets/customized_button.dart';
 import 'package:mabitt/screens/widgets/customized_textfield.dart';
 import 'package:mabitt/utils/theme.dart';
 
-import '../routes/routes.dart';
-import 'home_screen.dart';
 import 'login_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -20,6 +17,7 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
@@ -77,17 +75,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               CustomizedTextfield(
                 myController: _confirmPasswordController,
-                hintText: "Confirm Password",
+                hintText: " phone number",
                 isPassword: true,
               ),
               CustomizedButton(
                 buttonText: "Register",
-                buttonColor: ColorManager.darkblue,
+                buttonColor: ColorManager.primary,
                 textColor: ColorManager.lightPrimary,
                 onPressed: () {
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(builder: (_) => HomePage()));
-                  Get.offNamed(Routes.homepage);
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => TabsScreen()));
                 },
               ),
               Padding(
@@ -175,11 +172,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         )),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (_) =>  HomePage()));
-                        // Get.offNamed(Routes.loginScreen);
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => LoginScreen()));
                       },
                       child: const Text("  Login Now",
                           style: TextStyle(

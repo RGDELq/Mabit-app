@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mabitt/screens/FavoritesScreen.dart';
 import 'package:mabitt/screens/postScreen.dart';
-import 'package:mabitt/screens/profileScreen.dart';
+import 'package:mabitt/screens/profile_screen.dart';
 
 import '../screens/home_screen.dart';
 
