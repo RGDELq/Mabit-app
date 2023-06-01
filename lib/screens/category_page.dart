@@ -74,7 +74,7 @@ class CategoryPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () {},
                       child: Text(
-                        "See All",
+                        "",
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
@@ -183,7 +183,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
                         padding: const EdgeInsets.all(12),
                         margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
-                          color: const Color(0xffE6CD6B),
+                          color: const Color(0xff114E60),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black.withOpacity(0.1),
@@ -203,7 +203,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
                           child: Text(
                             "Check",
                             style:
-                                Theme.of(context).textTheme.subtitle2!.copyWith(
+                                Theme.of(context).textTheme.titleSmall!.copyWith(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                     ),

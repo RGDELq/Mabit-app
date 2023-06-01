@@ -19,6 +19,7 @@ class CustomIconButton extends StatelessWidget {
         constraints: const BoxConstraints.tightFor(width: 40),
       color  :  Colors.white,
         icon: icon,
+
         splashRadius: 22,
       ),
     );

@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         const Spacer(),
-                        const Icon(LineIcons.bellAlt)
+
                       ],
                     ),
                     const SizedBox(
@@ -102,6 +102,20 @@ class _HomePageState extends State<HomePage> {
                       height: 270,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: properties.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final PropertyModel propertyModel = properties[index];
+                          return RecommendationCard(
+                              propertyModel: propertyModel);
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 30, ),
+                    SizedBox(
+                      height: 270,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
                         shrinkWrap: true,
                         itemCount: properties.length,
                         itemBuilder: (BuildContext context, int index) {

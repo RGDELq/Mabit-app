@@ -8,9 +8,9 @@ class CategoryModel {
 }
 
 List<CategoryModel> categories = [
-  CategoryModel(title: 'Resort', assetPath: 'resort.jpeg'),
-  CategoryModel(title: 'Cottage', assetPath: 'cottage.jpeg'),
-  CategoryModel(title: 'Office', assetPath: 'office.jpeg'),
-  CategoryModel(title: 'Urban', assetPath: 'urban.jpeg'),
+  CategoryModel(title: 'Villa', assetPath: 'resort.jpeg'),
+  CategoryModel(title: 'Chalet', assetPath: 'cottage.jpeg'),
+  CategoryModel(title: 'apartments', assetPath: 'office.jpeg'),
+  CategoryModel(title: 'real estate', assetPath: 'urban.jpeg'),
   CategoryModel(title: 'villa', assetPath: 'urban.jpeg'),
 ];

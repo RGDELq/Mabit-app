@@ -20,6 +20,14 @@ class DetailsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                  ),
+                ),
                 CarouselwithIndicatorDemo(
                   propertyModel: propertyModel,
                 ),
@@ -27,6 +35,7 @@ class DetailsPage extends StatelessWidget {
                   height: 12,
                 ),
                 Padding(
+
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,8 +154,10 @@ class DetailsPage extends StatelessWidget {
                       ),
                       height: 55,
                       width: 55,
-                      child: const Icon(
+
+                      child:  Icon(
                         LineIcons.comment,
+
                       ),
                     ),
                   ),

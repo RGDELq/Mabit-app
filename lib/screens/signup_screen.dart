@@ -73,10 +73,45 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 hintText: "Password",
                 isPassword: true,
               ),
-              CustomizedTextfield(
-                myController: _confirmPasswordController,
-                hintText: " phone number",
-                isPassword: true,
+              const SizedBox(
+                height: 10,
+              ),
+              // Center(
+              //   child: Padding(
+              //     padding: const EdgeInsets.only(left: 10, right: 10),
+              //     child: Row(
+              //       children: [
+              //         Expanded(
+              //             flex: 1,
+              //             child: CountryCodePicker(
+              //               onChanged: (country) {},
+              //               initialSelection: '+20',
+              //               favorite: const ['+39', 'FR', "+966"],
+              //               // optional. Shows only country name and flag
+              //               showCountryOnly: true,
+              //               hideMainText: true,
+              //               // optional. Shows only country name and flag when popup is closed.
+              //               showOnlyCountryWhenClosed: true,
+              //             )),
+              //         Expanded(
+              //             flex: 4,
+              //             child: TextFormField(
+              //               keyboardType: TextInputType.phone,
+              //               // controller: _mobileNumberEditingController,
+              //               decoration: const InputDecoration(
+              //                 hintText: ('+218 092 0000000'),
+              //                 labelText: 'enter your mobile number',
+              //               ),
+              //             ))
+
+              //       ],
+
+              //     ),
+              //   ),
+              // ),
+
+              const SizedBox(
+                height: 40,
               ),
               CustomizedButton(
                 buttonText: "Register",
