@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffF9EEc8),
+      backgroundColor: const Color(0xffF9EEc8),
       body: Builder(builder: (context) {
         // your conditions to render the widgets!
         if (_currentIndex == 0) {
@@ -49,7 +49,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                         const Spacer(),
-
                       ],
                     ),
                     const SizedBox(
@@ -99,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                       height: 30,
                     ),
                     SizedBox(
-                      height: 270,
+                      height: 290,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
@@ -111,7 +110,9 @@ class _HomePageState extends State<HomePage> {
                         },
                       ),
                     ),
-                    SizedBox(height: 30, ),
+                    const SizedBox(
+                      height: 30,
+                    ),
                     SizedBox(
                       height: 270,
                       child: ListView.builder(

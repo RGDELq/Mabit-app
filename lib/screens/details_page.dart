@@ -57,7 +57,7 @@ class DetailsPage extends StatelessWidget {
                           Text(
                             propertyModel.rating.toString(),
                             style:
-                                Theme.of(context).textTheme.subtitle1!.copyWith(
+                                Theme.of(context).textTheme.titleMedium!.copyWith(
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
@@ -68,7 +68,7 @@ class DetailsPage extends StatelessWidget {
                       ),
                       Text(
                         propertyModel.subTitle.toString(),
-                        style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                        style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: Colors.black.withOpacity(0.5),
                             ),
                       ),
@@ -138,7 +138,7 @@ class DetailsPage extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       margin: const EdgeInsets.only(right: 8),
                       decoration: BoxDecoration(
-                        color: Color(0xffF9EEc8),
+                        color: const Color(0xffF9EEc8),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: Colors.black.withOpacity(0.3),
@@ -155,7 +155,7 @@ class DetailsPage extends StatelessWidget {
                       height: 55,
                       width: 55,
 
-                      child:  Icon(
+                      child:  const Icon(
                         LineIcons.comment,
 
                       ),
@@ -167,7 +167,7 @@ class DetailsPage extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       margin: const EdgeInsets.only(right: 8),
                       decoration: BoxDecoration(
-                        color: Color(0xffF9EEc8),
+                        color:const Color(0xffF9EEc8),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: Colors.black.withOpacity(0.3),
@@ -195,15 +195,15 @@ class DetailsPage extends StatelessWidget {
                         padding: const EdgeInsets.all(12),
                         margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
-                          color: Color(0xff114E60),
+                          color: const Color(0xff114E60),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black.withOpacity(0.3),
                           ),
-                          boxShadow: [
-                            BoxShadow(
+                          boxShadow: const [
+                          BoxShadow(
                               color: Color(0xff114E60),
-                              offset: const Offset(4, 4),
+                              offset: Offset(4, 4),
                               blurRadius: 20,
                               spreadRadius: 4,
                             )
@@ -216,7 +216,7 @@ class DetailsPage extends StatelessWidget {
                             "Contact  owner",
                             style:
                                 Theme.of(context).textTheme.subtitle2!.copyWith(
-                                      color: Color(0xffF9EEc8),
+                                      color:  const Color(0xffF9EEc8),
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),

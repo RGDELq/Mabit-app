@@ -37,7 +37,7 @@ class CategoryPage extends StatelessWidget {
                     ),
                     Text(
                       categoryModel.title,
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                   ],
                 ),

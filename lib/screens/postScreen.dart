@@ -16,11 +16,9 @@ class _PostsScreenState extends State<PostsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Property post"),
-        backgroundColor: Color.fromARGB(255, 44, 73, 121),
+        backgroundColor:  const Color.fromARGB(255, 44, 73, 121),
       ),
-    body: PostForm(),
+      body: const PostForm(),
     );
-    
-    
   }
 }
