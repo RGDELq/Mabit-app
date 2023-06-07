@@ -1,102 +1,88 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/widgets/customized_button.dart';
-import 'package:mabitt/screens/widgets/customized_textfield.dart';
-import 'package:mabitt/utils/theme.dart';
+import 'package:mabitt/screens/widgets/main_button.dart';
+import 'package:mabitt/screens/widgets/text_field_widget.dart';
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
-  final TextEditingController _emailController = TextEditingController();
-
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+  TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Center(
+          child: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                  border: Border.all(color: ColorManager.primary, width: 1),
-                  borderRadius: BorderRadius.circular(10),
+            SizedBox(
+              height: size.height * 0.125,
+            ),
+            Column(
+              children: const [
+                Text(
+                  'Reset your Password',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                 ),
-                child: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_sharp),
+                Text(
+                  "Enter your Email To get the code",
+                  style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            TextFieldWidget(
+              controller: emailController,
+              validator: (String? value) {
+                if (value!.isEmpty) {
+                  return "Please enter your email address";
+                }
+
+                if (!value.contains('.com') || !value.contains('@')) {
+                  return "Enter a Valid Email";
+                }
+
+                return null;
+              },
+              hintText: 'ex: a@example.com',
+              label: ' Email address',
+            ),
+            SizedBox(
+              height: size.height * 0.2,
+            ),
+            Column(
+              children: [
+                MainButton(
+                    text: 'contuin',
+                    withBorder: false,
+                    isloading: false,
+                    onPressed: () {
+                      // Navigator.push(
+                      //     context,
+                      //     CupertinoPageRoute(
+                      //         builder: (context) => OtpScreen(
+                      //               email: emailController.text,
+                      //             )));
+                    }),
+                MainButton(
+                    text: 'Back',
+                    withBorder: true,
+                    isloading: false,
                     onPressed: () {
                       Navigator.pop(context);
                     }),
-              ),
+              ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text("Forgot Password?",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 44, 73, 121),
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  )),
-            ),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                  "Dont worry it occurs to us all. We will send you a link to reset your password.",
-                  style: TextStyle(
-                    color: Color(0xff8391A1),
-                    fontSize: 20,
-                    // fontWeight: FontWeight.bold,
-                  )),
-            ),
-            CustomizedTextfield(
-              myController: _emailController,
-              hintText: "Enter your Email",
-              isPassword: false,
-            ),
-            CustomizedButton(
-              buttonText: "Send Code",
-              buttonColor: ColorManager.primary,
-              textColor: Colors.white,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            const Spacer(
-              flex: 1,
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(68, 8, 8, 8.0),
-              child: Row(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text("Remember Password?",
-                      style: TextStyle(
-                        color: Color(0xff1E232C),
-                        fontSize: 15,
-                      )),
-                  InkWell(
-                    onTap: () {},
-                    child: const Text("  Login",
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 44, 73, 121),
-                          fontSize: 15,
-                        )),
-                  ),
-                ],
-              ),
-            )
           ],
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

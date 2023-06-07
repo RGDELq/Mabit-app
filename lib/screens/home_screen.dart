@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/screens/category_page.dart';
 import 'package:mabitt/screens/details_page.dart';
+import 'package:mabitt/screens/rating%20section.dart';
 import '../models/category_model.dart';
 import '../models/property_model.dart';
 
@@ -39,12 +40,8 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Welcome !",
-                              style: Theme.of(context).textTheme.caption,
-                            ),
-                            Text(
-                              "Mabit user",
-                              style: Theme.of(context).textTheme.headline6,
+                              "Welcome to Mabit",
+                              style: Theme.of(context).textTheme.titleLarge,
                             ),
                           ],
                         ),
@@ -63,11 +60,29 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.grey.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(LineIcons.search),
-                          hintText: "Search...",
+                      child: GestureDetector(
+                        onTap: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (_) => const Ratingcomments()));
+                          showSearch(
+                            context: context,
+                            delegate: Property_search(),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(12),
+                          // margin: const EdgeInsets.only(right: 22),
+                          decoration: BoxDecoration(
+                            color: const Color(0xffF9EEc8),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          height: 55,
+                          width: 55,
+                          child: const Icon(
+                            LineIcons.search,
+                          ),
                         ),
                       ),
                     ),
@@ -92,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Text(
                       "Recommendations",
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const SizedBox(
                       height: 30,
@@ -171,7 +186,7 @@ class RecommendationCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: Image(
                 height: 120,
-                width: double.infinity,
+                width: double.maxFinite,
                 image: AssetImage(propertyModel.thumbnail),
                 fit: BoxFit.cover,
               ),
@@ -266,5 +281,41 @@ class CategoryButton extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class Property_search extends SearchDelegate<String> {
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    // TODO: implement buildActions
+    return [
+      IconButton(
+        onPressed: () {},
+        icon: Icon(Icons.clear),
+      )
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    // TODO: implement buildLeading
+    return IconButton(
+      onPressed: () {
+        close(context, '');
+      },
+      icon: Icon(Icons.arrow_back),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    return Text('body');
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+    return Text('body');
   }
 }

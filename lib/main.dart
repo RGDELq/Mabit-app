@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mabitt/screens/get_start.dart';
 import 'package:get/get.dart';
+import 'package:mabitt/screens/ogin_screen.dart';
+import 'package:mabitt/screens/register_screen.dart';
+import 'package:mabitt/screens/welcome_screen.dart';
 
 void main() async {
   runApp(const MyApp());

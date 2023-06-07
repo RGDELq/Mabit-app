@@ -1,14 +1,22 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:mabitt/screens/rating%20section.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../models/property_model.dart';
 
 class DetailsPage extends StatelessWidget {
   final PropertyModel propertyModel;
+
+  // final bool isfav;
   const DetailsPage({
     Key? key,
     required this.propertyModel,
+
+    // required this.isfav,
   }) : super(key: key);
 
   @override
@@ -35,7 +43,6 @@ class DetailsPage extends StatelessWidget {
                   height: 12,
                 ),
                 Padding(
-
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,10 +51,12 @@ class DetailsPage extends StatelessWidget {
                         children: [
                           Text(
                             propertyModel.title,
-                            style:
-                                Theme.of(context).textTheme.headline6!.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                           const Spacer(),
                           const Icon(
@@ -56,10 +65,12 @@ class DetailsPage extends StatelessWidget {
                           ),
                           Text(
                             propertyModel.rating.toString(),
-                            style:
-                                Theme.of(context).textTheme.titleMedium!.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ],
                       ),
@@ -79,6 +90,11 @@ class DetailsPage extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
+                            specWidget(
+                              context,
+                              LineIcons.moneyBill,
+                              "${propertyModel.price} LD",
+                            ),
                             specWidget(
                               context,
                               LineIcons.home,
@@ -133,7 +149,10 @@ class DetailsPage extends StatelessWidget {
               child: Row(
                 children: [
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => RatingScreen()));
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       margin: const EdgeInsets.only(right: 8),
@@ -154,20 +173,20 @@ class DetailsPage extends StatelessWidget {
                       ),
                       height: 55,
                       width: 55,
-
-                      child:  const Icon(
+                      child: const Icon(
                         LineIcons.comment,
-
                       ),
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Icon(Ionicons.heart);
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(12),
                       margin: const EdgeInsets.only(right: 8),
                       decoration: BoxDecoration(
-                        color:const Color(0xffF9EEc8),
+                        color: const Color(0xffF9EEc8),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
                           color: Colors.black.withOpacity(0.3),
@@ -183,14 +202,16 @@ class DetailsPage extends StatelessWidget {
                       ),
                       height: 55,
                       width: 55,
-                      child: const Icon(
-                        LineIcons.heart,
-                      ),
+                      child: const Icon(Ionicons.heart_outline,
+                          color: Colors.redAccent),
                     ),
                   ),
                   Expanded(
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        // launchUrl('tel:+218928468779' as Uri);
+                        FlutterPhoneDirectCaller.callNumber('+218928468779');
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         margin: const EdgeInsets.only(right: 8),
@@ -201,7 +222,7 @@ class DetailsPage extends StatelessWidget {
                             color: Colors.black.withOpacity(0.3),
                           ),
                           boxShadow: const [
-                          BoxShadow(
+                            BoxShadow(
                               color: Color(0xff114E60),
                               offset: Offset(4, 4),
                               blurRadius: 20,
@@ -214,11 +235,13 @@ class DetailsPage extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "Contact  owner",
-                            style:
-                                Theme.of(context).textTheme.subtitle2!.copyWith(
-                                      color:  const Color(0xffF9EEc8),
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                  color: const Color(0xffF9EEc8),
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ),
                       ),
@@ -241,7 +264,7 @@ class DetailsPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: const BoxDecoration(
-              color: Color(0xff114E60),
+              color: Color(0xffF9EEc8),
               shape: BoxShape.circle,
             ),
             child: Icon(iconData),
@@ -258,65 +281,6 @@ class DetailsPage extends StatelessWidget {
     );
   }
 }
-
-// this is the first way to do this. But instead of making this iteratively you can make a function instead of extracting the widget!
-
-// class DetailsSpecItem extends StatelessWidget {
-//   const DetailsSpecItem({
-//     Key? key,
-//     required this.propertyModel,
-//   }) : super(key: key);
-
-//   final PropertyModel propertyModel;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SingleChildScrollView(
-//       scrollDirection: Axis.horizontal,
-//       child: Row(
-//         children: [
-//           Container(
-//             padding: const EdgeInsets.all(12),
-//             decoration: const BoxDecoration(
-//               color: Color(
-//                 0xffE7CD6B,
-//               ),
-//               shape: BoxShape.circle,
-//             ),
-//             child: const Icon(Icons.home),
-//           ),
-//           const SizedBox(
-//             width: 8,
-//           ),
-//           Text(
-//             "${propertyModel.rooms} Rooms",
-//             style: Theme.of(context).textTheme.subtitle1,
-//           ),
-//           const SizedBox(
-//             width: 8,
-//           ),
-//           Container(
-//             padding: const EdgeInsets.all(12),
-//             decoration: const BoxDecoration(
-//               color: Color(
-//                 0xffE7CD6B,
-//               ),
-//               shape: BoxShape.circle,
-//             ),
-//             child: const Icon(Icons.home),
-//           ),
-//           const SizedBox(
-//             width: 8,
-//           ),
-//           Text(
-//             "${propertyModel.area} Sqft",
-//             style: Theme.of(context).textTheme.subtitle1,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class CarouselwithIndicatorDemo extends StatefulWidget {
   final PropertyModel propertyModel;

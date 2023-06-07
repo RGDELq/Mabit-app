@@ -13,15 +13,17 @@ class ProfilePic extends StatefulWidget {
 class _ProfilePicState extends State<ProfilePic> {
   File? _image;
 
-  Future getImage() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if (image == null) return;
-
-    final imageTemporary = File(image.path);
-
-    setState(() {
-      this._image = imageTemporary;
-    });
+  // This is the image picker
+  final _picker = ImagePicker();
+  // Implementing the image picker
+  Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
   }
 
   @override
@@ -47,12 +49,22 @@ class _ProfilePicState extends State<ProfilePic> {
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
-                    side: BorderSide(color: Colors.white),
+                    side: const BorderSide(color: Colors.white),
                   ),
                   iconColor: Colors.white,
-                  backgroundColor: Color(0xFFF5F6F9),
+                  backgroundColor: const Color(0xFFF5F6F9),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  _openImagePicker;
+                  Container(
+                    width: 130,
+                    height: 100,
+                    color: Colors.grey[300],
+                    child: _image != null
+                        ? Image.file(_image! as File, fit: BoxFit.cover)
+                        : const Text('please select a file to display'),
+                  );
+                },
                 child: Image.asset(
                   'assets/camera.png',
                 ),

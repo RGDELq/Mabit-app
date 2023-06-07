@@ -47,7 +47,7 @@ class _PostFormState extends State<PostForm> {
             children: [
               Container(
                 padding: EdgeInsets.all(10),
-                width: 200,
+                width: 340,
                 child: SizedBox(
                   width: 240, // <-- TextField width
 
@@ -68,7 +68,7 @@ class _PostFormState extends State<PostForm> {
             children: [
               Container(
                 padding: const EdgeInsets.all(10),
-                width: 200,
+                width: 340,
                 child: TextFormField(
                   decoration: InputDecoration(
                     labelText: 'Description',
@@ -86,6 +86,29 @@ class _PostFormState extends State<PostForm> {
             height: 10,
           ),
           Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                width: 340,
+                child: SizedBox(
+                  width: 200,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      labelText: 'Price per night',
+                      prefixIcon: const Icon(Icons.attach_money_outlined),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
@@ -94,14 +117,15 @@ class _PostFormState extends State<PostForm> {
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide:
-                            BorderSide(width: 1, color: Color(0xff114E60))),
+                        borderSide: const BorderSide(
+                            width: 1, color: Color(0xff114E60))),
                   ),
                   value: selectedcatgory,
                   items: catgory
                       .map((item) => DropdownMenuItem(
                           value: item,
-                          child: Text(item, style: TextStyle(fontSize: 12))))
+                          child:
+                              Text(item, style: const TextStyle(fontSize: 12))))
                       .toList(),
                   onChanged: (item) => setState(() => selectedcatgory = item),
                 ),
@@ -112,53 +136,38 @@ class _PostFormState extends State<PostForm> {
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide:
-                            BorderSide(width: 1, color: Color(0xff114E60))),
+                        borderSide: const BorderSide(
+                            width: 1, color: Color(0xff114E60))),
                   ),
                   value: selectedItem,
                   items: listitem
                       .map((item) => DropdownMenuItem(
                           value: item,
-                          child: Text(item, style: TextStyle(fontSize: 12))))
+                          child:
+                              Text(item, style: const TextStyle(fontSize: 12))))
                       .toList(),
                   onChanged: (item) => setState(() => selectedItem = item),
                 ),
               )
             ],
           ),
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(10),
-                width: 200,
-                child: SizedBox(
-                  width: 200,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Price per night',
-                      prefixIcon: Icon(Icons.price_change_sharp),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          const SizedBox(
+            height: 10,
           ),
           Row(children: [
             ElevatedButton(
               onPressed: _openImagePicker,
               child: const Text('Select An Image'),
             ),
-
-            const SizedBox(height: 10),
+            const SizedBox(height: 50),
             // The picked image will be displayed here
             Container(
-              color: Colors.grey[300],
+              width: 130,
+              height: 100,
+              color: Colors.white,
               child: _image != null
                   ? Image.file(_image! as File, fit: BoxFit.cover)
-                  : const Text(''),
+                  : const Text('please select a file to display'),
             )
           ]),
         ],

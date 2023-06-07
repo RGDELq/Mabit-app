@@ -146,7 +146,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
               children: [
                 Text(
                   propertyModel.title,
-                  style: Theme.of(context).textTheme.headline6!.copyWith(
+                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -157,7 +157,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
                 ),
                 Text(
                   propertyModel.rating.toString(),
-                  style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
                 ),
@@ -202,43 +202,42 @@ class ExpandedRecommendationCard extends StatelessWidget {
                         child: Center(
                           child: Text(
                             "Check",
-                            style:
-                                Theme.of(context).textTheme.titleSmall!.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall!
+                                .copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      margin: const EdgeInsets.only(right: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Colors.black.withOpacity(0.1),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            offset: const Offset(0, 5),
-                            blurRadius: 20,
-                            spreadRadius: 4,
-                          )
-                        ],
-                      ),
-                      height: 55,
-                      width: 55,
-                      child: const Icon(
-                        LineIcons.heart,
-                      ),
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {},
+                  //   child: Container(
+                  //     padding: const EdgeInsets.all(12),
+                  //     margin: const EdgeInsets.only(right: 8),
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.pink,
+                  //       borderRadius: BorderRadius.circular(12),
+                  //       border: Border.all(
+                  //         color: Colors.black.withOpacity(0.1),
+                  //       ),
+                  //       // boxShadow: [
+                  //       //   BoxShadow(
+                  //       //     color: Colors.black.withOpacity(0.1),
+                  //       //     offset: const Offset(0, 5),
+                  //       //     blurRadius: 20,
+                  //       //     spreadRadius: 4,
+                  //       //   )
+                  //       // ],
+                  //     ),
+                  //     height: 55,
+                  //     width: 55,
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -248,7 +247,3 @@ class ExpandedRecommendationCard extends StatelessWidget {
     );
   }
 }
-
-
-// thanks for watching! 
-// do subscribe to my channel to get more videos! <3 
