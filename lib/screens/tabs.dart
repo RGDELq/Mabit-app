@@ -29,7 +29,7 @@ class _TabsScreenState extends State<TabsScreen> {
                     : ProfileScreen(),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color(0xffF9EEc8),
+        backgroundColor: Colors.black,
         elevation: 0,
         currentIndex: currentIndex,
         onTap: (index) {
@@ -37,8 +37,6 @@ class _TabsScreenState extends State<TabsScreen> {
             currentIndex = index;
           });
         },
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.red,
         items: [
           BottomNavigationBarItem(
               label: '',

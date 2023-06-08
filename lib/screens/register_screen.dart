@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/ogin_screen.dart';
+import 'package:mabitt/screens/tabs.dart';
 import 'package:mabitt/screens/widgets/main_button.dart';
 import 'package:mabitt/screens/widgets/text_field_widget.dart';
 
 import '../utils/theme.dart';
+import 'login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -17,6 +18,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController PhoneController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -29,7 +32,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
-                    height: 50,
+                    height: 60,
                     width: 50,
                     decoration: BoxDecoration(
                       border:
@@ -128,6 +131,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
+                  TextFieldWidget(
+                    // keyboardType: TextInputType.phone,
+                    label: 'Phone number',
+                    hintText: 'Enter your phone number',
+                    controller: PhoneController,
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return "Please enter your Phone number";
+                      }
+                      if (value.length != 10) {
+                        return "please enter a valid phone number";
+                      }
+                      return null;
+                    },
+                  ),
                   SizedBox(
                     height: size.height * 0.05,
                   ),
@@ -135,7 +153,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       text: "Sign up ",
                       withBorder: false,
                       isloading: false,
-                      onPressed: () {}),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: ((context) => const TabsScreen())));
+                      }),
                   MainButton(
                       text: "Have account? Login",
                       withBorder: true,

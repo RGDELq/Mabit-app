@@ -1,13 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:mabitt/models/recommended_places_model.dart';
-import 'package:mabitt/screens/widgets/body.dart';
 
-import '../models/category_model.dart';
 import '../models/property_model.dart';
-import 'fav_empty.dart';
+
 import 'home_screen.dart';
 
 class Favuirate extends StatefulWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mabitt/screens/Send_opt.dart';
 import 'package:mabitt/screens/widgets/main_button.dart';
 import 'package:mabitt/screens/widgets/text_field_widget.dart';
 
@@ -64,12 +65,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     withBorder: false,
                     isloading: false,
                     onPressed: () {
-                      // Navigator.push(
-                      //     context,
-                      //     CupertinoPageRoute(
-                      //         builder: (context) => OtpScreen(
-                      //               email: emailController.text,
-                      //             )));
+                      Navigator.push(context,
+                          CupertinoPageRoute(builder: (context) => MyApp()));
                     }),
                 MainButton(
                     text: 'Back',

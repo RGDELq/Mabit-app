@@ -44,7 +44,7 @@ class _MainButtonState extends State<MainButton> {
               border: Border.all(
                   color: widget.isActive
                       ? ColorManager.primary
-                      : Colors.transparent,
+                      : ColorManager.grey1,
                   width: 1),
               borderRadius: BorderRadius.circular(60)),
           child: Center(
@@ -52,7 +52,7 @@ class _MainButtonState extends State<MainButton> {
                 ? CircularProgressIndicator(
                     color: widget.withBorder
                         ? ColorManager.primary
-                        : Colors.transparent,
+                        : ColorManager.grey1,
                   )
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),

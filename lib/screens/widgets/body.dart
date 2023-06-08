@@ -16,14 +16,17 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "My Account",
             icon: "assets/icons/",
-            press: () => {},
+            press: () => {
+              //  Navigator.push(
+              //     context, MaterialPageRoute(builder: (_) => FilterButton())),
+            },
           ),
           ProfileMenu(
             text: "Log Out",
             icon: "assets/exit.png",
             press: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => Getstart()));
+                  context, MaterialPageRoute(builder: (_) => SplashScreen()));
             },
           ),
         ],

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/screens/category_page.dart';
 import 'package:mabitt/screens/details_page.dart';
-import 'package:mabitt/screens/rating%20section.dart';
 import '../models/category_model.dart';
 import '../models/property_model.dart';
 

@@ -4,7 +4,6 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/screens/rating%20section.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../models/property_model.dart';
 

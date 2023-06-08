@@ -1,102 +1,236 @@
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/get_start.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:mabitt/utils/theme.dart';
+import 'package:readmore/readmore.dart';
+import 'img_button.dart';
 
-import 'package:mabitt/screens/tabs.dart';
-import 'package:mabitt/screens/widgets/customized_button.dart';
-import 'package:mabitt/screens/widgets/customized_textfield.dart';
+class UserReviewRow extends StatelessWidget {
+  final bool isBottomActionBar;
+  final VoidCallback? onCommentPress;
+  final VoidCallback? onLikePress;
+  final VoidCallback? onSharePress;
 
-import '../utils/theme.dart';
-import 'forgot_passwor.dart';
+  const UserReviewRow(
+      {super.key,
+      this.isBottomActionBar = false,
+      this.onSharePress,
+      this.onLikePress,
+      this.onCommentPress});
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-            body: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: double.infinity,
-                child: SingleChildScrollView(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: ColorManager.darkblue, width: 1),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: IconButton(
-                                icon: const Icon(Icons.arrow_back_ios_sharp),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                }),
-                          ),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text("Welcome Back! Glad \nto see you again",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 17, 77, 95),
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        ),
-                        CustomizedTextfield(
-                          myController: _emailController,
-                          hintText: "Enter your Email",
-                          isPassword: false,
-                        ),
-                        CustomizedTextfield(
-                          myController: _passwordController,
-                          hintText: "Enter your Password",
-                          isPassword: true,
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                        const Getstart()));
-                              },
-                              child: const Text("Forgot Password?",
-                                  style: TextStyle(
-                                    color: Color(0xff6A707C),
-                                    fontSize: 15,
-                                  )),
-                            ),
-                          ),
-                        ),
-                        CustomizedButton(
-                            buttonText: "Login",
-                            buttonColor: ColorManager.primary,
-                            textColor: Colors.white,
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (_) => TabsScreen()));
-                              // Get.offNamed(Routes.homepage);
-                            }),
-                      ]),
-                ))));
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: Image.asset(
+                  'assets/images/u1.png',
+                  width: 50,
+                  height: 50,
+                ),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Hibe Neted",
+                      style: TextStyle(
+                          color: TColor.text,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700),
+                    ),
+                    Text(
+                      "45 Reviews, 210 Followers",
+                      style: TextStyle(
+                          color: TColor.gray,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 30,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: TColor.primary),
+                    borderRadius: BorderRadius.circular(15)),
+                child: Text(
+                  "Follow",
+                  style: TextStyle(
+                      color: TColor.primary,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(children: [
+            Text(
+              "Rated",
+              style: TextStyle(
+                  color: TColor.gray,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700),
+            ),
+            IgnorePointer(
+              ignoring: true,
+              child: RatingBar.builder(
+                initialRating: 3,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                unratedColor: Colors.transparent,
+                itemCount: 5,
+                itemSize: 20,
+                itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
+                itemBuilder: (context, _) => Icon(
+                  Icons.star,
+                  color: TColor.primary,
+                ),
+                onRatingUpdate: (rating) {
+                  print(rating);
+                },
+              ),
+            ),
+            Text(
+              "4.0",
+              style: TextStyle(
+                  color: TColor.primary,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700),
+            ),
+            const Spacer(),
+            Text(
+              "2 Days ago",
+              style: TextStyle(
+                  color: TColor.gray,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700),
+            ),
+          ]),
+          const SizedBox(
+            height: 8,
+          ),
+          ReadMoreText(
+            'I enjoyed the food of the restaurant. The dishes are attractive and very beautiful. Good food, luxurious space and enthusiastic service. I will be back in the… I enjoyed the food of the restaurant. The dishes are attractive and very beautiful. Good food, luxurious space and enthusiastic service. I will be back in the…',
+            trimLines: 4,
+            colorClickableText: TColor.text,
+            trimMode: TrimMode.Line,
+            style: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, color: TColor.text),
+            trimCollapsedText: 'Read more',
+            trimExpandedText: 'Read less',
+            moreStyle: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+                color: TColor.primary),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                imagesButton(
+                  image: "assets/images/c1.png",
+                  onPressed: () {},
+                ),
+                imagesButton(
+                  image: "assets/images/c2.png",
+                  onPressed: () {},
+                ),
+                imagesButton(
+                  image: "assets/images/c3.png",
+                  onPressed: () {},
+                ),
+                imagesButton(
+                  image: "assets/images/l1.png",
+                  isMore: true,
+                  moreImageCount: 8,
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              IconButton(
+                onPressed: () {
+                  if (onLikePress != null) {
+                    onLikePress!();
+                  }
+                },
+                icon: Image.asset(
+                  "assets/images/like.png",
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  if (onCommentPress != null) {
+                    onCommentPress!();
+                  }
+                },
+                icon: Image.asset(
+                  "assets/images/comments.png",
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  if (onSharePress != null) {
+                    onSharePress!();
+                  }
+                },
+                icon: Image.asset(
+                  "assets/images/share.png",
+                  width: 22,
+                  height: 22,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                "4 Likes",
+                style: TextStyle(
+                    color: TColor.gray,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Text(
+                "3 Comments",
+                style: TextStyle(
+                    color: TColor.gray,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }

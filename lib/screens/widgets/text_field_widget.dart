@@ -26,7 +26,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4.0),
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
           if (widget.label != null)
@@ -50,9 +50,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
               obscureText: widget.obSecureText,
               decoration: InputDecoration(
                 contentPadding:
-                    const EdgeInsets.symmetric(vertical: 19.0, horizontal: 16),
+                    const EdgeInsets.symmetric(vertical: 13.0, horizontal: 16),
                 suffixIcon: widget.perfix,
-                fillColor: mainColor.withOpacity(0.1),
+                fillColor: mainColor.withOpacity(0.2),
                 filled: true,
                 hintText: widget.hintText,
                 border: OutlineInputBorder(

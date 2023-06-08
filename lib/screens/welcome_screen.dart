@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mabitt/screens/ogin_screen.dart';
 import 'package:mabitt/screens/register_screen.dart';
+import 'package:mabitt/screens/tabs.dart';
 import 'package:mabitt/screens/widgets/customized_button.dart';
 import 'package:mabitt/utils/theme.dart';
-import '../routes/routes.dart';
+
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -31,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
               textColor: ColorManager.lightPrimary,
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const LoginScreenn()));
+                    MaterialPageRoute(builder: (_) => const TabsScreen()));
 
                 // Get.offNamed(Routes.loginScreen);
               },
