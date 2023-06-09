@@ -85,7 +85,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 10), () {
+    Timer(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
           context, CupertinoPageRoute(builder: (_) => const WelcomeScreen()));
     });
@@ -96,6 +96,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffF5F5F5),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -105,7 +106,7 @@ class _SplashScreenState extends State<SplashScreen> {
               Image.asset(
                 height: 500,
                 fit: BoxFit.contain,
-                'assets/1.gif',
+                'assets/splashscreen.gif',
               ),
               const SizedBox(height: 20),
               const Text(

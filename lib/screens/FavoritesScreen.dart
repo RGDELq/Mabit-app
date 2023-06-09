@@ -20,6 +20,7 @@ class _FavuirateState extends State<Favuirate> {
       appBar: AppBar(
         title: const Text("favourite properties"),
         backgroundColor: const Color.fromARGB(255, 44, 73, 121),
+         centerTitle: true,
       ),
       body: SizedBox(
         height: 670,

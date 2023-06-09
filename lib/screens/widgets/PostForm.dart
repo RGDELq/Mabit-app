@@ -2,6 +2,7 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/image.dart';
+import 'package:mabitt/screens/widgets/phone_textfiled.dart';
 import 'package:mabitt/screens/widgets/text_field_widget.dart';
 
 import '../tabs.dart';
@@ -18,6 +19,7 @@ class _PostFormState extends State<PostForm> {
   TextEditingController properynameController = TextEditingController();
   TextEditingController DescriptionController = TextEditingController();
   TextEditingController DPhoneController = TextEditingController();
+  TextEditingController PriceController = TextEditingController();
 
   // File? _image;
 
@@ -39,6 +41,22 @@ class _PostFormState extends State<PostForm> {
 
   List<String> catgory = ["Villa", "real estant", "Apartment"];
   String? selectedcatgory = "Villa";
+
+  List<String> rooms = [
+    "one",
+    "two",
+    "three",
+    "four",
+  ];
+  String? selectedrooms = "two";
+
+  List<String> floors = [
+    "5",
+    "7",
+    "8",
+    "9",
+  ];
+  String? selectedfloors = "5";
   TextEditingController PhoneController = TextEditingController();
 
   @override
@@ -50,7 +68,7 @@ class _PostFormState extends State<PostForm> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
+          children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -77,10 +95,10 @@ class _PostFormState extends State<PostForm> {
                       return null;
                     },
                   ),
-                  TextFieldWidget(
-                    // keyboardType: TextInputType.phone,
+                  PhoneTextFieldWidget(
+                    keyboardType: TextInputType.phone,
                     label: 'Phone number',
-                    hintText: 'Enter your phone number',
+                    hintText: 'Ex 09X0000000',
                     controller: PhoneController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
@@ -89,6 +107,19 @@ class _PostFormState extends State<PostForm> {
                       if (value.length != 10) {
                         return "please enter a valid phone number";
                       }
+                      return null;
+                    },
+                  ),
+                  PhoneTextFieldWidget(
+                    keyboardType: TextInputType.number,
+                    label: 'Price per night',
+                    hintText: "£",
+                    controller: PriceController,
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return "Please enter a price";
+                      }
+
                       return null;
                     },
                   ),
@@ -102,6 +133,7 @@ class _PostFormState extends State<PostForm> {
                         width: 160,
                         child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
+                            labelText: 'Category ',
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: const BorderSide(
@@ -122,6 +154,57 @@ class _PostFormState extends State<PostForm> {
                         width: 160,
                         child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
+                            labelText: 'City',
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(
+                                    width: 1, color: Color(0xff114E60))),
+                          ),
+                          value: selectedItem,
+                          items: listitem
+                              .map((item) => DropdownMenuItem(
+                                  value: item,
+                                  child: Text(item,
+                                      style: const TextStyle(fontSize: 12))))
+                              .toList(),
+                          onChanged: (item) =>
+                              setState(() => selectedItem = item),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 160,
+                        child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                            labelText: 'Number of rooms ',
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(
+                                    width: 1, color: Color(0xff114E60))),
+                          ),
+                          value: selectedrooms,
+                          items: rooms
+                              .map((item) => DropdownMenuItem(
+                                  value: item,
+                                  child: Text(item,
+                                      style: const TextStyle(fontSize: 12))))
+                              .toList(),
+                          onChanged: (item) =>
+                              setState(() => selectedrooms = item),
+                        ),
+                      ),
+                      Container(
+                        width: 160,
+                        child: DropdownButtonFormField<String>(
+                          decoration: InputDecoration(
+                            labelText: 'Number of floors',
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                                 borderSide: const BorderSide(
@@ -143,6 +226,10 @@ class _PostFormState extends State<PostForm> {
                   const SizedBox(
                     height: 10,
                   ),
+
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -153,7 +240,7 @@ class _PostFormState extends State<PostForm> {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (_) => Imagee()));
                       },
-                      child: const Text('Select Images'),
+                      child: const Text(' Add Images'),
                     ),
                     // const SizedBox(height: 50),
                     // // The picked image will be displayed here
@@ -166,9 +253,9 @@ class _PostFormState extends State<PostForm> {
                     //       : const Text('please select a file to display'),
                     // )
                   ]),
-                  SizedBox(
-                    height: size.height * 0.05,
-                  ),
+                  // SizedBox(
+                  //   height: size.height * 0.05,
+                  // ),
                   MainButton(
                       text: " Submit ",
                       withBorder: false,

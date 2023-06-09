@@ -1,12 +1,12 @@
-// import 'package:get/instance_manager.dart';
+// import 'package:get/get.dart';
 
 // import '../controllers/main_controller.dart';
 
-// class MainBininding extends Bindings {
+// class HomeBinding extends Bindings {
 //   @override
 //   void dependencies() {
-//     Get.put(MainController());
-//     // Get.put(SettingController());
-//     // Get.put(PayMentController(), permanent: true);
+//     Get.lazyPut<mainController>(
+//       () => mainController(),
+//     );
 //   }
 // }

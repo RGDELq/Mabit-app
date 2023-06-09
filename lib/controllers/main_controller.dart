@@ -1,25 +1,38 @@
-// import 'package:get/get.dart';
-// import 'package:mabitt/screens/FavoritesScreen.dart';
-// import 'package:mabitt/screens/postScreen.dart';
-// import 'package:mabitt/screens/profile_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rating_dialog/rating_dialog.dart';
 
-// import '../screens/home_screen.dart';
+class mainController extends GetxController {
+  var rating = 0.0.obs;
+  var comment = ''.obs;
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
-// class MainController extends GetxController {
-//   RxInt currentIndex = 0.obs;
+  @override
+  void onReady() {
+    super.onReady();
+  }
 
-//   var tabs = [
-//     const HomePage(),
-//     const Favuirate(),
-//     const PostsScreen(),
-//      ProfileScreen(),
-//   ].obs;
-
-//   var title = [
-//     "Asroo Shop",
-//     "Categories",
-//     'Favourites',
-//     "Settings",
-//   ].obs;
-// }
-// // 
+  @override
+  void onClose() {}
+  showRatingDialog() {
+    Get.dialog(RatingDialog(
+      starColor: Colors.amber,
+      title: Text('Property rating'),
+      message: const Text(
+          'Tap a star to set your rating. Add more description here if you want.'),
+      image: Image.asset(
+        "assets/logo1.png",
+        height: 100,
+      ),
+      submitButtonText: 'Submit',
+      onCancelled: () => print('cancelled'),
+      onSubmitted: (response) {
+        rating.value = response.rating;
+        comment.value = response.comment;
+      },
+    ));
+  }
+}

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/tabs.dart';
 import 'package:mabitt/screens/widgets/main_button.dart';
+import 'package:mabitt/screens/widgets/phone_textfiled.dart';
 import 'package:mabitt/screens/widgets/text_field_widget.dart';
 
 import '../utils/theme.dart';
@@ -96,7 +97,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   TextFieldWidget(
                       label: 'Email Address',
                       controller: emailController,
-                      hintText: 'ex: a@example.com',
+                      hintText: 'Ex: a@example.com',
                       validator: (String? value) {
                         if (value!.isEmpty) {
                           return "Please enter your email address";
@@ -131,10 +132,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  TextFieldWidget(
-                    // keyboardType: TextInputType.phone,
+                  PhoneTextFieldWidget(
+                    keyboardType: TextInputType.phone,
                     label: 'Phone number',
-                    hintText: 'Enter your phone number',
+                    hintText: 'Ex: 09X0000000',
                     controller: PhoneController,
                     validator: (String? value) {
                       if (value!.isEmpty) {

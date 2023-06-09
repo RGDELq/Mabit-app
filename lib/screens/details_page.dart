@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:mabitt/screens/rating%20section.dart';
+import 'package:mabitt/screens/rating_scrren.dart';
 
 import '../models/property_model.dart';
 
@@ -27,19 +27,21 @@ class DetailsPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(
+                  height: 15,
+                ),
                 IconButton(
+                  color: const Color.fromARGB(255, 44, 73, 121),
                   onPressed: () {
                     Navigator.pop(context);
                   },
                   icon: const Icon(
+                    color: const Color.fromARGB(255, 44, 73, 121),
                     Icons.arrow_back_ios,
                   ),
                 ),
                 CarouselwithIndicatorDemo(
                   propertyModel: propertyModel,
-                ),
-                const SizedBox(
-                  height: 12,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -150,7 +152,7 @@ class DetailsPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => RatingScreen()));
+                          MaterialPageRoute(builder: (_) => HomeView()));
                     },
                     child: Container(
                       padding: const EdgeInsets.all(12),
