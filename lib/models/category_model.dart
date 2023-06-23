@@ -11,8 +11,8 @@ class CategoryModel {
 
 List<CategoryModel> categories = [
   CategoryModel(title: 'Villa', assetPath: 'resort.jpeg', id: 1),
-  CategoryModel(title: 'Chalet', assetPath: 'cottage.jpeg', id: 2),
+  CategoryModel(title: 'chalet', assetPath: 'cottage.jpeg', id: 2),
   CategoryModel(title: 'apartments', assetPath: 'office.jpeg', id: 3),
-  CategoryModel(title: 'real estate', assetPath: 'urban.jpeg', id: 4),
-  CategoryModel(title: 'Farms', assetPath: 'urban.jpeg', id: 5),
+  CategoryModel(title: 'real estant', assetPath: 'urban.jpeg', id: 4),
+  CategoryModel(title: 'farms', assetPath: 'urban.jpeg', id: 5),
 ];

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mabitt/screens/login_screen.dart';
 import 'package:mabitt/screens/register_screen.dart';
-import 'package:mabitt/screens/tabs.dart';
-import 'package:mabitt/screens/widgets/customized_button.dart';
+import 'package:mabitt/screens/widgets/customized_btn.dart';
 import 'package:mabitt/utils/theme.dart';
-
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -11,7 +10,7 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: Column(
@@ -26,19 +25,19 @@ class WelcomeScreen extends StatelessWidget {
             const SizedBox(height: 120),
             CustomizedButton(
               buttonText: "Login",
-              buttonColor: ColorManager.primary,
-              textColor: ColorManager.lightPrimary,
+              buttonColor: primary,
+              textColor: white,
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const TabsScreen()));
+                    MaterialPageRoute(builder: (_) => const LoginScreenn()));
 
                 // Get.offNamed(Routes.loginScreen);
               },
             ),
             CustomizedButton(
               buttonText: "Register",
-              buttonColor: ColorManager.white,
-              textColor: ColorManager.primary,
+              buttonColor: white,
+              textColor: primary,
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (_) => const RegisterScreen()));

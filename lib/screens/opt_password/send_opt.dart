@@ -51,10 +51,12 @@ class _MyAppState extends State<MyApp> {
                               otpLength: 4,
                               otpType: OTPType.digitsOnly);
                           if (await myauth.sendOTP() == true) {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
                               content: Text("OTP has been sent"),
                             ));
+                            // ignore: use_build_context_synchronously
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -62,6 +64,7 @@ class _MyAppState extends State<MyApp> {
                                           myauth: myauth,
                                         )));
                           } else {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(const SnackBar(
                               content: Text("Oops, OTP send failed"),

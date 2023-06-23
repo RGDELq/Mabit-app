@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/Send_opt.dart';
-import 'package:mabitt/screens/widgets/main_button.dart';
-import 'package:mabitt/screens/widgets/text_field_widget.dart';
+import 'package:mabitt/screens/opt_password/send_opt.dart';
+import 'package:mabitt/screens/widgets/primary_btn.dart';
+import 'package:mabitt/screens/widgets/textfield.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -24,8 +24,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             SizedBox(
               height: size.height * 0.125,
             ),
-            Column(
-              children: const [
+            const Column(
+              children: [
                 Text(
                   'Reset your Password',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
@@ -36,7 +36,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             TextFieldWidget(
@@ -66,7 +66,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     isloading: false,
                     onPressed: () {
                       Navigator.push(context,
-                          CupertinoPageRoute(builder: (context) => MyApp()));
+                          CupertinoPageRoute(builder: (context) => const MyApp()));
                     }),
                 MainButton(
                     text: 'Back',

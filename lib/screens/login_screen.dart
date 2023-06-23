@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/Send_opt.dart';
-import 'package:mabitt/screens/tabs.dart';
-import 'package:mabitt/screens/widgets/main_button.dart';
-import 'package:mabitt/screens/widgets/text_field_widget.dart';
+import 'package:mabitt/screens/navigator.dart';
+import 'package:mabitt/screens/widgets/primary_btn.dart';
+import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:mabitt/utils/theme.dart';
-
+import 'opt_password/send_opt.dart';
 class LoginScreenn extends StatefulWidget {
   const LoginScreenn({super.key});
 
@@ -30,13 +29,11 @@ class _LoginScreennState extends State<LoginScreenn> {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(10.0),
-                
                   child: Container(
                     height: 60,
                     width: 50,
                     decoration: BoxDecoration(
-                      border:
-                          Border.all(color: ColorManager.darkblue, width: 1),
+                      border: Border.all(color: darkblue, width: 1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: IconButton(
@@ -46,7 +43,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                         }),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 200,
                   width: 400,
                 ),
@@ -55,7 +52,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                     left: 0,
                     right: 40,
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -117,14 +114,14 @@ class _LoginScreennState extends State<LoginScreenn> {
                             Navigator.push(
                                 context,
                                 CupertinoPageRoute(
-                                    builder: ((context) => MyApp())));
+                                    builder: ((context) => const MyApp())));
                           },
                           child: Text(
                             "forgot Password",
                             style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
-                              color: ColorManager.primary,
+                              color: primary,
                             ),
                           ),
                         ),
@@ -149,7 +146,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                           Navigator.pushReplacement(
                               context,
                               CupertinoPageRoute(
-                                  builder: ((context) => TabsScreen())));
+                                  builder: ((context) => const TabsScreen())));
                         }),
                   ],
                 ),

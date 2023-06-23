@@ -4,7 +4,7 @@ import 'package:line_icons/line_icons.dart';
 
 import '../models/category_model.dart';
 import '../models/property_model.dart';
-import 'details_page.dart';
+import 'details_screen.dart';
 
 class CategoryPage extends StatelessWidget {
   final CategoryModel categoryModel;
@@ -16,6 +16,7 @@ class CategoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 219, 232, 216),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -49,17 +50,6 @@ class CategoryPage extends StatelessWidget {
                     vertical: 4,
                     horizontal: 8,
                   ),
-                  // decoration: BoxDecoration(
-                  //   color: Colors.grey.withOpacity(0.2),
-                  //   borderRadius: BorderRadius.circular(12),
-                  // ),
-                  // child: const TextField(
-                  //   decoration: InputDecoration(
-                  //     border: InputBorder.none,
-                  //     prefixIcon: Icon(LineIcons.search),
-                  //     hintText: "Search...",
-                  //   ),
-                  // ),
                 ),
                 const SizedBox(
                   height: 24,
@@ -70,13 +60,6 @@ class CategoryPage extends StatelessWidget {
                     Text(
                       "Popular",
                       style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text(
-                        "",
-                        style: Theme.of(context).textTheme.titleMedium,
-                      ),
                     ),
                   ],
                 ),
@@ -168,7 +151,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
             ),
             Text(
               "${propertyModel.rooms} rooms - ${propertyModel.area} square foots - ${propertyModel.floors} floors",
-              style: Theme.of(context).textTheme.caption!.copyWith(
+              style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
             ),
@@ -214,30 +197,30 @@ class ExpandedRecommendationCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // GestureDetector(
-                  //   onTap: () {},
-                  //   child: Container(
-                  //     padding: const EdgeInsets.all(12),
-                  //     margin: const EdgeInsets.only(right: 8),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.pink,
-                  //       borderRadius: BorderRadius.circular(12),
-                  //       border: Border.all(
-                  //         color: Colors.black.withOpacity(0.1),
-                  //       ),
-                  //       // boxShadow: [
-                  //       //   BoxShadow(
-                  //       //     color: Colors.black.withOpacity(0.1),
-                  //       //     offset: const Offset(0, 5),
-                  //       //     blurRadius: 20,
-                  //       //     spreadRadius: 4,
-                  //       //   )
-                  //       // ],
-                  //     ),
-                  //     height: 55,
-                  //     width: 55,
-                  //   ),
-                  // ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      margin: const EdgeInsets.only(right: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                          color: Colors.black.withOpacity(0.1),
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            offset: const Offset(0, 5),
+                            blurRadius: 20,
+                            spreadRadius: 4,
+                          )
+                        ],
+                      ),
+                      height: 55,
+                      width: 55,
+                    ),
+                  ),
                 ],
               ),
             ),

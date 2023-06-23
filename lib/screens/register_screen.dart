@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/tabs.dart';
-import 'package:mabitt/screens/widgets/main_button.dart';
+import 'package:mabitt/screens/navigator.dart';
+import 'package:mabitt/screens/widgets/primary_btn.dart';
 import 'package:mabitt/screens/widgets/phone_textfiled.dart';
-import 'package:mabitt/screens/widgets/text_field_widget.dart';
+import 'package:mabitt/screens/widgets/textfield.dart';
 
 import '../utils/theme.dart';
 import 'login_screen.dart';
@@ -19,7 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
-  TextEditingController PhoneController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     width: 50,
                     decoration: BoxDecoration(
                       border:
-                          Border.all(color: ColorManager.darkblue, width: 1),
+                          Border.all(color: darkblue, width: 1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: IconButton(
@@ -47,7 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 200,
                   width: 400,
                 ),
@@ -56,7 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     left: 0,
                     right: 40,
                     child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                      padding:  EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -71,16 +71,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               left: 0,
                               right: 0,
                               child: Padding(
-                                padding: const EdgeInsets.all(12.0),
+                                padding:  EdgeInsets.all(12.0),
                                 child: Column(
                                   children: [
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
-                                      children: const [],
+                                      children:  [],
                                     ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
-                                      children: const [],
+                                      children: [],
                                     )
                                   ],
                                 ),
@@ -136,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     keyboardType: TextInputType.phone,
                     label: 'Phone number',
                     hintText: 'Ex: 09X0000000',
-                    controller: PhoneController,
+                    controller: phoneController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
                         return "Please enter your Phone number";

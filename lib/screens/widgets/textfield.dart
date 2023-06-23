@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../helpers/consts.dart';
+import '../../utils/theme.dart';
 
 class TextFieldWidget extends StatefulWidget {
   const TextFieldWidget(
@@ -52,22 +51,22 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 13.0, horizontal: 16),
                 suffixIcon: widget.perfix,
-                fillColor: mainColor.withOpacity(0.2),
+                fillColor: pcolor.withOpacity(0.2),
                 filled: true,
                 hintText: widget.hintText,
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(color: mainColor.withOpacity(0.2))),
-                focusColor: mainColor.withOpacity(0.2),
+                    borderSide: BorderSide(color: pcolor.withOpacity(0.2))),
+                focusColor: pcolor.withOpacity(0.2),
                 errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(color: Colors.red)),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(color: mainColor.withOpacity(0.4))),
+                    borderSide: BorderSide(color: pcolor.withOpacity(0.4))),
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: BorderSide(color: mainColor.withOpacity(0.2))),
+                    borderSide: BorderSide(color: pcolor.withOpacity(0.2))),
               ))
         ],
       ),

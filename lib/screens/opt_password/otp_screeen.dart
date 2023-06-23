@@ -1,7 +1,7 @@
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mabitt/screens/tabs.dart';
+import 'package:mabitt/screens/navigator.dart';
 import 'package:mabitt/utils/theme.dart';
 
 class Otp extends StatelessWidget {
@@ -59,7 +59,7 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 44, 73, 121),
+        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
         elevation: 0,
         leading: IconButton(
           onPressed: () {
@@ -116,7 +116,7 @@ class _OtpScreenState extends State<OtpScreen> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: ColorManager.primary,
+              backgroundColor: primary,
               elevation: 20, // Elevation
               shadowColor: Colors.black,
 
@@ -132,14 +132,17 @@ class _OtpScreenState extends State<OtpScreen> {
                           otp3Controller.text +
                           otp4Controller.text) ==
                   true) {
+                // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("OTP is verified"),
                 ));
+                // ignore: use_build_context_synchronously
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const TabsScreen()));
               } else {
+                // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("Invalid OTP"),
                 ));

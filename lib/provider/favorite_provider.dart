@@ -1,24 +1,22 @@
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 
-// import '../models/property_model.dart';
-
 // class FavoriteProvider extends ChangeNotifier {
-//   List<String> PropertyModell = [];
-//   List<String> get PropertyModel => PropertyModell;
+//   List<String> propertyModell = [];
+//   List<String> get propertyModel => propertyModell;
 
 //   void toggleFavorite(String word) {
-//     final isExist = PropertyModell.contains(word);
+//     final isExist = propertyModell.contains(word);
 //     if (isExist) {
-//       PropertyModell.remove(PropertyModel);
+//       propertyModell.remove(propertyModel);
 //     } else {
-//       PropertyModell.add(PropertyModel as String);
+//       propertyModell.add(propertyModel as String);
 //     }
 //     notifyListeners();
 //   }
 
 //   bool isExist(String index) {
-//     final isExist = PropertyModell.contains(index);
+//     final isExist = propertyModell.contains(index);
 //     return isExist;
 //   }
 

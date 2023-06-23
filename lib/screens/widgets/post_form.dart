@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/image.dart';
 import 'package:mabitt/screens/widgets/phone_textfiled.dart';
-import 'package:mabitt/screens/widgets/text_field_widget.dart';
+import 'package:mabitt/screens/widgets/textfield.dart';
 
-import '../tabs.dart';
-import 'main_button.dart';
+import '../navigator.dart';
+import 'primary_btn.dart';
 
 class PostForm extends StatefulWidget {
   const PostForm({super.key});
@@ -17,9 +17,9 @@ class PostForm extends StatefulWidget {
 
 class _PostFormState extends State<PostForm> {
   TextEditingController properynameController = TextEditingController();
-  TextEditingController DescriptionController = TextEditingController();
-  TextEditingController DPhoneController = TextEditingController();
-  TextEditingController PriceController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  TextEditingController dPhoneController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
 
   // File? _image;
 
@@ -57,12 +57,10 @@ class _PostFormState extends State<PostForm> {
     "9",
   ];
   String? selectedfloors = "5";
-  TextEditingController PhoneController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     return Scaffold(
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -87,7 +85,7 @@ class _PostFormState extends State<PostForm> {
                   TextFieldWidget(
                     label: 'Description',
                     hintText: 'About the property',
-                    controller: DescriptionController,
+                    controller: descriptionController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
                         return 'Please enter description info';
@@ -99,7 +97,7 @@ class _PostFormState extends State<PostForm> {
                     keyboardType: TextInputType.phone,
                     label: 'Phone number',
                     hintText: 'Ex 09X0000000',
-                    controller: PhoneController,
+                    controller: phoneController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
                         return "Please enter your Phone number";
@@ -114,7 +112,7 @@ class _PostFormState extends State<PostForm> {
                     keyboardType: TextInputType.number,
                     label: 'Price per night',
                     hintText: "£",
-                    controller: PriceController,
+                    controller: priceController,
                     validator: (String? value) {
                       if (value!.isEmpty) {
                         return "Please enter a price";
@@ -123,13 +121,13 @@ class _PostFormState extends State<PostForm> {
                       return null;
                     },
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 160,
                         child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
@@ -150,7 +148,7 @@ class _PostFormState extends State<PostForm> {
                               setState(() => selectedcatgory = item),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 160,
                         child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
@@ -173,13 +171,13 @@ class _PostFormState extends State<PostForm> {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 160,
                         child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
@@ -200,7 +198,7 @@ class _PostFormState extends State<PostForm> {
                               setState(() => selectedrooms = item),
                         ),
                       ),
-                      Container(
+                      SizedBox(
                         width: 160,
                         child: DropdownButtonFormField<String>(
                           decoration: InputDecoration(
@@ -233,12 +231,12 @@ class _PostFormState extends State<PostForm> {
                   Row(children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(255, 44, 73, 121),
+                        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
                         elevation: 9,
                       ),
                       onPressed: () {
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => Imagee()));
+                            MaterialPageRoute(builder: (_) => const Imagee()));
                       },
                       child: const Text(' Add Images'),
                     ),

@@ -28,12 +28,10 @@ List<PropertyModel> properties = [
     title: 'Villa at hay salam',
     subTitle: "St. Second road  3rd ",
     details:
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     thumbnail: 'images/properties/villa2.jpeg',
     images: [
       'images/properties/villa1.jpeg',
-      'images/properties/villa2.jpeg',
-      'images/properties/villa3.jpeg'
     ],
     rooms: 5,
     area: 3000,
@@ -45,12 +43,10 @@ List<PropertyModel> properties = [
     title: 'Duplex Housing',
     subTitle: "St. Second Avenue 780, NY",
     details:
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
     thumbnail: 'images/properties/ap4.jpeg',
     images: [
       'images/properties/ap2.jpeg',
-      'images/properties/ap7.jpeg',
-      'images/properties/ap6.jpeg'
     ],
     rooms: 3,
     area: 3500,
@@ -62,11 +58,10 @@ List<PropertyModel> properties = [
     title: ' Apartment',
     subTitle: "Vinessia at forno resturante",
     details:
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',    thumbnail: 'images/properties/ap6.jpeg',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    thumbnail: 'images/properties/ap6.jpeg',
     images: [
       'images/properties/ap4.jpeg',
-      'images/properties/ap5.jpeg',
-      'images/properties/ap6.jpeg'
     ],
     rooms: 4,
     area: 4200,

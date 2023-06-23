@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
+// import 'package:image_picker/image_picker.dart';
 
-class ColorManager {
-  static Color primary = Color.fromARGB(255, 44, 73, 121);
-  static Color darkblue = const Color(0xff114E60);
-  static Color darkGrey = const Color(0xff737477);
-  static Color lightGrey = const Color(0xff9E9E9E);
-  static Color TColor = const Color(0xff000000);
-  static Color pistacho = const Color(0xffF5cef9);
+Color primary = const Color.fromARGB(255, 44, 73, 121);
+Color darkblue = const Color(0xff114E60);
+Color darkGrey = const Color(0xff737477);
+Color lightGrey = const Color(0xff9E9E9E);
+Color tColor = const Color(0xff000000);
+Color pistacho = const Color(0xffF5cef9);
 
-  // new colors
-  static Color thirdPrimary = const Color(0xffF5CEBE);
-  static Color lightPrimary = const Color(0xffF9EEc8); // color with 80% opacity
-  static Color grey1 = const Color(0xff707070);
-  static Color grey2 = const Color(0xff797979);
-  static Color white = const Color(0xffFFFFFF);
-  static Color error = const Color(0xffe61f34); // red color
-}
+// new colors
+Color thirdPrimary = const Color(0xffF5CEBE);
+Color lightPrimary = const Color(0xffF9EEc8); // color with 80% opacity
+Color grey1 = const Color(0xff707070);
+Color grey2 = const Color(0xff797979);
+Color white = const Color(0xffFFFFFF);
+Color error = const Color(0xffe61f34); // red color
 
 class TColor {
   static Color get primary => const Color(0xff20D994);
@@ -46,3 +45,16 @@ class TColor {
         const Color(0xff322216)
       ];
 }
+
+// pickImage(ImageSource source) async {
+//   final ImagePicker imagePicker = ImagePicker();
+//   XFile? file = await imagePicker.pickImage(source: source);
+//   if (file != null) {
+//     return await file.readAsBytes();
+//   }
+//   // print('No Images Selected');
+// }
+
+Color pcolor = const Color.fromARGB(255, 44, 73, 121);
+
+Duration animationDuration = const Duration(milliseconds: 200);

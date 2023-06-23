@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:mabitt/screens/widgets/PostForm.dart';
+import 'package:mabitt/screens/widgets/post_form.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
@@ -18,7 +17,7 @@ class _PostsScreenState extends State<PostsScreen> {
         backgroundColor: const Color.fromARGB(255, 44, 73, 121),
         centerTitle: true,
       ),
-      body: PostForm(),
+      body: const PostForm(),
     );
   }
 }

@@ -37,31 +37,24 @@ class _MainButtonState extends State<MainButton> {
           width: size.width * widget.widthFromScreen,
           decoration: BoxDecoration(
               color: widget.withBorder
-                  ? ColorManager.white
+                  ? white
                   : widget.isActive
-                      ? ColorManager.primary
-                      : ColorManager.grey1,
+                      ? primary
+                      : grey1,
               border: Border.all(
-                  color: widget.isActive
-                      ? ColorManager.primary
-                      : ColorManager.grey1,
-                  width: 1),
+                  color: widget.isActive ? primary : grey1, width: 1),
               borderRadius: BorderRadius.circular(60)),
           child: Center(
             child: widget.isloading
                 ? CircularProgressIndicator(
-                    color: widget.withBorder
-                        ? ColorManager.primary
-                        : ColorManager.grey1,
+                    color: widget.withBorder ? primary : grey1,
                   )
                 : Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Text(
                       widget.text,
                       style: TextStyle(
-                          color: widget.withBorder
-                              ? ColorManager.darkblue
-                              : ColorManager.lightPrimary),
+                          color: widget.withBorder ? darkblue : white),
                     ),
                   ),
           ),

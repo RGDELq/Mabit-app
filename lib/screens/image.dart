@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mabitt/screens/widgets/PostForm.dart';
-import 'package:mabitt/screens/widgets/main_button.dart';
+import 'package:mabitt/screens/widgets/post_form.dart';
+import 'package:mabitt/screens/widgets/primary_btn.dart';
 
 class Imagee extends StatefulWidget {
   const Imagee({super.key});
@@ -15,7 +15,7 @@ class Imagee extends StatefulWidget {
 
 class _ImageeState extends State<Imagee> {
   final ImagePicker _picker = ImagePicker();
-  List<XFile> _ImageList = [];
+  final List<XFile> _imageList = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,20 +23,20 @@ class _ImageeState extends State<Imagee> {
         child: Column(children: [
           ElevatedButton(
               onPressed: () {
-                ImageSelection();
+                imageSelection();
               },
               child: const Text('select image')),
           Expanded(
             child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3),
-                itemCount: _ImageList.length,
+                itemCount: _imageList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Stack(fit: StackFit.expand, children: [
                       Image.file(
-                        File(_ImageList[index].path),
+                        File(_imageList[index].path),
                         fit: BoxFit.cover,
                       ),
                       Positioned(
@@ -46,10 +46,10 @@ class _ImageeState extends State<Imagee> {
                           color: Colors.transparent,
                           child: IconButton(
                             onPressed: () {
-                              _ImageList.removeAt(index);
+                              _imageList.removeAt(index);
                               setState(() {});
                             },
-                            icon: Icon(Icons.delete_forever_outlined),
+                            icon: const Icon(Icons.delete_forever_outlined),
                             color: Colors.red,
                           ),
                         ),
@@ -73,12 +73,12 @@ class _ImageeState extends State<Imagee> {
     );
   }
 
-  void ImageSelection() async {
+  void imageSelection() async {
     {
       final XFile? selectImage =
           await _picker.pickImage(source: ImageSource.gallery);
       if (selectImage!.path.isNotEmpty) {
-        _ImageList.add(selectImage);
+        _imageList.add(selectImage);
       }
     }
     setState(() {});

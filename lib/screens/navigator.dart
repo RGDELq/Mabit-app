@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/FavoritesScreen.dart';
+import 'package:mabitt/screens/favorites_screen.dart';
 import 'package:mabitt/screens/home_screen.dart';
-import 'package:mabitt/screens/postScreen.dart';
+import 'package:mabitt/screens/post_screen.dart';
 import 'package:mabitt/screens/profile_screen.dart';
-import '../helpers/consts.dart';
+
+import '../utils/theme.dart';
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -26,10 +27,9 @@ class _TabsScreenState extends State<TabsScreen> {
                 ? const Favuirate()
                 : currentIndex == 2
                     ? const PostsScreen()
-                    : ProfileScreen(),
+                    : const MyWidget(),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
         elevation: 0,
         currentIndex: currentIndex,
         onTap: (index) {
@@ -45,8 +45,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,
-                color:
-                    currentIndex == 0 ? mainColor : mainColor.withOpacity(0.3),
+                color: currentIndex == 0 ? pcolor : pcolor.withOpacity(0.3),
               )),
           BottomNavigationBarItem(
               label: '',
@@ -55,8 +54,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,
-                color:
-                    currentIndex == 1 ? mainColor : mainColor.withOpacity(0.3),
+                color: currentIndex == 1 ? pcolor : pcolor.withOpacity(0.3),
               )),
           BottomNavigationBarItem(
               label: '',
@@ -65,8 +63,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,
-                color:
-                    currentIndex == 2 ? mainColor : mainColor.withOpacity(0.3),
+                color: currentIndex == 2 ? pcolor : pcolor.withOpacity(0.3),
               )),
           BottomNavigationBarItem(
               label: '',
@@ -74,8 +71,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 'assets/icons/profile.png',
                 width: size.width / 13,
                 height: size.width / 13,
-                color:
-                    currentIndex == 3 ? mainColor : mainColor.withOpacity(0.3),
+                color: currentIndex == 3 ? pcolor : pcolor.withOpacity(0.3),
                 fit: BoxFit.contain,
               ))
         ],
