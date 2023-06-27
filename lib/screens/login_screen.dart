@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mabitt/provider/auth_provider.dart';
 import 'package:mabitt/screens/navigator.dart';
+// import 'package:http/http.dart' as http;
 import 'package:mabitt/screens/widgets/primary_btn.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:mabitt/utils/theme.dart';
+import 'package:provider/provider.dart';
 import 'opt_password/send_opt.dart';
+
 class LoginScreenn extends StatefulWidget {
   const LoginScreenn({super.key});
 
@@ -20,6 +24,7 @@ class _LoginScreennState extends State<LoginScreenn> {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -125,28 +130,29 @@ class _LoginScreennState extends State<LoginScreenn> {
                             ),
                           ),
                         ),
-                        const Text(
-                          "?",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
                       ],
                     ),
                     SizedBox(
                       height: size.height * 0.05,
                     ),
-                    MainButton(
+                    Primarybtn(
                         text: "Log in",
                         withBorder: false,
                         isloading: false,
                         isActive: enableLoginBtn,
                         onPressed: () {
+                          authProvider.login({
+                            "email": emailController.text,
+                            "password": passwordController.text
+                          });
                           Navigator.pushReplacement(
                               context,
                               CupertinoPageRoute(
                                   builder: ((context) => const TabsScreen())));
+                          Center(
+                              child: authProvider.loading
+                                  ? const CircularProgressIndicator()
+                                  : const Text('login'));
                         }),
                   ],
                 ),

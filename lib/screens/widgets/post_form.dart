@@ -21,21 +21,6 @@ class _PostFormState extends State<PostForm> {
   TextEditingController dPhoneController = TextEditingController();
   TextEditingController priceController = TextEditingController();
 
-  // File? _image;
-
-  // // This is the image picker
-  // final _picker = ImagePicker();
-  // // Implementing the image picker
-  // Future<void> _openImagePicker() async {
-  //   final XFile? pickedImage =
-  //       await _picker.pickImage(source: ImageSource.gallery);
-  //   if (pickedImage != null) {
-  //     setState(() {
-  //       _image = File(pickedImage.path);
-  //     });
-  //   }
-  // }
-
   List<String> listitem = ["Benghazi", "Tripoli", "Misrata"];
   String? selectedItem = "Benghazi";
 
@@ -224,7 +209,6 @@ class _PostFormState extends State<PostForm> {
                   const SizedBox(
                     height: 10,
                   ),
-
                   const SizedBox(
                     height: 10,
                   ),
@@ -240,21 +224,8 @@ class _PostFormState extends State<PostForm> {
                       },
                       child: const Text(' Add Images'),
                     ),
-                    // const SizedBox(height: 50),
-                    // // The picked image will be displayed here
-                    // Container(
-                    //   width: 130,
-                    //   height: 100,
-                    //   color: Colors.white,
-                    //   child: _image != null
-                    //       ? Image.file(_image! as File, fit: BoxFit.cover)
-                    //       : const Text('please select a file to display'),
-                    // )
                   ]),
-                  // SizedBox(
-                  //   height: size.height * 0.05,
-                  // ),
-                  MainButton(
+                  Primarybtn(
                       text: " Submit ",
                       withBorder: false,
                       isloading: false,

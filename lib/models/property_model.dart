@@ -33,7 +33,7 @@ List<PropertyModel> properties = [
     images: [
       'images/properties/villa1.jpeg',
     ],
-    rooms: 5,
+    rooms: 50,
     area: 3000,
     floors: 3,
     price: 3000,

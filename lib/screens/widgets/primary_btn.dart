@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/utils/theme.dart';
 
-class MainButton extends StatefulWidget {
-  const MainButton(
+class Primarybtn extends StatefulWidget {
+  const Primarybtn(
       {super.key,
       required this.text,
       required this.withBorder,
@@ -17,10 +17,10 @@ class MainButton extends StatefulWidget {
   final Function onPressed;
   final bool isActive;
   @override
-  State<MainButton> createState() => _MainButtonState();
+  State<Primarybtn> createState() => _PrimarybtnState();
 }
 
-class _MainButtonState extends State<MainButton> {
+class _PrimarybtnState extends State<Primarybtn> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

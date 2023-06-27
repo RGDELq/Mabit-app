@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/screens/widgets/category_widget.dart';
 import 'package:mabitt/screens/widgets/property_widget.dart';
-import 'package:mabitt/screens/widgets/search_widget.dart';
 import '../models/category_model.dart';
 import '../models/property_model.dart';
 
@@ -54,12 +53,7 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: GestureDetector(
-                        onTap: () {
-                          showSearch(
-                            context: context,
-                            delegate: PropertySearch(),
-                          );
-                        },
+                        onTap: () {},
                         child: Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(

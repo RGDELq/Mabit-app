@@ -48,7 +48,7 @@ dependencies:
   flutter_phone_direct_caller: ^2.1.1
   pin_code_fields: ^7.4.0
   email_otp: ^2.0.1
-  shared_preferences:
+  shared_preferences: 
   flutter_rating_bar: ^4.0.1
   rating_dialog: ^2.0.4
 dev_dependencies:

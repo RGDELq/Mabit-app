@@ -58,7 +58,7 @@ class _ImageeState extends State<Imagee> {
                   );
                 }),
           ),
-          MainButton(
+          Primarybtn(
               text: " Submit ",
               withBorder: false,
               isloading: false,

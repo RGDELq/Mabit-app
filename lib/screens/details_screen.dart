@@ -3,6 +3,7 @@ import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/screens/rating_screen.dart';
+import 'package:mabitt/screens/widgets/propertyinfor_card.dart';
 import '../models/property_model.dart';
 
 class DetailsPage extends StatelessWidget {
@@ -47,6 +48,7 @@ class DetailsPage extends StatelessWidget {
                       )
                     ],
                   ),
+                  ////// والسيب تايتل العنوان والريت
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Column(
@@ -89,10 +91,11 @@ class DetailsPage extends StatelessWidget {
                                     color: Colors.black.withOpacity(0.5),
                                   ),
                         ),
+                        ////////////////////////////////////////////////////////////////////////////
                         const SizedBox(
                           height: 32,
                         ),
-                        //-----------------here calling attributes ----------------
+                        //-----------------spacer widget which called propertyinfo ----------------
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
@@ -120,6 +123,7 @@ class DetailsPage extends StatelessWidget {
                             ],
                           ),
                         ),
+                        ///////////////////////////////////////////////////////////////////////////////
                         const SizedBox(
                           height: 32,
                         ),
@@ -148,6 +152,7 @@ class DetailsPage extends StatelessWidget {
                 ],
               ),
             ),
+            ///////////////////Rating dialog///////////////////////////
             Positioned(
               bottom: 20,
               left: 0,
@@ -161,7 +166,7 @@ class DetailsPage extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) =>  const HomeView()));
+                                builder: (_) => const HomeView()));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(12),
@@ -181,6 +186,7 @@ class DetailsPage extends StatelessWidget {
                             )
                           ],
                         ),
+                        ///////////////////////////////////////////////////////////////////////
                         height: 55,
                         width: 55,
                         child: const Icon(
@@ -190,9 +196,7 @@ class DetailsPage extends StatelessWidget {
                     ),
                     //--------------------------FAV & Rate & contact --------------------------------
                     GestureDetector(
-                      onTap: () {
-                        const Icon(Ionicons.heart);
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         margin: const EdgeInsets.only(right: 8),
@@ -264,32 +268,6 @@ class DetailsPage extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-
-//------------------------------------------Attributes for property-----------------------------------------------
-  Widget specWidget(BuildContext context, IconData iconData, String text) {
-    return Padding(
-      padding: const EdgeInsets.only(right: 12.0),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 219, 232, 216),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(iconData),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(
-            text,
-            style: Theme.of(context).textTheme.titleMedium,
-          ),
-        ],
       ),
     );
   }

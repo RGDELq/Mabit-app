@@ -20,6 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 60,
                     width: 50,
                     decoration: BoxDecoration(
-                      border:
-                          Border.all(color: darkblue, width: 1),
+                      border: Border.all(color: darkblue, width: 1),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: IconButton(
@@ -56,7 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     left: 0,
                     right: 40,
                     child: Padding(
-                      padding:  EdgeInsets.all(12.0),
+                      padding: EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -71,12 +71,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               left: 0,
                               right: 0,
                               child: Padding(
-                                padding:  EdgeInsets.all(12.0),
+                                padding: EdgeInsets.all(12.0),
                                 child: Column(
                                   children: [
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
-                                      children:  [],
+                                      children: [],
                                     ),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
@@ -94,6 +94,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
+                  TextFieldWidget(
+                    label: 'username',
+                    hintText: 'Enter username ',
+                    controller: usernameController,
+                    validator: (String? value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter the name';
+                      }
+                      return null;
+                    },
+                  ),
                   TextFieldWidget(
                       label: 'Email Address',
                       controller: emailController,
@@ -150,7 +161,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   SizedBox(
                     height: size.height * 0.05,
                   ),
-                  MainButton(
+                  Primarybtn(
                       text: "Sign up ",
                       withBorder: false,
                       isloading: false,
@@ -160,7 +171,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             CupertinoPageRoute(
                                 builder: ((context) => const TabsScreen())));
                       }),
-                  MainButton(
+                  Primarybtn(
                       text: "Have account? Login",
                       withBorder: true,
                       isloading: false,

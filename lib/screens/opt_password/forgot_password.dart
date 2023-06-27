@@ -60,7 +60,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             ),
             Column(
               children: [
-                MainButton(
+                Primarybtn(
                     text: 'contuin',
                     withBorder: false,
                     isloading: false,
@@ -68,7 +68,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       Navigator.push(context,
                           CupertinoPageRoute(builder: (context) => const MyApp()));
                     }),
-                MainButton(
+                Primarybtn(
                     text: 'Back',
                     withBorder: true,
                     isloading: false,
