@@ -3,8 +3,6 @@ String validationEmail =
 
 String validationName = r'^[a-z A-Z]+$';
 
-String baseUrl = 'https://fakestoreapi.com';
-
 String arabic = 'Arabic 🇸🇦';
 String english = 'English 🇬🇧';
 String france = 'French 🇫🇷';
@@ -12,3 +10,5 @@ String france = 'French 🇫🇷';
 String ara = 'ar';
 String ene = 'en';
 String frf = 'fr';
+
+String baseUrl = 'http://10.0.2.2:8000/api';

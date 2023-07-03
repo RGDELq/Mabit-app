@@ -34,22 +34,22 @@ class CategoryButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              categoryModel.title,
+              categoryModel.name,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
             ),
-            Flexible(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image(
-                  height: 50,
-                  width: 50,
-                  image: AssetImage('images/${categoryModel.assetPath}'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
+            // Flexible(
+            //   child: ClipRRect(
+            //     borderRadius: BorderRadius.circular(12),
+            //     child: Image(
+            //       height: 50,
+            //       width: 50,
+            //       image: AssetImage('images/${categoryModel.assetPath}'),
+            //       fit: BoxFit.cover,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

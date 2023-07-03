@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/login_screen.dart';
+import 'package:mabitt/screens/navigator.dart';
 import 'package:mabitt/screens/register_screen.dart';
 import 'package:mabitt/screens/widgets/customized_btn.dart';
 import 'package:mabitt/utils/theme.dart';
@@ -29,7 +30,7 @@ class WelcomeScreen extends StatelessWidget {
               textColor: white,
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const LoginScreenn()));
+                    MaterialPageRoute(builder: (_) => const TabsScreen()));
 
                 // Get.offNamed(Routes.loginScreen);
               },

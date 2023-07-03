@@ -1,18 +1,38 @@
-class CategoryModel {
-  String title;
-  String assetPath;
-  int id;
-  CategoryModel({
-    required this.title,
-    required this.assetPath,
-    required this.id,
-  });
-}
+// To parse this JSON data, do
+//
+//     final categoryModel = categoryModelFromJson(jsonString);
 
-List<CategoryModel> categories = [
-  CategoryModel(title: 'Villa', assetPath: 'resort.jpeg', id: 1),
-  CategoryModel(title: 'chalet', assetPath: 'cottage.jpeg', id: 2),
-  CategoryModel(title: 'apartments', assetPath: 'office.jpeg', id: 3),
-  CategoryModel(title: 'real estant', assetPath: 'urban.jpeg', id: 4),
-  CategoryModel(title: 'farms', assetPath: 'urban.jpeg', id: 5),
-];
+import 'dart:convert';
+
+class CategoryModel {
+  int id;
+  String name;
+  String createdAt;
+  String updatedAt;
+
+  CategoryModel({
+    required this.id,
+    required this.name,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory CategoryModel.fromRawJson(String str) =>
+      CategoryModel.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
+        id: json["id"],
+        name: json["name"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+      };
+}

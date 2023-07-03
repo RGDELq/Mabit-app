@@ -27,7 +27,7 @@ class _TabsScreenState extends State<TabsScreen> {
                 ? const Favuirate()
                 : currentIndex == 2
                     ? const PostsScreen()
-                    : const MyWidget(),
+                    : Profile(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,

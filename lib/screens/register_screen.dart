@@ -4,7 +4,9 @@ import 'package:mabitt/screens/navigator.dart';
 import 'package:mabitt/screens/widgets/primary_btn.dart';
 import 'package:mabitt/screens/widgets/phone_textfiled.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/auth_provider.dart';
 import '../utils/theme.dart';
 import 'login_screen.dart';
 
@@ -24,6 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
@@ -143,21 +146,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  PhoneTextFieldWidget(
-                    keyboardType: TextInputType.phone,
-                    label: 'Phone number',
-                    hintText: 'Ex: 09X0000000',
-                    controller: phoneController,
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "Please enter your Phone number";
-                      }
-                      if (value.length != 10) {
-                        return "please enter a valid phone number";
-                      }
-                      return null;
-                    },
-                  ),
+                  // PhoneTextFieldWidget(
+                  //   keyboardType: TextInputType.phone,
+                  //   label: 'Phone number',
+                  //   hintText: 'Ex: 09X0000000',
+                  //   controller: phoneController,
+                  //   validator: (String? value) {
+                  //     if (value!.isEmpty) {
+                  //       return "Please enter your Phone number";
+                  //     }
+                  //     if (value.length != 10) {
+                  //       return "please enter a valid phone number";
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
                   SizedBox(
                     height: size.height * 0.05,
                   ),
@@ -166,7 +169,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       withBorder: false,
                       isloading: false,
                       onPressed: () {
-                        Navigator.push(
+                        authProvider.register({
+                          "name": usernameController.text.toString(),
+                          "email": emailController.text.toString(),
+                          "password": passwordController.text,
+                          // "phone": phoneController.text,
+                        });
+                        Navigator.pushReplacement(
                             context,
                             CupertinoPageRoute(
                                 builder: ((context) => const TabsScreen())));

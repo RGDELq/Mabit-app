@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 // import 'package:image_picker/image_picker.dart';
+  class   Colormanager {
+  Color primarys = const Color.fromARGB(255, 44, 73, 121);
 
+}
 Color primary = const Color.fromARGB(255, 44, 73, 121);
 Color darkblue = const Color(0xff114E60);
 Color darkGrey = const Color(0xff737477);
@@ -10,6 +13,8 @@ Color pistacho = const Color(0xffF5cef9);
 
 // new colors
 Color thirdPrimary = const Color(0xffF5CEBE);
+Color secprimary = const Color.fromARGB(255, 219, 232, 216);
+
 Color lightPrimary = const Color(0xffF9EEc8); // color with 80% opacity
 Color grey1 = const Color(0xff707070);
 Color grey2 = const Color(0xff797979);

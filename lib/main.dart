@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mabitt/provider/auth_provider.dart';
+import 'package:mabitt/provider/property_provider.dart';
 import 'package:mabitt/screens/splash_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -13,15 +14,28 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
- 
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<AuthProvider>(
               create: (context) => AuthProvider()),
+          ChangeNotifierProvider<PropertyProvider>(
+              create: (context) => PropertyProvider()),
         ],
+        // LocalJsonLocalization.delegate.directories = ['lib/i18n'];
+
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'mabit',
+          // localizationsDelegates: [
+          //   GlobalMaterialLocalizations.delegate,
+          //   GlobalWidgetsLocalizations.delegate,
+          //   GlobalCupertinoLocalizationsc.delegate,
+          //   AppLocalizations.delegate,
+          // ],
+          // supportedLocales: [
+          //   const Locale('en', ''),
+          //   const Locale('ar', ''),
+          // ],
           theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: GoogleFonts.mulishTextTheme(

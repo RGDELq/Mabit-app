@@ -13,6 +13,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
+///////////////////////////////////// Login /////////////////////////////////////////////////
   login(Map body) async {
     print("body: " + body.toString());
     setloading(true);
@@ -24,7 +25,7 @@ class AuthProvider with ChangeNotifier {
     //       'Content-Type': 'application/json',
     //       'Accept': 'application/json'
     //     });#
-    final response = await api.post('http://10.0.2.2:8000/api/login', body);
+    final response = await api.post('/login', body);
     if (response.statusCode == 200) {
       print('login successful');
       setloading(false);
@@ -36,21 +37,38 @@ class AuthProvider with ChangeNotifier {
 
     setloading(false);
   }
+
+///////////////////////////////////// Reqister/////////////////////////////////////////////////
+  register(Map body) async {
+    print("body: " + body.toString());
+    setloading(true);
+
+    // final response = await http.post(
+    //     Uri.parse('http://127.0.0.1:8000/api/login'),
+    //     body: jsonEncode(body),
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json'
+    //     });#
+    final response = await api.post('/register', body);
+    if (response.statusCode == 200) {
+      print('register successful');
+      setloading(false);
+    } else {
+      setloading(false);
+
+      print('failed to register');
+    }
+
+    setloading(false);
+  }
 }
 
-// Future<void> _login() async {
-//   String url = 'http://127.0.0.1:8000/api/login';
-//   Map<String, String> headers = {'Content-Type': 'application/json'};
-//   String body = '{"username": "${_usernameController.text}", "password": "${_passwordController.text}"}';
-
-//   http.Response response = await http.post(Uri.parse(url), headers: headers, body: body);
-
+// Future<List<dynamic>> getProperties() async {
+//   final response = await http.get('http://10.0.2.2:8000/api/properties');
 //   if (response.statusCode == 200) {
-//     // Login successful, navigate to the next screen
-//     Navigator.pushNamed(context, '/home');
+//     return json.decode(response.body);
 //   } else {
-//     // Login failed, show error message
-//     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-//       content: Text('Login failed'),
-//     ));
+//     throw Exception('Failed to load properties');
 //   }
+// }

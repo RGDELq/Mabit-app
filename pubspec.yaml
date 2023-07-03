@@ -51,6 +51,9 @@ dependencies:
   shared_preferences: 
   flutter_rating_bar: ^4.0.1
   rating_dialog: ^2.0.4
+  url_launcher: ^6.1.11
+  flutter_localization:
+  intl: 
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -69,6 +72,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
