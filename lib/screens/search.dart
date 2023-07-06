@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mabitt/provider/property_provider.dart';
+import 'package:provider/provider.dart';
 
-import '../models/property_model.dart';
 
 class SearchResultsScreen extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
         title: TextField(
           onChanged: (query) {
             setState(() {
@@ -34,43 +36,27 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
           ),
         ],
       ),
-      body: _buildSearchResults(),
+      body: Provider.of<PropertyProvider>(context, listen: false)
+          .buildSearchResults(),
     );
   }
 
-  List<PropertyModel> _getFilteredProperties() {
-    if (_searchQuery.isNotEmpty) {
-      properties = properties
-          .where((property) =>
-              property.title.toLowerCase().contains(_searchQuery.toLowerCase()))
-          .toList();
-    }
-    if (_filter == 'price') {
-      properties.sort((a, b) => a.price.compareTo(b.price));
-    } else if (_filter == 'floor') {
-      properties.sort((a, b) => a.floors.compareTo(b.floors));
-    } else if (_filter == 'rooms') {
-      properties.sort((a, b) => a.rooms.compareTo(b.rooms));
-    }
-    return properties;
-  }
-
-  Widget _buildSearchResults() {
-    List<PropertyModel> filteredProperties = _getFilteredProperties();
-    return ListView.builder(
-      itemCount: filteredProperties.length,
-      itemBuilder: (BuildContext context, int index) {
-        PropertyModel property = filteredProperties[index];
-        return ListTile(
-          title: Text(property.title),
-          subtitle: Text('Price: ${property.price}'),
-          onTap: () {
-            // TODO: Navigate to property details screen
-          },
-        );
-      },
-    );
-  }
+  // Widget _buildSearchResults() {
+  //   List<PropertyModel> filteredProperties = _getFilteredProperties();
+  //   return ListView.builder(
+  //     itemCount: filteredProperties.length,
+  //     itemBuilder: (BuildContext context, int index) {
+  //       PropertyModel property = filteredProperties[index];
+  //       return ListTile(
+  //         title: Text(property.name),
+  //         subtitle: Text('Price: ${property.price}'),
+  //         onTap: () {
+  //           // TODO: Navigate to property details screen
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
 
   void _showFilterDialog() {
     showDialog(

@@ -4,9 +4,14 @@ import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/screens/rating_screen.dart';
 import 'package:mabitt/screens/widgets/propertyinfor_card.dart';
+import 'package:provider/provider.dart';
 import '../models/property_model.dart';
+import '../provider/favorite_provider.dart';
+import '../provider/property_provider.dart';
+import '../utils/my_string.dart';
+import 'favorites_screen.dart';
 
-class DetailsPage extends StatelessWidget {
+class DetailsPage extends StatefulWidget {
   final PropertyModel propertyModel;
 
   // final bool isfav;
@@ -18,7 +23,16 @@ class DetailsPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<DetailsPage> createState() => _DetailsPageState();
+}
+
+class _DetailsPageState extends State<DetailsPage> {
+  bool _isFavorite = false;
+
+  @override
   Widget build(BuildContext context) {
+    Provider.of<PropertyProvider>(context, listen: false).getProperties();
+
     // Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
@@ -30,8 +44,8 @@ class DetailsPage extends StatelessWidget {
                 children: [
                   Stack(
                     children: [
-                      Image.asset(
-                        propertyModel.images.first,
+                      Image.network(
+                        baseUrl + '/img/' + widget.propertyModel.image,
                         fit: BoxFit.cover,
                       ),
                       Positioned(
@@ -57,7 +71,7 @@ class DetailsPage extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              propertyModel.title,
+                              widget.propertyModel.name,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleLarge!
@@ -70,22 +84,22 @@ class DetailsPage extends StatelessWidget {
                               LineIcons.starAlt,
                               color: Color.fromARGB(255, 246, 195, 11),
                             ),
-                            Text(
-                              propertyModel.rating.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
+                            // Text(
+                            //   widget.propertyModel.rating.toString(),
+                            //   style: Theme.of(context)
+                            //       .textTheme
+                            //       .titleMedium!
+                            //       .copyWith(
+                            //         fontWeight: FontWeight.bold,
+                            //       ),
+                            // ),
                           ],
                         ),
                         const SizedBox(
                           height: 12,
                         ),
                         Text(
-                          propertyModel.subTitle.toString(),
+                          widget.propertyModel.name.toString(),
                           style:
                               Theme.of(context).textTheme.titleSmall!.copyWith(
                                     color: Colors.black.withOpacity(0.5),
@@ -103,22 +117,22 @@ class DetailsPage extends StatelessWidget {
                               specWidget(
                                 context,
                                 LineIcons.moneyBill,
-                                "${propertyModel.price} LD",
+                                "${widget.propertyModel.price} LD",
                               ),
                               specWidget(
                                 context,
                                 LineIcons.home,
-                                "${propertyModel.rooms} Rooms",
+                                "${widget.propertyModel.rooms} Rooms",
                               ),
                               specWidget(
                                 context,
                                 LineIcons.areaChart,
-                                "${propertyModel.area} Sqft",
+                                "${widget.propertyModel.rooms} Sqft",
                               ),
                               specWidget(
                                 context,
                                 LineIcons.building,
-                                "${propertyModel.floors} Floors",
+                                "${widget.propertyModel.floor} Floors",
                               ),
                             ],
                           ),
@@ -135,7 +149,7 @@ class DetailsPage extends StatelessWidget {
                           height: 12,
                         ),
                         Text(
-                          propertyModel.details,
+                          widget.propertyModel.detail,
                           style:
                               Theme.of(context).textTheme.titleSmall!.copyWith(
                                     color: Colors.black.withOpacity(0.5),
@@ -194,9 +208,30 @@ class DetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    //--------------------------FAV & Rate & contact --------------------------------
+                    //-
+                    //-------------------------FAV & Rate & contact --------------------------------
+
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => FavoritesScreen()));
+                        // setState(() {
+                        //   _isFavorite = !_isFavorite;
+                        //   widget.propertyModel.isFavorite = _isFavorite;
+                        // });
+
+                        if (_isFavorite) {
+                          // Add to favorite
+                          Provider.of<FavoriteProvider>(context, listen: false)
+                              .addFavoriteProperty(widget.propertyModel);
+                        } else {
+                          // Remove from favorite
+                          Provider.of<FavoriteProvider>(context, listen: false)
+                              .removeFavoriteProperty(widget.propertyModel);
+                        }
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(12),
                         margin: const EdgeInsets.only(right: 8),
@@ -217,14 +252,17 @@ class DetailsPage extends StatelessWidget {
                         ),
                         height: 55,
                         width: 55,
-                        child: const Icon(Ionicons.heart_outline,
-                            color: Colors.black),
+                        child: Icon(
+                          _isFavorite ? Ionicons.heart : Ionicons.heart_outline,
+                          color: _isFavorite ? Colors.red : Colors.black,
+                        ),
                       ),
                     ),
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
-                          FlutterPhoneDirectCaller.callNumber('+218928468779');
+                          FlutterPhoneDirectCaller.callNumber(
+                              widget.propertyModel.phonenumber as String);
                         },
                         child: Container(
                           padding: const EdgeInsets.all(12),

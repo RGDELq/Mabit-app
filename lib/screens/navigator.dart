@@ -24,7 +24,7 @@ class _TabsScreenState extends State<TabsScreen> {
         child: currentIndex == 0
             ? const HomePage()
             : currentIndex == 1
-                ? const Favuirate()
+                ?  FavoritesScreen()
                 : currentIndex == 2
                     ? const PostsScreen()
                     : Profile(),

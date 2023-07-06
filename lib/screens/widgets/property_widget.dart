@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mabitt/utils/my_string.dart';
 import '../../models/property_model.dart';
 import '../details_screen.dart';
 
@@ -30,15 +31,27 @@ class RecommendationCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ClipRRect(
+
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image(
-                height: 120,
+              child: Image.network(
+                // height: 120,
                 width: double.maxFinite,
-                image: AssetImage(propertyModel.thumbnail),
+                // "${baseUrl.replaceAll('/api', '')}/img/" + propertyModel.image,
+
+                "${baseUrl}/img/" + propertyModel.image,
                 fit: BoxFit.cover,
               ),
             ),
+            //   borderRadius: BorderRadius.circular(12),
+            //   child: Image(
+            //     height: 120,
+            //     width: double.maxFinite,
+            //     image: NetworkImage(propertyModel.imageUrl,),
+            //     fit: BoxFit.cover,
+            //   ),
+            // ),
             const SizedBox(
               height: 12,
             ),
@@ -57,7 +70,7 @@ class RecommendationCard extends StatelessWidget {
             //   height: 6,
             // ),
             Text(
-              propertyModel.title,
+              propertyModel.name,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -66,7 +79,7 @@ class RecommendationCard extends StatelessWidget {
             //   height: 9,
             // ),
             Text(
-              "${propertyModel.rooms} rooms - ${propertyModel.area} square foots - ${propertyModel.floors} floors",
+              "${propertyModel.rooms} rooms - ${propertyModel.rooms} square foots - ${propertyModel.floor} floors",
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

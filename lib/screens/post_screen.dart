@@ -17,7 +17,7 @@ class _PostsScreenState extends State<PostsScreen> {
         backgroundColor: const Color.fromARGB(255, 44, 73, 121),
         centerTitle: true,
       ),
-      body: const PostForm(),
+      body: PostForm(),
     );
   }
 }

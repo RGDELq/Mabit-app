@@ -11,4 +11,4 @@ String ara = 'ar';
 String ene = 'en';
 String frf = 'fr';
 
-String baseUrl = 'http://10.0.2.2:8000/api';
+String baseUrl = 'http://10.0.2.2:8000';

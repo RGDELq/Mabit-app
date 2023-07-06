@@ -38,7 +38,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
               child: Image(
                 height: 200,
                 width: double.infinity,
-                image: AssetImage(propertyModel.thumbnail),
+                image: AssetImage(propertyModel.name),
                 fit: BoxFit.cover,
               ),
             ),
@@ -48,7 +48,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  propertyModel.title,
+                  propertyModel.name,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -58,19 +58,19 @@ class ExpandedRecommendationCard extends StatelessWidget {
                   LineIcons.starAlt,
                   color: Colors.amber,
                 ),
-                Text(
-                  propertyModel.rating.toString(),
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
+                // Text(
+                //   propertyModel.rating.toString(),
+                //   style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                // ),
               ],
             ),
             const SizedBox(
               height: 12,
             ),
             Text(
-              "${propertyModel.rooms} rooms - ${propertyModel.area} square foots - ${propertyModel.floors} floors",
+              "${propertyModel.rooms} rooms - ${propertyModel.rooms} square foots - ${propertyModel.floor} floors",
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),

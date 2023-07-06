@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/login_screen.dart';
 import 'package:mabitt/screens/navigator.dart';
 import 'package:mabitt/screens/register_screen.dart';
 import 'package:mabitt/screens/widgets/customized_btn.dart';

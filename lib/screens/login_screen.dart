@@ -116,7 +116,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 CupertinoPageRoute(
                                     builder: ((context) => const MyApp())));

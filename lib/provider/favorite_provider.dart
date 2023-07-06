@@ -1,37 +1,28 @@
-// import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
-// class FavoriteProvider extends ChangeNotifier {
-//   List<String> propertyModell = [];
-//   List<String> get propertyModel => propertyModell;
+import '../models/property_model.dart';
 
-//   void toggleFavorite(String word) {
-//     final isExist = propertyModell.contains(word);
-//     if (isExist) {
-//       propertyModell.remove(propertyModel);
-//     } else {
-//       propertyModell.add(propertyModel as String);
-//     }
-//     notifyListeners();
-//   }
+class FavoriteProvider with ChangeNotifier {
+  List<PropertyModel> _favoriteProperties = [];
 
-//   bool isExist(String index) {
-//     final isExist = propertyModell.contains(index);
-//     return isExist;
-//   }
+  List<PropertyModel> get favoriteProperties => _favoriteProperties;
 
-//   void clearFavorite() {
-//     PropertyModell = [];
-//     notifyListeners();
-//   }
+  set favoriteProperties(List<PropertyModel> value) {
+    _favoriteProperties = value;
+    notifyListeners();
+  }
 
-//   static FavoriteProvider of(
-//     BuildContext context, {
-//     bool listen = true,
-//   }) {
-//     return Provider.of<FavoriteProvider>(
-//       context,
-//       listen: listen,
-//     );
-//   }
-// }
+  void addFavoriteProperty(PropertyModel property) {
+    _favoriteProperties.add(property);
+    notifyListeners();
+  }
+
+  void removeFavoriteProperty(PropertyModel property) {
+    _favoriteProperties.remove(property);
+    notifyListeners();
+  }
+
+  bool isFavorite(PropertyModel property) {
+    return _favoriteProperties.contains(property);
+  }
+}

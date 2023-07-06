@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/navigator.dart';
 import 'package:mabitt/screens/widgets/primary_btn.dart';
-import 'package:mabitt/screens/widgets/phone_textfiled.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:provider/provider.dart';
 
