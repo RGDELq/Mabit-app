@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/favorite_provider.dart';
@@ -12,7 +13,8 @@ class FavoritesScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
+        centerTitle: true,
+        backgroundColor: primary,
         title: const Text('Favorites'),
       ),
       body: favoriteProperties.isEmpty
@@ -45,9 +47,9 @@ class FavoritesScreen extends StatelessWidget {
                       onPressed: () {
                         favoriteProvider.removeFavoriteProperty(property);
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.favorite,
-                        color: Colors.red,
+                        color: error,
                       ),
                     ),
                   ),

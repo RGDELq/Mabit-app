@@ -1,8 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:mabitt/utils/theme.dart';
+import 'package:provider/provider.dart';
 
 import '../../models/property_model.dart';
+import '../../provider/dark_mode_provider.dart';
+import '../../utils/my_string.dart';
 import '../details_screen.dart';
 
 class ExpandedRecommendationCard extends StatelessWidget {
@@ -12,9 +15,10 @@ class ExpandedRecommendationCard extends StatelessWidget {
   }) : super(key: key);
 
   final PropertyModel propertyModel;
-
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -27,7 +31,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.only(right: 8, top: 12, bottom: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: white,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -35,10 +39,18 @@ class ExpandedRecommendationCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(12),
-              child: Image(
-                height: 200,
-                width: double.infinity,
-                image: AssetImage(propertyModel.name),
+              // child: Image(
+              //   height: 200,
+              //   width: double.infinity,
+              //   image: AssetImage(propertyModel.name),
+              //   fit: BoxFit.cover,
+              // ),
+              child: Image.network(
+                // height: 120,
+                width: double.maxFinite,
+                // "${baseUrl.replaceAll('/api', '')}/img/" + propertyModel.image,
+
+                "${baseUrl}/img/" + propertyModel.image,
                 fit: BoxFit.cover,
               ),
             ),
@@ -86,7 +98,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
                         padding: const EdgeInsets.all(12),
                         margin: const EdgeInsets.only(right: 8),
                         decoration: BoxDecoration(
-                          color: const Color(0xff114E60),
+                          color: dakmode.isDark ? secprimary : primary,
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: Colors.black.withOpacity(0.1),
@@ -109,7 +121,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
                                 .textTheme
                                 .titleSmall!
                                 .copyWith(
-                                  color: Colors.white,
+                                  color: dakmode.isDark ? darkcolor : white,
                                   fontWeight: FontWeight.bold,
                                 ),
                           ),
@@ -117,30 +129,30 @@ class ExpandedRecommendationCard extends StatelessWidget {
                       ),
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      padding: const EdgeInsets.all(12),
-                      margin: const EdgeInsets.only(right: 8),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: Colors.black.withOpacity(0.1),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            offset: const Offset(0, 5),
-                            blurRadius: 20,
-                            spreadRadius: 4,
-                          )
-                        ],
-                      ),
-                      height: 55,
-                      width: 55,
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {},
+                  //   child: Container(
+                  //     padding: const EdgeInsets.all(12),
+                  //     margin: const EdgeInsets.only(right: 8),
+                  //     decoration: BoxDecoration(
+                  //       color: Colors.white,
+                  //       borderRadius: BorderRadius.circular(12),
+                  //       border: Border.all(
+                  //         color: Colors.black.withOpacity(0.1),
+                  //       ),
+                  //       boxShadow: [
+                  //         BoxShadow(
+                  //           color: Colors.black.withOpacity(0.1),
+                  //           offset: const Offset(0, 5),
+                  //           blurRadius: 20,
+                  //           spreadRadius: 4,
+                  //         )
+                  //       ],
+                  //     ),
+                  //     height: 55,
+                  //     width: 55,
+                  //   ),
+                  // ),
                 ],
               ),
             ),

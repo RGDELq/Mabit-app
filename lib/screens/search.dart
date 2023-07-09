@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:mabitt/provider/property_provider.dart';
 import 'package:provider/provider.dart';
 
-
 class SearchResultsScreen extends StatefulWidget {
   @override
   _SearchResultsScreenState createState() => _SearchResultsScreenState();
 }
 
 class _SearchResultsScreenState extends State<SearchResultsScreen> {
-  String _searchQuery = '';
+  // String _searchQuery = '';
   String _filter = 'price';
 
   @override
@@ -20,7 +19,7 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
         title: TextField(
           onChanged: (query) {
             setState(() {
-              _searchQuery = query;
+              // _searchQuery = query;
             });
           },
           decoration: const InputDecoration(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/widgets/post_form.dart';
+import 'package:mabitt/utils/theme.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
@@ -14,10 +15,10 @@ class _PostsScreenState extends State<PostsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Property post"),
-        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
+        backgroundColor: primary,
         centerTitle: true,
       ),
-      body: PostForm(),
+      body: const PostForm(),
     );
   }
 }

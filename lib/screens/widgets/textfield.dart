@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mabitt/provider/dark_mode_provider.dart';
+import 'package:provider/provider.dart';
 import '../../utils/theme.dart';
 
 class TextFieldWidget extends StatefulWidget {
@@ -9,7 +11,9 @@ class TextFieldWidget extends StatefulWidget {
       required this.validator,
       required this.hintText,
       this.obSecureText = false,
-      this.perfix});
+      this.perfix,
+      required Color fillColor,
+      required bool filled});
   final TextEditingController controller;
   final String? label;
   final String hintText;
@@ -24,6 +28,8 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -51,7 +57,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 13.0, horizontal: 16),
                 suffixIcon: widget.perfix,
-                fillColor: pcolor.withOpacity(0.2),
+                fillColor: dakmode.isDark ? white : Colors.white,
                 filled: true,
                 hintText: widget.hintText,
                 border: OutlineInputBorder(
@@ -60,7 +66,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 focusColor: pcolor.withOpacity(0.2),
                 errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(color: Colors.red)),
+                    borderSide:  BorderSide(color: error)),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide(color: pcolor.withOpacity(0.4))),

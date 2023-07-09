@@ -1,5 +1,6 @@
 import 'package:email_otp/email_otp.dart';
 import 'package:flutter/material.dart';
+import 'package:mabitt/utils/theme.dart';
 import 'otp_screeen.dart';
 
 class MyApp extends StatefulWidget {
@@ -15,7 +16,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: white,
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -71,9 +72,9 @@ class _MyAppState extends State<MyApp> {
                             ));
                           }
                         },
-                        icon: const Icon(
+                        icon:  Icon(
                           Icons.send_rounded,
-                          color: Color.fromARGB(255, 8, 30, 118),
+                          color: darkblue,
                         )),
                     hintText: "Email Address",
                     border: const OutlineInputBorder(

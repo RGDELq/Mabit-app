@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/models/category_model.dart';
+import 'package:provider/provider.dart';
 
+import '../../provider/dark_mode_provider.dart';
+import '../../utils/theme.dart';
 import '../category_screen.dart';
 
 class CategoryButton extends StatelessWidget {
@@ -12,6 +15,7 @@ class CategoryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -27,7 +31,9 @@ class CategoryButton extends StatelessWidget {
         margin: const EdgeInsets.all(4),
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.15),
+          color: dakmode.isDark
+              ? secprimary
+              : primary.withOpacity(0.10),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(

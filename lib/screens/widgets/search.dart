@@ -24,7 +24,7 @@
 //   int? _maxFloors;
 //   int? _minPrice;
 //   int? _maxPrice;
-
+// 87
 //   List<PropertyModel> _filteredProperties =  propertyConsumer.properties;
 
 //   void _filterProperties() {

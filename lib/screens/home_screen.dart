@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:mabitt/provider/dark_mode_provider.dart';
 import 'package:mabitt/provider/property_provider.dart';
 import 'package:mabitt/screens/search.dart';
-import 'package:mabitt/screens/widgets/categorytypes_card.dart';
+import 'package:mabitt/screens/widgets/categories_list.dart';
 import 'package:mabitt/screens/widgets/property_widget.dart';
+import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 import '../models/property_model.dart';
 
@@ -45,10 +47,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
     return Consumer<PropertyProvider>(
         builder: (context, propertyConsumer, child) {
       return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 219, 232, 216),
+        backgroundColor: dakmode.isDark ? darkcolor : secprimary,
         body: Builder(
           builder: (context) {
             if (_currentIndex == 0) {
@@ -62,12 +65,12 @@ class _HomePageState extends State<HomePage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Row(
+                            Row(
                               children: [
                                 Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 12,
                                     ),
                                     Text(
@@ -75,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
-                                        color: Color.fromARGB(255, 44, 73, 121),
+                                        color: dakmode.isDark ? white : primary,
                                       ),
                                     ),
                                   ],
@@ -104,8 +107,7 @@ class _HomePageState extends State<HomePage> {
                                 child: Container(
                                   padding: const EdgeInsets.all(12),
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 219, 232, 216),
+                                    color: secprimary,
                                     borderRadius: BorderRadius.circular(12),
                                   ),
                                   height: 55,

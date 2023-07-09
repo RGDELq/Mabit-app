@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:mabitt/screens/widgets/categoryitems_card.dart';
+import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 import '../models/category_model.dart';
+import '../provider/dark_mode_provider.dart';
 import '../provider/property_provider.dart';
 
-class CategoryPage extends StatelessWidget {
+class CategoryPage extends StatefulWidget {
   final CategoryModel categoryModel;
   const CategoryPage({
     Key? key,
@@ -14,76 +16,103 @@ class CategoryPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<CategoryPage> createState() => _CategoryPageState();
+}
+
+class _CategoryPageState extends State<CategoryPage> {
+  @override
+  void initState() {
+    Provider.of<PropertyProvider>(context, listen: false).getProperties();
+    Provider.of<PropertyProvider>(context, listen: false).getCategories();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
     return Consumer<PropertyProvider>(
-        builder: (context, propertyConsumer, child) {
-      return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 219, 232, 216),
-        body: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Row(
+      builder: (context, propertyConsumer, child) {
+        return Consumer<PropertyProvider>(
+            builder: (context, propertyConsumer, child) {
+          return Scaffold(
+            backgroundColor: dakmode.isDark ? darkcolor : secprimary,
+            body: SingleChildScrollView(
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.arrow_back_ios,
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            icon: const Icon(
+                              Icons.arrow_back_ios,
+                            ),
+                          ),
+                          Text(
+                            widget.categoryModel.name,
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: dakmode.isDark ? white : darkGrey,
+                                ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 4,
+                          horizontal: 8,
                         ),
                       ),
-                      Text(
-                        categoryModel.name,
-                        style: Theme.of(context).textTheme.titleLarge,
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Popular",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge!
+                                .copyWith(
+                                  color: dakmode.isDark ? white : darkGrey,
+                                ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: propertyConsumer.categories.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ExpandedRecommendationCard(
+                            propertyModel: propertyConsumer.properties[index],
+                          );
+                        },
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 4,
-                      horizontal: 8,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Popular",
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: propertyConsumer.categories.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ExpandedRecommendationCard(
-                        propertyModel: propertyConsumer.properties[index],
-                      );
-                    },
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      );
-    });
+          );
+        });
+      },
+    );
   }
 }

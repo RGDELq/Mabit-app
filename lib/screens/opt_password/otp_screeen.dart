@@ -59,7 +59,7 @@ class _OtpScreenState extends State<OtpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
+        backgroundColor: darkblue,
         elevation: 0,
         leading: IconButton(
           onPressed: () {
@@ -118,7 +118,7 @@ class _OtpScreenState extends State<OtpScreen> {
             style: ElevatedButton.styleFrom(
               backgroundColor: primary,
               elevation: 20, // Elevation
-              shadowColor: Colors.black,
+              shadowColor: darkcolor,
 
               /// Background color
               shape: RoundedRectangleBorder(

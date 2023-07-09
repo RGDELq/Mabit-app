@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../provider/dark_mode_provider.dart';
 import '../../utils/theme.dart';
 
 class PhoneTextFieldWidget extends StatefulWidget {
@@ -26,6 +28,8 @@ class PhoneTextFieldWidget extends StatefulWidget {
 class _PhoneTextFieldWidgetState extends State<PhoneTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -36,8 +40,10 @@ class _PhoneTextFieldWidgetState extends State<PhoneTextFieldWidget> {
               children: [
                 Text(
                   widget.label ?? "",
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      color: dakmode.isDark ? white : darkcolor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
                 ),
               ],
             ),
@@ -54,7 +60,7 @@ class _PhoneTextFieldWidgetState extends State<PhoneTextFieldWidget> {
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 13.0, horizontal: 16),
                 suffixIcon: widget.perfix,
-                fillColor: pcolor.withOpacity(0.2),
+                fillColor: dakmode.isDark ? white : white,
                 filled: true,
                 hintText: widget.hintText,
                 border: OutlineInputBorder(
@@ -63,7 +69,7 @@ class _PhoneTextFieldWidgetState extends State<PhoneTextFieldWidget> {
                 focusColor: pcolor.withOpacity(0.2),
                 errorBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
-                    borderSide: const BorderSide(color: Colors.red)),
+                    borderSide: BorderSide(color: error)),
                 focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: BorderSide(color: pcolor.withOpacity(0.4))),

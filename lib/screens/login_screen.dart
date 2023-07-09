@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/provider/auth_provider.dart';
 import 'package:mabitt/screens/navigator.dart';
-// import 'package:http/http.dart' as http;
 import 'package:mabitt/screens/widgets/primary_btn.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
+import '../provider/dark_mode_provider.dart';
 import 'opt_password/send_opt.dart';
 
 class LoginScreenn extends StatefulWidget {
@@ -24,6 +24,8 @@ class _LoginScreennState extends State<LoginScreenn> {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -52,18 +54,18 @@ class _LoginScreennState extends State<LoginScreenn> {
                   height: 200,
                   width: 400,
                 ),
-                const Positioned(
+                 Positioned(
                     bottom: 0,
                     left: 0,
                     right: 40,
                     child: Padding(
-                      padding: EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text("Welcome Back! Glad \nto see you again",
                               style: TextStyle(
-                                color: Color.fromARGB(255, 17, 77, 95),
+                                color:primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
@@ -84,6 +86,8 @@ class _LoginScreennState extends State<LoginScreenn> {
                 child: Column(
                   children: [
                     TextFieldWidget(
+                      filled: true,
+                      fillColor: dakmode.isDark ? darkcolor : Colors.white,
                       label: 'Email adress',
                       controller: emailController,
                       hintText: 'ex: a@example.com',
@@ -98,6 +102,8 @@ class _LoginScreennState extends State<LoginScreenn> {
                       },
                     ),
                     TextFieldWidget(
+                      filled: true,
+                      fillColor: dakmode.isDark ? darkcolor : Colors.white,
                       label: 'Password',
                       hintText: 'Enter your password',
                       controller: passwordController,

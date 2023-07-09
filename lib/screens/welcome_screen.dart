@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
               buttonColor: primary,
               textColor: white,
               onPressed: () {
-                Navigator.push(context,
+                Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (_) => const TabsScreen()));
 
                 // Get.offNamed(Routes.loginScreen);

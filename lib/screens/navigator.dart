@@ -3,7 +3,9 @@ import 'package:mabitt/screens/favorites_screen.dart';
 import 'package:mabitt/screens/home_screen.dart';
 import 'package:mabitt/screens/post_screen.dart';
 import 'package:mabitt/screens/profile_screen.dart';
+import 'package:provider/provider.dart';
 
+import '../provider/dark_mode_provider.dart';
 import '../utils/theme.dart';
 
 class TabsScreen extends StatefulWidget {
@@ -17,19 +19,26 @@ class _TabsScreenState extends State<TabsScreen> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor:
+          dakmode.isDark ? darkcolor : secprimary,
       body: AnimatedSwitcher(
         duration: animationDuration,
         child: currentIndex == 0
             ? const HomePage()
             : currentIndex == 1
-                ?  FavoritesScreen()
+                ? FavoritesScreen()
                 : currentIndex == 2
                     ? const PostsScreen()
-                    : Profile(),
+                    : const ProfileScreen(),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: dakmode.isDark
+            ? darkcolor
+            :secprimary,
         elevation: 0,
         currentIndex: currentIndex,
         onTap: (index) {
@@ -39,6 +48,9 @@ class _TabsScreenState extends State<TabsScreen> {
         },
         items: [
           BottomNavigationBarItem(
+              backgroundColor: dakmode.isDark
+                  ? darkcolor
+                  : secprimary,
               label: '',
               icon: Image.asset(
                 'assets/icons/house.png',

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mabitt/models/category_model.dart';
+import 'package:mabitt/models/rating_model.dart';
 
 import '../models/property_model.dart';
 import '../services/api.dart';
@@ -12,7 +13,7 @@ class PropertyProvider with ChangeNotifier {
   String _filter = 'price';
   List<CategoryModel> categories = [];
   List<PropertyModel> properties = [];
-
+  List<RatingModel> comments = [];
   getCategories() async {
     final response = await api.get('/api/category', {});
 
@@ -44,6 +45,26 @@ class PropertyProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  ///////////////////////////////////////////////////////////
+getComments() async {
+    final response = await api.get('/api/getrating', {});
+
+    if (response.statusCode == 200) {
+      var decodedData = jsonDecode(response.body);
+      comments.clear();
+      decodedData.forEach((x) => comments.add(RatingModel.fromJson(x)));
+      // for (var x in decodedData) {
+      //   categories.add(CategoryModel.fromJson(x));
+      // }
+
+      // categories= decodedData.map((x) => CategoryModel.fromJson(x)).toList();
+      notifyListeners();
+    }
+  }
+/////////////////////////////////////////////////////////////
+
+
 
   addProperty(Map body) async {
     final response = await api.post('/api/create', {});

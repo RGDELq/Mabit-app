@@ -1,10 +1,12 @@
+// import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/models/category_model.dart';
 
-import '../category_screen.dart';
+import '../../models/property_model.dart';
 
 class CategoryButton extends StatelessWidget {
   final CategoryModel categoryModel;
+
   const CategoryButton({
     Key? key,
     required this.categoryModel,
@@ -17,7 +19,7 @@ class CategoryButton extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CategoryPage(
+            builder: (context) => CategoryPropertiesPage(
               categoryModel: categoryModel,
             ),
           ),
@@ -27,7 +29,7 @@ class CategoryButton extends StatelessWidget {
         margin: const EdgeInsets.all(4),
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.15),
+          color: Colors.black38.withOpacity(0.1),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -39,19 +41,55 @@ class CategoryButton extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
             ),
-            // Flexible(
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(12),
-            //     child: Image(
-            //       height: 50,
-            //       width: 50,
-            //       image: AssetImage('images/${categoryModel.assetPath}'),
-            //       fit: BoxFit.cover,
-            //     ),
-            //   ),
-            // ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class CategoryPropertiesPage extends StatefulWidget {
+  final CategoryModel categoryModel;
+
+  const CategoryPropertiesPage({
+    Key? key,
+    required this.categoryModel,
+  }) : super(key: key);
+
+  @override
+  _CategoryPropertiesPageState createState() => _CategoryPropertiesPageState();
+}
+
+class _CategoryPropertiesPageState extends State<CategoryPropertiesPage> {
+  List<PropertyModel> _properties = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchProperties();
+  }
+
+  void _fetchProperties() {
+    // TODO: Fetch properties for the selected category from your data source
+    // and update the _properties list.
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.categoryModel.name),
+      ),
+      body: ListView.builder(
+        itemCount: _properties.length,
+        itemBuilder: (context, index) {
+          final property = _properties[index];
+          return ListTile(
+            title: Text(property.name),
+            subtitle: Text(property.detail),
+            trailing: Text('\$${property.price.toStringAsFixed(2)}'),
+          );
+        },
       ),
     );
   }

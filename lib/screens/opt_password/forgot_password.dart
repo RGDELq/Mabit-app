@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:mabitt/screens/opt_password/send_opt.dart';
 import 'package:mabitt/screens/widgets/primary_btn.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/dark_mode_provider.dart';
+import '../../utils/theme.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -15,6 +19,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Center(
@@ -40,6 +46,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               height: 40,
             ),
             TextFieldWidget(
+              filled: true,
+              fillColor: dakmode.isDark ? darkcolor : white,
               controller: emailController,
               validator: (String? value) {
                 if (value!.isEmpty) {
@@ -65,8 +73,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     withBorder: false,
                     isloading: false,
                     onPressed: () {
-                      Navigator.push(context,
-                          CupertinoPageRoute(builder: (context) => const MyApp()));
+                      Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const MyApp()));
                     }),
                 Primarybtn(
                     text: 'Back',

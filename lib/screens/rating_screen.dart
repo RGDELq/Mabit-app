@@ -1,51 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:mabitt/screens/widgets/rating_card.dart';
+import 'package:mabitt/utils/theme.dart';
+import 'package:provider/provider.dart';
 
-import 'package:get/get.dart';
+import '../models/rating_model.dart';
+import '../provider/property_provider.dart';
 
-import '../controllers/rating_controller.dart';
-
-class HomeView extends GetView<MainController> {
-  const HomeView({super.key});
+class Reviews extends StatefulWidget {
+  const Reviews({required Key key}) : super(key: key);
 
   @override
+  _ReviewsState createState() => _ReviewsState();
+}
+
+class _ReviewsState extends State<Reviews> {
+  bool isMore = false;
+
+  @override
+  void initState() {
+    Provider.of<PropertyProvider>(context, listen: false).getComments();
+
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
-    Get.lazyPut<MainController>(
-      () => MainController(),
-    );
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Rating section"),
-        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Obx(() => Text(
-                    'Your Rating: ${controller.rating.value}',
-                    style: const TextStyle(fontSize: 20),
-                  )),
-              Obx(() => Text(
-                    'Your Comment: ${controller.comment.value}',
-                    style: const TextStyle(fontSize: 20),
-                  )),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 44, 73, 121),
-                  elevation: 9,
-                ),
-                onPressed: () {
-                  controller.showRatingDialog();
-                },
-                child: const Text('Rating Dialog'),
-              ),
-            ],
-          ),
+    return Consumer<PropertyProvider>(
+        builder: (context, propertyConsumer, child) {
+      return Scaffold(
+        backgroundColor: white,
+        appBar: AppBar(
+          title: const Text("Reviews"),
+          // child: DefaultBackButton(),
         ),
-      ),
-    );
+        body: Stack(
+          children: [
+            ListView.builder(
+              padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
+              itemCount: propertyConsumer.comments.length,
+
+              itemBuilder: (context, index) {
+                final rating = propertyConsumer.comments[index];
+                return ReviewUI(
+                  name: rating.name,
+                  updateded_at: rating.updatedAt,
+                  ptoperty_id: rating.propertyId,
+                  createdAt: rating.createdAt,
+                  key: ValueKey(index),
+                );
+              },
+              // separatorBuilder: (context, index) {
+              //   return Divider(
+              //     thickness: 1.0,
+              //     color: primary,
+              //   );
+              // },
+            ),
+            Positioned(
+              bottom: 16.0,
+              right: 16.0,
+              child: FloatingActionButton(
+                onPressed: () {
+                  // Handle floating action button press
+                },
+                child: const Icon(Icons.add),
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

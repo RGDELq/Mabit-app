@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/screens/welcome_screen.dart';
 
+import '../utils/theme.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -46,11 +48,11 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              const Text(
+              Text(
                 " Find your new home to rent on Mabit  ,\nfrom all destinations",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.black54,
+                  color: darkcolor,
                   fontSize: 16,
                 ),
               ),

@@ -1,7 +1,3 @@
-import 'dart:convert';
-
-import "package:http/http.dart" as http;
-
 import 'package:flutter/foundation.dart';
 import 'package:mabitt/services/api.dart';
 
@@ -25,7 +21,7 @@ class AuthProvider with ChangeNotifier {
     //       'Content-Type': 'application/json',
     //       'Accept': 'application/json'
     //     });#
-    final response = await api.post('/login', body);
+    final response = await api.post('/api/login', body);
     if (response.statusCode == 200) {
       print('login successful');
       setloading(false);
@@ -50,7 +46,7 @@ class AuthProvider with ChangeNotifier {
     //       'Content-Type': 'application/json',
     //       'Accept': 'application/json'
     //     });#
-    final response = await api.post('/register', body);
+    final response = await api.post('/api/register', body);
     if (response.statusCode == 200) {
       print('register successful');
       setloading(false);

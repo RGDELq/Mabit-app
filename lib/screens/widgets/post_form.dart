@@ -1,9 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/multipart/form_data.dart';
-import 'package:get/get_connect/http/src/multipart/multipart_file.dart';
-import "package:http/http.dart" as http;
 
 import 'package:image_picker/image_picker.dart';
 import 'package:mabitt/screens/widgets/phone_textfiled.dart';
@@ -12,8 +9,10 @@ import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/category_model.dart';
+import '../../provider/dark_mode_provider.dart';
 import '../../provider/property_provider.dart';
 import '../../services/api.dart';
+import '../../utils/theme.dart';
 
 class PostForm extends StatefulWidget {
   const PostForm({Key? key}) : super(key: key);
@@ -57,8 +56,7 @@ class _PostFormState extends State<PostForm> {
 
   @override
   Widget build(BuildContext context) {
-    final propertyProvider =
-        Provider.of<PropertyProvider>(context, listen: false);
+    final dakmode = Provider.of<DarkModeProvider>(context);
 
     return Scaffold(
       body: SafeArea(
@@ -73,6 +71,8 @@ class _PostFormState extends State<PostForm> {
                 child: Column(
                   children: [
                     TextFieldWidget(
+                      filled: true,
+                      fillColor: dakmode.isDark ? darkcolor : white,
                       label: 'Property name',
                       hintText: 'Enter property name',
                       controller: properynameController,
@@ -84,6 +84,8 @@ class _PostFormState extends State<PostForm> {
                       },
                     ),
                     TextFieldWidget(
+                      filled: true,
+                      fillColor: dakmode.isDark ? white : darkcolor,
                       label: 'Description',
                       hintText: 'About the property',
                       controller: descriptionController,
@@ -137,9 +139,9 @@ class _PostFormState extends State<PostForm> {
                                 labelText: 'Category ',
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
+                                  borderSide: BorderSide(
                                     width: 1,
-                                    color: Color(0xff114E60),
+                                    color: darkblue,
                                   ),
                                 ),
                               ),
@@ -165,9 +167,9 @@ class _PostFormState extends State<PostForm> {
                               labelText: 'City',
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   width: 1,
-                                  color: Color(0xff114E60),
+                                  color: darkblue,
                                 ),
                               ),
                             ),
@@ -200,9 +202,9 @@ class _PostFormState extends State<PostForm> {
                               labelText: 'Rooms',
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   width: 1,
-                                  color: Color(0xff114E60),
+                                  color: darkblue,
                                 ),
                               ),
                             ),
@@ -227,9 +229,9 @@ class _PostFormState extends State<PostForm> {
                               labelText: 'Floors',
                               enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
-                                borderSide: const BorderSide(
+                                borderSide: BorderSide(
                                   width: 1,
-                                  color: Color(0xff114E60),
+                                  color: darkblue,
                                 ),
                               ),
                             ),
@@ -255,9 +257,9 @@ class _PostFormState extends State<PostForm> {
                     TextButton.icon(
                       onPressed: _pickImage,
                       icon: const Icon(Icons.upload_file),
-                      label: const Text(
+                      label: Text(
                         'Upload Image',
-                        style: TextStyle(color: Colors.blue),
+                        style: TextStyle(color: darkblue),
                       ),
                     ),
                     _selectedImage != null
@@ -298,7 +300,7 @@ class _PostFormState extends State<PostForm> {
                                 'floor': selectedfloors!.toString(),
                                 'rooms': selectedrooms!.toString(),
                                 'city': selectedCity.toString(),
-                                'status': 1,
+                                'status': 0,
                                 'phonenumber': phoneController.text,
                                 //  uploadImage(_selectedImage).then((response))
                               }) //)

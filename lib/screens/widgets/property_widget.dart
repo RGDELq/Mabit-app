@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/utils/my_string.dart';
+import 'package:provider/provider.dart';
 import '../../models/property_model.dart';
+import '../../provider/dark_mode_provider.dart';
+import '../../utils/theme.dart';
 import '../details_screen.dart';
 
 class RecommendationCard extends StatelessWidget {
@@ -13,6 +16,8 @@ class RecommendationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     return GestureDetector(
       onTap: () => Navigator.push(
         context,
@@ -25,7 +30,7 @@ class RecommendationCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: white,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
@@ -58,29 +63,29 @@ class RecommendationCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 219, 232, 216),
+                color: secprimary,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(
                 "Check",
-                style: Theme.of(context).textTheme.titleSmall,
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             ),
-            // const SizedBox(
-            //   height: 6,
-            // ),
+         
             Text(
               propertyModel.name,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    color: dakmode.isDark ? darkcolor : darkcolor,
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            // const SizedBox(
-            //   height: 9,
-            // ),
+          
             Text(
               "${propertyModel.rooms} rooms - ${propertyModel.rooms} square foots - ${propertyModel.floor} floors",
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                    color: dakmode.isDark ? darkcolor : darkcolor,
                     fontWeight: FontWeight.bold,
                   ),
             ),

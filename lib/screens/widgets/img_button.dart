@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../utils/theme.dart';
+
 class ImgButton extends StatelessWidget {
   final String image;
   final bool isMore;
@@ -47,16 +49,16 @@ class ImgButton extends StatelessWidget {
                   Text(
                     "+$moreImageCount",
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: Colors.white,
+                    style: TextStyle(
+                        color: white,
                         fontSize: 16,
                         fontWeight: FontWeight.w700),
                   ),
-                  const Text(
+                  Text(
                     "Photos",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Colors.white,
+                        color: white,
                         fontSize: 12,
                         fontWeight: FontWeight.w700),
                   ),

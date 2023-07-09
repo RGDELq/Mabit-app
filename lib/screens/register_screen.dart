@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mabitt/screens/navigator.dart';
 import 'package:mabitt/screens/widgets/primary_btn.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/auth_provider.dart';
+import '../provider/dark_mode_provider.dart';
 import '../utils/theme.dart';
 import 'login_screen.dart';
 
@@ -25,6 +25,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final dakmode = Provider.of<DarkModeProvider>(context);
+
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -53,22 +55,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 200,
                   width: 400,
                 ),
-                const Positioned(
+                 Positioned(
                     bottom: 0,
                     left: 0,
                     right: 40,
                     child: Padding(
-                      padding: EdgeInsets.all(12.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text("Hello!  Register to get Started",
                               style: TextStyle(
-                                color: Color.fromARGB(255, 17, 77, 95),
+                                color:primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
-                          Positioned(
+                         const Positioned(
                               bottom: 0,
                               left: 0,
                               right: 0,
@@ -97,6 +99,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                 children: [
                   TextFieldWidget(
+                    filled: true,
+                    fillColor: dakmode.isDark ? darkcolor : Colors.white,
                     label: 'username',
                     hintText: 'Enter username ',
                     controller: usernameController,
@@ -108,6 +112,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   TextFieldWidget(
+                      filled: true,
+                      fillColor: dakmode.isDark ? darkcolor : Colors.white,
                       label: 'Email Address',
                       controller: emailController,
                       hintText: 'Ex: a@example.com',
@@ -121,6 +127,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         return null;
                       }),
                   TextFieldWidget(
+                    filled: true,
+                    fillColor: dakmode.isDark ? darkcolor : Colors.white,
                     label: 'Password',
                     hintText: 'Enter your password',
                     controller: passwordController,
@@ -132,6 +140,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   TextFieldWidget(
+                    filled: true,
+                    fillColor: dakmode.isDark ? darkcolor : Colors.white,
                     label: 'Confrim  Password',
                     hintText: 'Enter password to confirm',
                     controller: confirmPasswordController,
@@ -177,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Navigator.pushReplacement(
                             context,
                             CupertinoPageRoute(
-                                builder: ((context) => const TabsScreen())));
+                                builder: ((context) => const LoginScreenn())));
                       }),
                   Primarybtn(
                       text: "Have account? Login",
