@@ -4,7 +4,7 @@ import 'package:mabitt/provider/dark_mode_provider.dart';
 import 'package:mabitt/provider/property_provider.dart';
 import 'package:mabitt/screens/search.dart';
 import 'package:mabitt/screens/widgets/categories_list.dart';
-import 'package:mabitt/screens/widgets/property_widget.dart';
+import 'package:mabitt/screens/widgets/property_widget_onhome.dart';
 import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 import '../models/property_model.dart';
@@ -102,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              SearchResultsScreen()));
+                                              SearchScreen()));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(12),

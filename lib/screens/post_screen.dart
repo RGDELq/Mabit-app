@@ -13,6 +13,7 @@ class _PostsScreenState extends State<PostsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secprimary,
       appBar: AppBar(
         title: const Text("Add Property post"),
         backgroundColor: primary,

@@ -1,28 +1,22 @@
-import 'package:flutter/material.dart';
-
+import 'package:flutter/foundation.dart';
 import '../models/property_model.dart';
 
-class FavoriteProvider with ChangeNotifier {
-  List<PropertyModel> _favoriteProperties = [];
+class FavoritesProvider with ChangeNotifier {
+  List<PropertyModel> _favorites = [];
 
-  List<PropertyModel> get favoriteProperties => _favoriteProperties;
+  List<PropertyModel> get favorites => _favorites;
 
-  set favoriteProperties(List<PropertyModel> value) {
-    _favoriteProperties = value;
+  void addToFavorites(PropertyModel property) {
+    _favorites.add(property);
     notifyListeners();
   }
 
-  void addFavoriteProperty(PropertyModel property) {
-    _favoriteProperties.add(property);
-    notifyListeners();
-  }
-
-  void removeFavoriteProperty(PropertyModel property) {
-    _favoriteProperties.remove(property);
+  void removeFromFavorites(PropertyModel property) {
+    _favorites.remove(property);
     notifyListeners();
   }
 
   bool isFavorite(PropertyModel property) {
-    return _favoriteProperties.contains(property);
+    return _favorites.contains(property);
   }
 }

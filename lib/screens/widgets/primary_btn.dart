@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:mabitt/utils/theme.dart';
 
 class Primarybtn extends StatefulWidget {
-  const Primarybtn(
-      {super.key,
-      required this.text,
-      required this.withBorder,
-      this.widthFromScreen = 0.9,
-      required this.isloading,
-      required this.onPressed,
-      this.isActive = true});
+  const Primarybtn({
+    super.key,
+    required this.text,
+    required this.withBorder,
+    this.widthFromScreen = 0.9,
+    required this.isloading,
+    required this.onPressed,
+    this.isActive = true,
+  });
   final String text;
   final bool withBorder;
   final double widthFromScreen;

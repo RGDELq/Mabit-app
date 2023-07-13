@@ -46,6 +46,21 @@ class PropertyProvider with ChangeNotifier {
     }
   }
 
+  Future<List<PropertyModel>> getPropertiesbyid(int categoryId) async {
+  final response = await api.get('/api/get', {
+    'category_id': categoryId,
+  });
+
+  if (response.statusCode == 200) {
+    var decodedData = jsonDecode(response.body);
+    return decodedData
+        .map((x) => PropertyModel.fromJson(x))
+        .toList();
+  } else {
+    throw Exception('Failed to fetch properties');
+  }
+}
+
   ///////////////////////////////////////////////////////////
 getComments() async {
     final response = await api.get('/api/getrating', {});

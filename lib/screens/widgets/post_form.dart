@@ -305,6 +305,23 @@ class _PostFormState extends State<PostForm> {
                                 //  uploadImage(_selectedImage).then((response))
                               }) //)
                               .then((response) {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('success'),
+                                    content: const Text(
+                                        'your information have been submitted successfully.'),
+                                    actions: [
+                                      TextButton(
+                                        child: const Text('OK'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
                             print(response.statusCode.toString() +
                                 " " +
                                 response.body);

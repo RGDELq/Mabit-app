@@ -13,8 +13,8 @@ void main() {
     ChangeNotifierProvider<AuthProvider>(create: (context) => AuthProvider()),
     ChangeNotifierProvider<PropertyProvider>(
         create: (context) => PropertyProvider()),
-    ChangeNotifierProvider<FavoriteProvider>(
-        create: (context) => FavoriteProvider()),
+    ChangeNotifierProvider<FavoritesProvider>(
+        create: (context) => FavoritesProvider()),
     ChangeNotifierProvider<DarkModeProvider>(
         create: (context) => DarkModeProvider()),
   ], child: const MyApp()));

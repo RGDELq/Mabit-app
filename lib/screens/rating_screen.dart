@@ -1,34 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:mabitt/screens/widgets/dialog.dart';
 import 'package:mabitt/screens/widgets/rating_card.dart';
 import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 
-import '../models/rating_model.dart';
 import '../provider/property_provider.dart';
 
 class Reviews extends StatefulWidget {
   const Reviews({required Key key}) : super(key: key);
 
   @override
-  _ReviewsState createState() => _ReviewsState();
+  ReviewsState createState() => ReviewsState();
 }
 
-class _ReviewsState extends State<Reviews> {
+class ReviewsState extends State<Reviews> {
   bool isMore = false;
 
   @override
   void initState() {
     Provider.of<PropertyProvider>(context, listen: false).getComments();
-
     super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Consumer<PropertyProvider>(
         builder: (context, propertyConsumer, child) {
       return Scaffold(
-        backgroundColor: white,
+        backgroundColor: secprimary,
         appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: primary,
           title: const Text("Reviews"),
           // child: DefaultBackButton(),
         ),
@@ -44,7 +46,10 @@ class _ReviewsState extends State<Reviews> {
                   name: rating.name,
                   updateded_at: rating.updatedAt,
                   ptoperty_id: rating.propertyId,
-                  createdAt: rating.createdAt,
+                  createdAt: rating.createdAt
+                      .toString()
+                      .substring(0, 10)
+                      .replaceAll('-', '/'),
                   key: ValueKey(index),
                 );
               },
@@ -59,9 +64,16 @@ class _ReviewsState extends State<Reviews> {
               bottom: 16.0,
               right: 16.0,
               child: FloatingActionButton(
+                backgroundColor: primary,
                 onPressed: () {
-                  // Handle floating action button press
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return MyDialog();
+                    },
+                  );
                 },
+                tooltip: 'Add Review',
                 child: const Icon(Icons.add),
               ),
             ),

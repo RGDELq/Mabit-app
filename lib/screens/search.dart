@@ -1,105 +1,112 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/provider/property_provider.dart';
+import 'package:mabitt/screens/widgets/property_widget_onhome.dart';
 import 'package:provider/provider.dart';
 
-class SearchResultsScreen extends StatefulWidget {
+import '../models/property_model.dart';
+
+class SearchScreen extends StatefulWidget {
+  const SearchScreen({Key? key}) : super(key: key);
+
   @override
-  _SearchResultsScreenState createState() => _SearchResultsScreenState();
+  SearchScreenState createState() => SearchScreenState();
 }
 
-class _SearchResultsScreenState extends State<SearchResultsScreen> {
-  // String _searchQuery = '';
-  String _filter = 'price';
+class SearchScreenState extends State<SearchScreen> {
+  int? _minPrice;
+  int? _minFloor;
+  int? _minRooms;
 
   @override
   Widget build(BuildContext context) {
+    final propertyProvider = Provider.of<PropertyProvider>(context);
+    final List<PropertyModel> properties = propertyProvider.properties;
+
+    // Filter the properties based on the search criteria
+    final filteredProperties = properties.where((property) {
+      if (_minPrice != null && property.price < _minPrice!) {
+        return false;
+      }
+      if (_minFloor != null && property.floor < _minFloor!) {
+        return false;
+      }
+      if (_minRooms != null && property.rooms < _minRooms!) {
+        return false;
+      }
+      return true;
+    }).toList();
+
+    // Sort the properties based on the selected sort order
+    filteredProperties.sort((a, b) => a.price.compareTo(b.price));
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 44, 73, 121),
-        title: TextField(
-          onChanged: (query) {
-            setState(() {
-              // _searchQuery = query;
-            });
-          },
-          decoration: const InputDecoration(
-            hintText: 'Search properties',
+        centerTitle: true,
+        title: const Text('Search'),
+      ),
+      body: Column(
+        children: [
+          const SizedBox(height: 16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Price',
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        _minPrice = int.tryParse(value);
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Floor',
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        _minFloor = int.tryParse(value);
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'Rooms',
+                    ),
+                    keyboardType: TextInputType.number,
+                    onChanged: (value) {
+                      setState(() {
+                        _minRooms = int.tryParse(value);
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: () {
-              _showFilterDialog();
-            },
+          const SizedBox(height: 16),
+          Expanded(
+            child: ListView.builder(
+              itemCount: filteredProperties.length,
+              itemBuilder: (context, index) {
+                final property = filteredProperties[index];
+                return RecommendationCard(propertyModel: property);
+              },
+            ),
           ),
         ],
       ),
-      body: Provider.of<PropertyProvider>(context, listen: false)
-          .buildSearchResults(),
-    );
-  }
-
-  // Widget _buildSearchResults() {
-  //   List<PropertyModel> filteredProperties = _getFilteredProperties();
-  //   return ListView.builder(
-  //     itemCount: filteredProperties.length,
-  //     itemBuilder: (BuildContext context, int index) {
-  //       PropertyModel property = filteredProperties[index];
-  //       return ListTile(
-  //         title: Text(property.name),
-  //         subtitle: Text('Price: ${property.price}'),
-  //         onTap: () {
-  //           // TODO: Navigate to property details screen
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
-
-  void _showFilterDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Filter search results'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioListTile<String>(
-                title: const Text('Price'),
-                value: 'price',
-                groupValue: _filter,
-                onChanged: (value) {
-                  setState(() {
-                    _filter = value!;
-                  });
-                },
-              ),
-              RadioListTile<String>(
-                title: const Text('Floor'),
-                value: 'floor',
-                groupValue: _filter,
-                onChanged: (value) {
-                  setState(() {
-                    _filter = value!;
-                  });
-                },
-              ),
-              RadioListTile<String>(
-                title: const Text('Rooms'),
-                value: 'rooms',
-                groupValue: _filter,
-                onChanged: (value) {
-                  setState(() {
-                    _filter = value!;
-                  });
-                },
-              ),
-            ],
-          ),
-        );
-      },
     );
   }
 }

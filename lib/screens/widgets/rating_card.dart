@@ -19,7 +19,7 @@ class ReviewUI extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(
-        top: 2.0,
+        top: 1.0,
         bottom: 2.0,
         left: 16.0,
         right: 0.0,
@@ -31,27 +31,19 @@ class ReviewUI extends StatelessWidget {
             children: [
               Container(
                 height: 45.0,
-                width: 45.0,
+                width: 40.0,
                 margin: const EdgeInsets.only(right: 16.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(44.0),
                 ),
               ),
-              // Expanded(
-              //   child: Text(
-              //     createdAt,
-              //     style: const TextStyle(
-              //       fontSize: 40.0,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
-              // ),
+         
             ],
           ),
           const SizedBox(height: 8.0),
           Row(
             children: [
-              const SizedBox(width: 200),
+              const SizedBox(width: 100),
               Text(
                 createdAt,
                 style: const TextStyle(fontSize: 18.0),
@@ -65,7 +57,7 @@ class ReviewUI extends StatelessWidget {
                 name,
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: primary,
+                  color: darkcolor,
                 ),
               )),
         ],

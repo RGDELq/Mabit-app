@@ -53,6 +53,7 @@ dependencies:
   rating_dialog: ^2.0.4
   url_launcher: ^6.1.11
   cached_network_image:
+  connectivity: ^3.0.6
   # flutter_localization:
   # intl: 
 dev_dependencies:

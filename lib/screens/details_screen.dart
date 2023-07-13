@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/provider/dark_mode_provider.dart';
 import 'package:mabitt/screens/rating_screen.dart';
-import 'package:mabitt/screens/widgets/propertyinfor_card.dart';
 import 'package:provider/provider.dart';
 import '../models/property_model.dart';
-import '../provider/favorite_provider.dart';
 import '../provider/property_provider.dart';
 import '../utils/my_string.dart';
 import '../utils/theme.dart';
-import 'favorites_screen.dart';
 
 class DetailsPage extends StatefulWidget {
   final PropertyModel propertyModel;
@@ -29,7 +25,8 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  bool _isFavorite = false;
+  bool isFavorite = false;
+  late final PropertyModel propertyModel;
 
   @override
   Widget build(BuildContext context) {
@@ -85,19 +82,6 @@ class _DetailsPageState extends State<DetailsPage> {
                                   ),
                             ),
                             const Spacer(),
-                            // const Icon(
-                            //   LineIcons.starAlt,
-                            //   color: Color.fromARGB(255, 246, 195, 11),
-                            // ),
-                            // Text(
-                            //   widget.propertyModel.rating.toString(),
-                            //   style: Theme.of(context)
-                            //       .textTheme
-                            //       .titleMedium!
-                            //       .copyWith(
-                            //         fontWeight: FontWeight.bold,
-                            //       ),
-                            // ),
                           ],
                         ),
                         const SizedBox(
@@ -140,8 +124,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 color:
                                     dakmode.isDark ? thirdprimary : darkcolor,
                                 context,
-                                LineIcons.areaChart,
-                                "${widget.propertyModel.rooms} Sqft",
+                                LineIcons.locationArrow,
+                                "${widget.propertyModel.city} ",
                               ),
                               specWidget(
                                 color:
@@ -205,7 +189,9 @@ class _DetailsPageState extends State<DetailsPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (_) =>  Reviews(key: Key('value'),)));
+                                builder: (_) => Reviews(
+                                      key: Key('value'),
+                                    )));
                       },
                       child: Container(
                         padding: const EdgeInsets.all(12),
@@ -234,54 +220,6 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     //-
                     //-------------------------FAV & Rate & contact --------------------------------
-
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FavoritesScreen()));
-                        // setState(() {
-                        //   _isFavorite = !_isFavorite;
-                        //   widget.propertyModel.isFavorite = _isFavorite;
-                        // });
-
-                        if (_isFavorite) {
-                          // Add to favorite
-                          Provider.of<FavoriteProvider>(context, listen: false)
-                              .addFavoriteProperty(widget.propertyModel);
-                        } else {
-                          // Remove from favorite
-                          Provider.of<FavoriteProvider>(context, listen: false)
-                              .removeFavoriteProperty(widget.propertyModel);
-                        }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        margin: const EdgeInsets.only(right: 8),
-                        decoration: BoxDecoration(
-                          color: dakmode.isDark ? secprimary : darkblue,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black.withOpacity(0.3),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              offset: const Offset(4, 4),
-                              blurRadius: 20,
-                              spreadRadius: 4,
-                            )
-                          ],
-                        ),
-                        height: 55,
-                        width: 55,
-                        child: Icon(
-                          _isFavorite ? Ionicons.heart : Ionicons.heart_outline,
-                          color: _isFavorite ? error : Colors.white,
-                        ),
-                      ),
-                    ),
                     Expanded(
                       child: GestureDetector(
                         onTap: () {
@@ -331,4 +269,37 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
     );
   }
+}
+
+Widget specWidget(BuildContext context, IconData iconData, String text,
+    {required Color color}) {
+  final dakmode = Provider.of<DarkModeProvider>(context);
+  return Consumer<DarkModeProvider>(
+    builder: (context, dmc, child) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 12.0),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: dakmode.isDark ? secprimary : darkblue,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(iconData),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(
+              text,
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: dmc.isDark ? Colors.white : Colors.black,
+                  ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

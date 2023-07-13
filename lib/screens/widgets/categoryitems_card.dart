@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -66,10 +65,10 @@ class ExpandedRecommendationCard extends StatelessWidget {
                       ),
                 ),
                 const Spacer(),
-                const Icon(
-                  LineIcons.starAlt,
-                  color: Colors.amber,
-                ),
+                // const Icon(
+                //   LineIcons.starAlt,
+                //   color: Colors.amber,
+                // ),
                 // Text(
                 //   propertyModel.rating.toString(),
                 //   style: Theme.of(context).textTheme.titleMedium!.copyWith(
@@ -87,75 +86,75 @@ class ExpandedRecommendationCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.all(12),
-                        margin: const EdgeInsets.only(right: 8),
-                        decoration: BoxDecoration(
-                          color: dakmode.isDark ? secprimary : primary,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: Colors.black.withOpacity(0.1),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              offset: const Offset(0, 5),
-                              blurRadius: 20,
-                              spreadRadius: 4,
-                            )
-                          ],
-                        ),
-                        height: 55,
-                        width: 55,
-                        child: Center(
-                          child: Text(
-                            "Check",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(
-                                  color: dakmode.isDark ? darkcolor : white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // GestureDetector(
-                  //   onTap: () {},
-                  //   child: Container(
-                  //     padding: const EdgeInsets.all(12),
-                  //     margin: const EdgeInsets.only(right: 8),
-                  //     decoration: BoxDecoration(
-                  //       color: Colors.white,
-                  //       borderRadius: BorderRadius.circular(12),
-                  //       border: Border.all(
-                  //         color: Colors.black.withOpacity(0.1),
-                  //       ),
-                  //       boxShadow: [
-                  //         BoxShadow(
-                  //           color: Colors.black.withOpacity(0.1),
-                  //           offset: const Offset(0, 5),
-                  //           blurRadius: 20,
-                  //           spreadRadius: 4,
-                  //         )
-                  //       ],
-                  //     ),
-                  //     height: 55,
-                  //     width: 55,
-                  //   ),
-                  // ),
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: 16.0),
+            //   child: Row(
+            //     children: [
+            //       Expanded(
+            //         child: GestureDetector(
+            //           onTap: () {},
+            //           child: Container(
+            //             padding: const EdgeInsets.all(12),
+            //             margin: const EdgeInsets.only(right: 8),
+            //             decoration: BoxDecoration(
+            //               color: dakmode.isDark ? secprimary : primary,
+            //               borderRadius: BorderRadius.circular(12),
+            //               border: Border.all(
+            //                 color: Colors.black.withOpacity(0.1),
+            //               ),
+            //               boxShadow: [
+            //                 BoxShadow(
+            //                   color: Colors.black.withOpacity(0.1),
+            //                   offset: const Offset(0, 5),
+            //                   blurRadius: 20,
+            //                   spreadRadius: 4,
+            //                 )
+            //               ],
+            //             ),
+            //             height: 55,
+            //             width: 55,
+            //             child: Center(
+            //               child: Text(
+            //                 "Check",
+            //                 style: Theme.of(context)
+            //                     .textTheme
+            //                     .titleSmall!
+            //                     .copyWith(
+            //                       color: dakmode.isDark ? darkcolor : white,
+            //                       fontWeight: FontWeight.bold,
+            //                     ),
+            //               ),
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       // GestureDetector(
+            //       //   onTap: () {},
+            //       //   child: Container(
+            //       //     padding: const EdgeInsets.all(12),
+            //       //     margin: const EdgeInsets.only(right: 8),
+            //       //     decoration: BoxDecoration(
+            //       //       color: Colors.white,
+            //       //       borderRadius: BorderRadius.circular(12),
+            //       //       border: Border.all(
+            //       //         color: Colors.black.withOpacity(0.1),
+            //       //       ),
+            //       //       boxShadow: [
+            //       //         BoxShadow(
+            //       //           color: Colors.black.withOpacity(0.1),
+            //       //           offset: const Offset(0, 5),
+            //       //           blurRadius: 20,
+            //       //           spreadRadius: 4,
+            //       //         )
+            //       //       ],
+            //       //     ),
+            //       //     height: 55,
+            //       //     width: 55,
+            //       //   ),
+            //       // ),
+            //     ],
+            //   ),
+            // ),
           ],
         ),
       ),
