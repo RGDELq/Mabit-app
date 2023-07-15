@@ -31,9 +31,7 @@ class CategoryButton extends StatelessWidget {
         margin: const EdgeInsets.all(4),
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          color: dakmode.isDark
-              ? secprimary
-              : primary.withOpacity(0.10),
+          color: dakmode.isDark ? secprimary : primary.withOpacity(0.10),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(

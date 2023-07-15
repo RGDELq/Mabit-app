@@ -4,7 +4,9 @@ import 'package:mabitt/provider/auth_provider.dart';
 import 'package:mabitt/provider/dark_mode_provider.dart';
 import 'package:mabitt/provider/favorite_provider.dart';
 import 'package:mabitt/provider/property_provider.dart';
+import 'package:mabitt/provider/rating_provider.dart';
 import 'package:mabitt/screens/splash_screen.dart';
+import 'package:mabitt/utils/theme.dart';
 import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +19,8 @@ void main() {
         create: (context) => FavoritesProvider()),
     ChangeNotifierProvider<DarkModeProvider>(
         create: (context) => DarkModeProvider()),
+    ChangeNotifierProvider<RatingProvider>(
+        create: (context) => RatingProvider()),
   ], child: const MyApp()));
 }
 
@@ -46,29 +50,26 @@ class _MyAppState extends State<MyApp> {
                   fillColor:
                       darkModeConsumer.isDark ? Colors.white : Colors.white),
               iconTheme: IconThemeData(
-                  color: darkModeConsumer.isDark ? Colors.white : Colors.black),
+                  color: darkModeConsumer.isDark ? Colors.white : darkcolor),
               primaryIconTheme: IconThemeData(
-                  color: darkModeConsumer.isDark ? Colors.white : Colors.black),
+                  color: darkModeConsumer.isDark ? Colors.white : darkcolor),
               dividerTheme: DividerThemeData(
-                  color:
-                      darkModeConsumer.isDark ? Colors.white : Colors.black54),
+                  color: darkModeConsumer.isDark ? Colors.white : darkcolor),
               listTileTheme: ListTileThemeData(
                   titleTextStyle: TextStyle(
-                      color: darkModeConsumer.isDark
-                          ? Colors.white
-                          : Colors.black)),
+                      color:
+                          darkModeConsumer.isDark ? Colors.white : darkcolor)),
               appBarTheme: AppBarTheme(
                   titleTextStyle: TextStyle(
-                      color: darkModeConsumer.isDark
-                          ? Colors.white
-                          : Colors.black),
+                      color:
+                          darkModeConsumer.isDark ? Colors.white : darkcolor),
                   color: darkModeConsumer.isDark ? Colors.blue : secprimary),
               primarySwatch: Colors.blue,
               textTheme: GoogleFonts.openSansTextTheme(
                 Theme.of(context).textTheme,
               ),
               scaffoldBackgroundColor:
-                  darkModeConsumer.isDark ? Colors.black : Colors.white),
+                  darkModeConsumer.isDark ? darkcolor : Colors.white),
           home: const SplashScreen());
     });
   }

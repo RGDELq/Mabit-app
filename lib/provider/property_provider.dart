@@ -9,6 +9,8 @@ import '../services/api.dart';
 
 class PropertyProvider with ChangeNotifier {
   Api api = Api();
+  List<PropertyModel> allProperties = [];
+
   String _searchQuery = '';
   String _filter = 'price';
   List<CategoryModel> categories = [];
@@ -46,23 +48,8 @@ class PropertyProvider with ChangeNotifier {
     }
   }
 
-  Future<List<PropertyModel>> getPropertiesbyid(int categoryId) async {
-  final response = await api.get('/api/get', {
-    'category_id': categoryId,
-  });
-
-  if (response.statusCode == 200) {
-    var decodedData = jsonDecode(response.body);
-    return decodedData
-        .map((x) => PropertyModel.fromJson(x))
-        .toList();
-  } else {
-    throw Exception('Failed to fetch properties');
-  }
-}
-
   ///////////////////////////////////////////////////////////
-getComments() async {
+  getComments() async {
     final response = await api.get('/api/getrating', {});
 
     if (response.statusCode == 200) {
@@ -77,51 +64,56 @@ getComments() async {
       notifyListeners();
     }
   }
+  
 /////////////////////////////////////////////////////////////
-
-
 
   addProperty(Map body) async {
     final response = await api.post('/api/create', {});
 
     if (response.statusCode == 200) {
       var decodedData = jsonDecode(response.body);
-      List<PropertyModel> properties = [];
       decodedData.forEach((x) => properties.add(PropertyModel.fromJson(x)));
       notifyListeners();
     }
-  }
+    List<PropertyModel> getPropertiesByCategoryId(int categoryId) {
+      return allProperties
+          .where((property) => property.categoryId == categoryId)
+          .toList();
+    }
 
 //////////////////////////////////// search critria//////////////
-  getFilteredProperties() {
-    if (_searchQuery.isNotEmpty) {
-      ((property) =>
-          property.title.toLowerCase().contains(_searchQuery.toLowerCase()));
+    getFilteredProperties() {
+      if (_searchQuery.isNotEmpty) {
+        ((property) =>
+            property.title.toLowerCase().contains(_searchQuery.toLowerCase()));
+      }
+      if (_filter == 'price') {
+        properties.sort((a, b) => a.price.compareTo(b.price));
+      } else if (_filter == 'floor') {
+        properties.sort((a, b) => a.floor.compareTo(b.floor));
+      } else if (_filter == 'rooms') {
+        properties.sort((a, b) => a.rooms.compareTo(b.rooms));
+      }
+      return properties;
     }
-    if (_filter == 'price') {
-      properties.sort((a, b) => a.price.compareTo(b.price));
-    } else if (_filter == 'floor') {
-      properties.sort((a, b) => a.floor.compareTo(b.floor));
-    } else if (_filter == 'rooms') {
-      properties.sort((a, b) => a.rooms.compareTo(b.rooms));
+
+    Widget buildSearchResults() {
+      List<PropertyModel> filteredProperties = getFilteredProperties();
+      return ListView.builder(
+        itemCount: filteredProperties.length,
+        itemBuilder: (BuildContext context, int index) {
+          PropertyModel property = filteredProperties[index];
+          return ListTile(
+            title: Text(property.name),
+            subtitle: Text('Price: ${property.price}'),
+            onTap: () {
+              // TODO: Navigate to property details screen
+            },
+          );
+        },
+      );
     }
-    return properties;
   }
 
-  Widget buildSearchResults() {
-    List<PropertyModel> filteredProperties = getFilteredProperties();
-    return ListView.builder(
-      itemCount: filteredProperties.length,
-      itemBuilder: (BuildContext context, int index) {
-        PropertyModel property = filteredProperties[index];
-        return ListTile(
-          title: Text(property.name),
-          subtitle: Text('Price: ${property.price}'),
-          onTap: () {
-            // TODO: Navigate to property details screen
-          },
-        );
-      },
-    );
-  }
+  getPropertiesByCategoryId(int id) {}
 }

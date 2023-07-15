@@ -190,7 +190,8 @@ class _DetailsPageState extends State<DetailsPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (_) => Reviews(
-                                      key: Key('value'),
+                                      propertyId: widget.propertyModel.id,
+                                      key: const Key('value'),
                                     )));
                       },
                       child: Container(

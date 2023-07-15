@@ -26,7 +26,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final dakmode = Provider.of<DarkModeProvider>(context);
-
     final authProvider = Provider.of<AuthProvider>(context, listen: false);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -55,7 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 200,
                   width: 400,
                 ),
-                 Positioned(
+                Positioned(
                     bottom: 0,
                     left: 0,
                     right: 40,
@@ -66,11 +65,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         children: [
                           Text("Hello!  Register to get Started",
                               style: TextStyle(
-                                color:primary,
+                                color: primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
-                         const Positioned(
+                          const Positioned(
                               bottom: 0,
                               left: 0,
                               right: 0,
@@ -155,21 +154,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       return null;
                     },
                   ),
-                  // PhoneTextFieldWidget(
-                  //   keyboardType: TextInputType.phone,
-                  //   label: 'Phone number',
-                  //   hintText: 'Ex: 09X0000000',
-                  //   controller: phoneController,
-                  //   validator: (String? value) {
-                  //     if (value!.isEmpty) {
-                  //       return "Please enter your Phone number";
-                  //     }
-                  //     if (value.length != 10) {
-                  //       return "please enter a valid phone number";
-                  //     }
-                  //     return null;
-                  //   },
-                  // ),
                   SizedBox(
                     height: size.height * 0.05,
                   ),
@@ -182,7 +166,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           "name": usernameController.text.toString(),
                           "email": emailController.text.toString(),
                           "password": passwordController.text,
-                          // "phone": phoneController.text,
                         });
                         Navigator.pushReplacement(
                             context,

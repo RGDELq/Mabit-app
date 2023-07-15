@@ -190,7 +190,7 @@ class _PostFormState extends State<PostForm> {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -252,7 +252,7 @@ class _PostFormState extends State<PostForm> {
                       ],
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 30,
                     ),
                     TextButton.icon(
                       onPressed: _pickImage,

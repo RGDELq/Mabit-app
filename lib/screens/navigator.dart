@@ -23,8 +23,7 @@ class _TabsScreenState extends State<TabsScreen> {
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor:
-          dakmode.isDark ? darkcolor : secprimary,
+      backgroundColor: dakmode.isDark ? darkcolor : secprimary,
       body: AnimatedSwitcher(
         duration: animationDuration,
         child: currentIndex == 0
@@ -36,9 +35,7 @@ class _TabsScreenState extends State<TabsScreen> {
                     : const ProfileScreen(),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: dakmode.isDark
-            ? darkcolor
-            :secprimary,
+        backgroundColor: dakmode.isDark ? darkcolor : secprimary,
         elevation: 0,
         currentIndex: currentIndex,
         onTap: (index) {
@@ -48,10 +45,8 @@ class _TabsScreenState extends State<TabsScreen> {
         },
         items: [
           BottomNavigationBarItem(
-              backgroundColor: dakmode.isDark
-                  ? darkcolor
-                  : secprimary,
-              label: '',
+              backgroundColor: dakmode.isDark ? darkcolor : secprimary,
+              label: 'Home',
               icon: Image.asset(
                 'assets/icons/house.png',
                 width: size.width / 13,
@@ -60,7 +55,8 @@ class _TabsScreenState extends State<TabsScreen> {
                 color: currentIndex == 0 ? pcolor : pcolor.withOpacity(0.3),
               )),
           BottomNavigationBarItem(
-              label: '',
+              backgroundColor: dakmode.isDark ? darkcolor : secprimary,
+              label: 'Fav',
               icon: Image.asset(
                 'assets/icons/heart.png',
                 width: size.width / 13,
@@ -69,7 +65,8 @@ class _TabsScreenState extends State<TabsScreen> {
                 color: currentIndex == 1 ? pcolor : pcolor.withOpacity(0.3),
               )),
           BottomNavigationBarItem(
-              label: '',
+              backgroundColor: dakmode.isDark ? darkcolor : secprimary,
+              label: 'post',
               icon: Image.asset(
                 'assets/icons/edit.png',
                 width: size.width / 13,
@@ -78,7 +75,8 @@ class _TabsScreenState extends State<TabsScreen> {
                 color: currentIndex == 2 ? pcolor : pcolor.withOpacity(0.3),
               )),
           BottomNavigationBarItem(
-              label: '',
+              label: 'profile',
+              backgroundColor: dakmode.isDark ? darkcolor : secprimary,
               icon: Image.asset(
                 'assets/icons/profile.png',
                 width: size.width / 13,

@@ -14,7 +14,7 @@ Color pistacho = const Color(0xffF5cef9);
 
 // new colors
 Color thirdPrimary = const Color(0xffF5CEBE);
-Color darkcolor = const Color.fromARGB(255, 12, 11, 10);
+Color darkcolor = const Color(0xff121212);
 
 Color secprimary = const Color.fromARGB(255, 219, 232, 216);
 Color thirdprimary = const Color.fromARGB(255, 181, 220, 172);

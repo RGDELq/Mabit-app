@@ -6,14 +6,9 @@ import 'package:url_launcher/url_launcher.dart';
 import '../provider/dark_mode_provider.dart';
 import '../provider/property_provider.dart';
 
-class Aboutscreen extends StatefulWidget {
+class Aboutscreen extends StatelessWidget {
   const Aboutscreen({super.key});
 
-  @override
-  State<Aboutscreen> createState() => _AboutscreenState();
-}
-
-class _AboutscreenState extends State<Aboutscreen> {
   @override
   Widget build(BuildContext context) {
     final dakmode = Provider.of<DarkModeProvider>(context);

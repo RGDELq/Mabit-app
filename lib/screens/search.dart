@@ -4,6 +4,8 @@ import 'package:mabitt/screens/widgets/property_widget_onhome.dart';
 import 'package:provider/provider.dart';
 
 import '../models/property_model.dart';
+import '../provider/dark_mode_provider.dart';
+import '../utils/theme.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -38,9 +40,11 @@ class SearchScreenState extends State<SearchScreen> {
 
     // Sort the properties based on the selected sort order
     filteredProperties.sort((a, b) => a.price.compareTo(b.price));
+    final dakmode = Provider.of<DarkModeProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: dakmode.isDark ? primary : secprimary,
         centerTitle: true,
         title: const Text('Search'),
       ),

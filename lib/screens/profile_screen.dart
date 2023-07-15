@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/provider/dark_mode_provider.dart';
-import 'package:mabitt/screens/About_screen.dart';
+import 'package:mabitt/screens/about_screen.dart';
 import 'package:mabitt/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile"),
-        backgroundColor: primary,
+        backgroundColor: dakmode.isDark ? primary : secprimary,
         centerTitle: true,
       ),
       body: Center(

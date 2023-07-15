@@ -54,7 +54,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                   height: 200,
                   width: 400,
                 ),
-                 Positioned(
+                Positioned(
                     bottom: 0,
                     left: 0,
                     right: 40,
