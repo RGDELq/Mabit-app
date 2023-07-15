@@ -65,7 +65,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                         children: [
                           Text("Welcome Back! Glad \nto see you again",
                               style: TextStyle(
-                                color:primary,
+                                color: primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
@@ -142,24 +142,28 @@ class _LoginScreennState extends State<LoginScreenn> {
                       height: size.height * 0.05,
                     ),
                     Primarybtn(
-                        text: "Log in",
-                        withBorder: false,
-                        isloading: false,
-                        isActive: enableLoginBtn,
-                        onPressed: () {
-                          authProvider.login({
+                      text: "Log in",
+                      withBorder: false,
+                      isloading: false,
+                      isActive: enableLoginBtn,
+                      onPressed: () async {
+                        try {
+                          await authProvider.login({
                             "email": emailController.text,
                             "password": passwordController.text
                           });
                           Navigator.pushReplacement(
-                              context,
-                              CupertinoPageRoute(
-                                  builder: ((context) => const TabsScreen())));
-                          Center(
-                              child: authProvider.loading
-                                  ? const CircularProgressIndicator()
-                                  : const Text('login'));
-                        }),
+                            context,
+                            CupertinoPageRoute(
+                                builder: ((context) => const TabsScreen())),
+                          );
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Invalid credentials')),
+                          );
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),

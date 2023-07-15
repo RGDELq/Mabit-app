@@ -7,7 +7,6 @@ import 'package:mabitt/provider/property_provider.dart';
 import 'package:mabitt/provider/rating_provider.dart';
 import 'package:mabitt/screens/splash_screen.dart';
 import 'package:mabitt/utils/theme.dart';
-import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -26,6 +25,8 @@ void main() {
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
+  static final ValueNotifier<ThemeMode> themeNotifier =
+      ValueNotifier(ThemeMode.system);
   @override
   State<MyApp> createState() => _MyAppState();
 }

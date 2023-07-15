@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/provider/property_provider.dart';
-import 'package:mabitt/screens/widgets/property_widget_onhome.dart';
+import 'package:mabitt/screens/widgets/property_card2.dart';
 import 'package:provider/provider.dart';
 
 import '../models/property_model.dart';
@@ -18,6 +18,7 @@ class SearchScreenState extends State<SearchScreen> {
   int? _minPrice;
   int? _minFloor;
   int? _minRooms;
+  String? _city;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +34,9 @@ class SearchScreenState extends State<SearchScreen> {
         return false;
       }
       if (_minRooms != null && property.rooms < _minRooms!) {
+        return false;
+      }
+      if (_city != null && property.city == _city!) {
         return false;
       }
       return true;
@@ -96,6 +100,19 @@ class SearchScreenState extends State<SearchScreen> {
                     },
                   ),
                 ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      labelText: 'City',
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _city = value;
+                      });
+                    },
+                  ),
+                ),
               ],
             ),
           ),
@@ -105,7 +122,7 @@ class SearchScreenState extends State<SearchScreen> {
               itemCount: filteredProperties.length,
               itemBuilder: (context, index) {
                 final property = filteredProperties[index];
-                return RecommendationCard(propertyModel: property);
+                return PropertyCard2(propertyModel: property);
               },
             ),
           ),

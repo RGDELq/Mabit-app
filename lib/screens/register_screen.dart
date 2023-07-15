@@ -158,20 +158,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: size.height * 0.05,
                   ),
                   Primarybtn(
-                      text: "Sign up ",
-                      withBorder: false,
-                      isloading: false,
-                      onPressed: () {
-                        authProvider.register({
-                          "name": usernameController.text.toString(),
-                          "email": emailController.text.toString(),
-                          "password": passwordController.text,
-                        });
+                    text: "Sign up",
+                    withBorder: false,
+                    isloading: false,
+                    onPressed: () async {
+                      String? errorMessage = await authProvider.register({
+                        "name": usernameController.text.toString(),
+                        "email": emailController.text.toString(),
+                        "password": passwordController.text,
+                      });
+                      if (errorMessage != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(errorMessage)),
+                        );
+                      } else {
                         Navigator.pushReplacement(
-                            context,
-                            CupertinoPageRoute(
-                                builder: ((context) => const LoginScreenn())));
-                      }),
+                          context,
+                          CupertinoPageRoute(
+                              builder: ((context) => const LoginScreenn())),
+                        );
+                      }
+                    },
+                  ),
                   Primarybtn(
                       text: "Have account? Login",
                       withBorder: true,

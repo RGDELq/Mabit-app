@@ -35,6 +35,11 @@ class _TabsScreenState extends State<TabsScreen> {
                     : const ProfileScreen(),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: dakmode.isDark ? white : primary,
+        unselectedItemColor: Colors.grey,
+        selectedLabelStyle: TextStyle(
+          color: dakmode.isDark ? white : primary,
+        ),
         backgroundColor: dakmode.isDark ? darkcolor : secprimary,
         elevation: 0,
         currentIndex: currentIndex,

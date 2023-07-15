@@ -7,6 +7,7 @@ import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/dark_mode_provider.dart';
+
 class Reviews extends StatefulWidget {
   final int propertyId;
 
@@ -31,10 +32,12 @@ class ReviewsState extends State<Reviews> {
 
     return Consumer<RatingProvider>(builder: (context, ratingConsumer, child) {
       // Filter comments by property id
-      final comments = ratingConsumer.comments.where((c) => c.propertyId == widget.propertyId).toList();
+      final comments = ratingConsumer.comments
+          .where((c) => c.propertyId == widget.propertyId)
+          .toList();
 
       return Scaffold(
-        backgroundColor: secprimary,
+        backgroundColor: dakmode.isDark ? white : secprimary,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: primary,
@@ -50,18 +53,18 @@ class ReviewsState extends State<Reviews> {
                 final rating = comments[index];
                 return ReviewUI(
                   name: rating.name,
-                  createdAt: rating.createdAt.toString().substring(0, 10).replaceAll('-', '/'),
-                  updateded_at: rating.updatedAt.toString().substring(0, 10).replaceAll('-', '/'),
+                  createdAt: rating.createdAt
+                      .toString()
+                      .substring(0, 10)
+                      .replaceAll('-', '/'),
+                  updateded_at: rating.updatedAt
+                      .toString()
+                      .substring(0, 10)
+                      .replaceAll('-', '/'),
                   ptoperty_id: rating.propertyId,
                   key: ValueKey(index),
                 );
               },
-              // separatorBuilder: (context, index) {
-              //   return Divider(
-              //     thickness: 1.0,
-              //     color: primary,
-              //   );
-              // },
             ),
             Positioned(
               bottom: 16.0,

@@ -10,21 +10,36 @@ class AuthProvider with ChangeNotifier {
   }
 
 ///////////////////////////////////// Login /////////////////////////////////////////////////
-  login(Map body) async {
+  // login(Map body) async {
+  //   print("body: " + body.toString());
+  //   setloading(true);
+
+  //   final response = await api.post('/api/login', body);
+  //   if (response.statusCode == 200) {
+  //     print('login successful');
+  //     setloading(false);
+  //   } else {
+  //     setloading(false);
+
+  //     print('failed to login');
+  //   }
+
+  //   setloading(false);
+  // }
+
+  Future<void> login(Map body) async {
     print("body: " + body.toString());
     setloading(true);
 
     final response = await api.post('/api/login', body);
+
     if (response.statusCode == 200) {
       print('login successful');
       setloading(false);
     } else {
       setloading(false);
-
-      print('failed to login');
+      throw Exception('Failed to login');
     }
-
-    setloading(false);
   }
 
 ///////////////////////////////////// Reqister/////////////////////////////////////////////////

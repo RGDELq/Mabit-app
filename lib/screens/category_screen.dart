@@ -90,7 +90,7 @@ class _CategoryPageState extends State<CategoryPage> {
                       height: 12,
                     ),
                     properties.isEmpty
-                        ? Center(
+                        ? const Center(
                             child: Text("No properties found"),
                           )
                         : ListView.builder(

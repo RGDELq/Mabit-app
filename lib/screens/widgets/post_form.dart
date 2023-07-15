@@ -27,10 +27,21 @@ class _PostFormState extends State<PostForm> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController priceController = TextEditingController();
 
-  List<String> listitem = ["Benghazi", "Tripoli", "Misrata"];
+  List<String> listitem = [
+    "Benghazi",
+    "Tripoli",
+    "Misrata",
+    "Albayda",
+    "Almaraj",
+    "Sabrata",
+    "Zwara",
+    "Misrata",
+    "Misrata",
+    "Tobruk"
+  ];
   String? selectedCity = "Benghazi";
 
-  List<String> rooms = ["1", "2", "3", "4"];
+  List<String> rooms = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
   String? selectedrooms = "2";
 
   List<String> floors = [
@@ -39,6 +50,10 @@ class _PostFormState extends State<PostForm> {
     "3",
     "4",
     "5",
+    "6",
+    "7",
+    "8",
+    "9",
   ];
   String? selectedfloors = "5";
 
@@ -120,7 +135,6 @@ class _PostFormState extends State<PostForm> {
                         if (value!.isEmpty) {
                           return "Please enter a price";
                         }
-
                         return null;
                       },
                     ),

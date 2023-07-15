@@ -182,7 +182,7 @@ class RecommendationCard extends StatelessWidget {
             ),
 
             Text(
-              "${propertyModel.rooms} rooms - ${propertyModel.rooms} square foots - ${propertyModel.floor} floors",
+              "${propertyModel.rooms} rooms - ${propertyModel.city}  - ${propertyModel.floor} floors",
               style: Theme.of(context).textTheme.bodySmall!.copyWith(
                     color: dakmode.isDark ? darkcolor : darkcolor,
                     fontWeight: FontWeight.bold,
