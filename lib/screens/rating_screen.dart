@@ -29,6 +29,7 @@ class ReviewsState extends State<Reviews> {
   @override
   Widget build(BuildContext context) {
     final dakmode = Provider.of<DarkModeProvider>(context);
+    print('MyDialogState build: propertyId=${widget.propertyId}');
 
     return Consumer<RatingProvider>(builder: (context, ratingConsumer, child) {
       // Filter comments by property id
@@ -75,7 +76,7 @@ class ReviewsState extends State<Reviews> {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return const MyDialog();
+                      return MyDialog(propertyId: widget.propertyId);
                     },
                   );
                 },
@@ -91,7 +92,9 @@ class ReviewsState extends State<Reviews> {
 }
 
 class MyDialog extends StatefulWidget {
-  const MyDialog({super.key});
+  final int propertyId;
+
+  const MyDialog({required this.propertyId});
 
   @override
   MyDialogState createState() => MyDialogState();
@@ -99,6 +102,7 @@ class MyDialog extends StatefulWidget {
 
 class MyDialogState extends State<MyDialog> {
   TextEditingController commentController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -140,8 +144,21 @@ class MyDialogState extends State<MyDialog> {
                 filled: true,
                 fillColor: dakmode.isDark ? darkcolor : white,
                 label: 'comment ',
-                hintText: 'Enter ccomment ',
+                hintText: 'Enter comment ',
                 controller: commentController,
+                validator: (String? value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter the comment';
+                  }
+                  return null;
+                },
+              ),
+              TextFieldWidget(
+                filled: true,
+                fillColor: dakmode.isDark ? darkcolor : white,
+                label: 'your name ',
+                hintText: 'Enter name ',
+                controller: usernameController,
                 validator: (String? value) {
                   if (value!.isEmpty) {
                     return 'Please enter the name';
@@ -157,8 +174,11 @@ class MyDialogState extends State<MyDialog> {
                 onPressed: () {
                   ratingProvider.addcomment({
                     "name": commentController.text.toString(),
-                    // "property_id": '19'
+                    "username": usernameController.text.toString(),
+                    "status": '0',
+                    "property_id": widget.propertyId
                   });
+                  Navigator.pop(context);
                 },
               ),
             ],
