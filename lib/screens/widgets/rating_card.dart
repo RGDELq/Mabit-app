@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 class ReviewUI extends StatelessWidget {
   final String name;
+  final String username;
+
   final String createdAt;
   final String updateded_at;
   final int ptoperty_id;
@@ -9,6 +11,7 @@ class ReviewUI extends StatelessWidget {
 
   const ReviewUI({
     required this.name,
+    required this.username,
     required this.createdAt,
     required this.updateded_at,
     required this.ptoperty_id,
@@ -23,12 +26,22 @@ class ReviewUI extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
+            username,
+            style: const TextStyle(
+              fontSize: 14.0,
+              color: Colors.grey,
+            ),
+          ),
+
+          const SizedBox(height: 8.0),
+          Text(
             name,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18.0,
             ),
           ),
+          const SizedBox(height: 8.0),
           const SizedBox(height: 8.0),
           Text(
             createdAt,
@@ -37,15 +50,6 @@ class ReviewUI extends StatelessWidget {
               color: Colors.grey,
             ),
           ),
-          // const SizedBox(height: 8.0),
-          // Text(
-          //   updateded_at,
-          //   style: const TextStyle(
-          //     fontSize: 14.0,
-          //     color: Colors.grey,
-          //   ),
-          // ),
-          const SizedBox(height: 8.0),
           // Text(
           //   ptoperty_id.toString(),
           //   style: const TextStyle(

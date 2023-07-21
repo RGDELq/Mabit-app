@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/provider/rating_provider.dart';
 import 'package:mabitt/screens/widgets/primary_btn.dart';
-import 'package:mabitt/screens/widgets/rating_card.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:mabitt/utils/theme.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +27,7 @@ class ReviewsState extends State<Reviews> {
 
   @override
   Widget build(BuildContext context) {
-    final dakmode = Provider.of<DarkModeProvider>(context);
+    final darkMode = Provider.of<DarkModeProvider>(context);
     print('MyDialogState build: propertyId=${widget.propertyId}');
 
     return Consumer<RatingProvider>(builder: (context, ratingConsumer, child) {
@@ -38,7 +37,7 @@ class ReviewsState extends State<Reviews> {
           .toList();
 
       return Scaffold(
-        backgroundColor: dakmode.isDark ? white : secprimary,
+        backgroundColor: darkMode.isDark ? darkcolor : secprimary,
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: primary,
@@ -47,25 +46,64 @@ class ReviewsState extends State<Reviews> {
         ),
         body: Stack(
           children: [
-            ListView.builder(
-              padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
-              itemCount: comments.length,
-              itemBuilder: (context, index) {
-                final rating = comments[index];
-                return ReviewUI(
-                  name: rating.name,
-                  createdAt: rating.createdAt
-                      .toString()
-                      .substring(0, 10)
-                      .replaceAll('-', '/'),
-                  updateded_at: rating.updatedAt
-                      .toString()
-                      .substring(0, 10)
-                      .replaceAll('-', '/'),
-                  ptoperty_id: rating.propertyId,
-                  key: ValueKey(index),
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ListView.builder(
+                padding: const EdgeInsets.only(bottom: 8.0, top: 8.0),
+                itemCount: comments.length,
+                itemBuilder: (context, index) {
+                  final rating = comments[index];
+                  return Container(
+                    margin: const EdgeInsets.only(bottom: 16.0),
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: darkMode.isDark ? primary : white,
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 1,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              rating.username,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                            Text(
+                              rating.createdAt
+                                  .toString()
+                                  .substring(0, 10)
+                                  .replaceAll('-', '/'),
+                              style: const TextStyle(
+                                fontSize: 12.0,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8.0),
+                        const SizedBox(height: 8.0),
+                        Text(
+                          rating.name,
+                          style: const TextStyle(fontSize: 14.0),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
             Positioned(
               bottom: 16.0,
@@ -101,31 +139,31 @@ class MyDialog extends StatefulWidget {
 }
 
 class MyDialogState extends State<MyDialog> {
-  TextEditingController commentController = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
+  final TextEditingController commentController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    final dakmode = Provider.of<DarkModeProvider>(context);
+    final darkMode = Provider.of<DarkModeProvider>(context);
     final ratingProvider = Provider.of<RatingProvider>(context, listen: false);
 
-    return Consumer<RatingProvider>(builder: (context, ratingconsumer, child) {
+    return Consumer<RatingProvider>(builder: (context, ratingConsumer, child) {
       return AlertDialog(
         contentPadding: const EdgeInsets.all(10),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(10.0),
         ),
         content: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: const Offset(0, 10), // changes position of shadow
-              ),
-            ],
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                darkMode.isDark ? Colors.grey[800]! : secprimary,
+                darkMode.isDark ? Colors.grey[900]! : secprimary,
+              ],
+            ),
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -133,7 +171,7 @@ class MyDialogState extends State<MyDialog> {
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  'Enter comment',
+                  'Add comment',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20.0,
@@ -142,7 +180,7 @@ class MyDialogState extends State<MyDialog> {
               ),
               TextFieldWidget(
                 filled: true,
-                fillColor: dakmode.isDark ? darkcolor : white,
+                fillColor: darkMode.isDark ? Colors.grey[800]! : Colors.white,
                 label: 'comment ',
                 hintText: 'Enter comment ',
                 controller: commentController,
@@ -155,7 +193,7 @@ class MyDialogState extends State<MyDialog> {
               ),
               TextFieldWidget(
                 filled: true,
-                fillColor: dakmode.isDark ? darkcolor : white,
+                fillColor: darkMode.isDark ? Colors.grey[800]! : Colors.white,
                 label: 'your name ',
                 hintText: 'Enter name ',
                 controller: usernameController,

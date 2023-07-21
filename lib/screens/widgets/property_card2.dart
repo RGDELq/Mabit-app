@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mabitt/provider/favorite_provider.dart';
 import 'package:provider/provider.dart';
-
 import '../../models/property_model.dart';
 import '../../provider/dark_mode_provider.dart';
 import '../../utils/my_string.dart';
@@ -31,8 +29,8 @@ class PropertyCard2 extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.only(right: 8),
         decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.circular(40),
+          color: dakmode.isDark ? darkcolor : white,
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +44,7 @@ class PropertyCard2 extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 12,
+              height: 19,
             ),
             Text(
               propertyModel.name,
@@ -55,13 +53,13 @@ class PropertyCard2 extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            Text(
-              "${propertyModel.rooms} rooms - ${propertyModel.city}  - ${propertyModel.floor} floors",
-              style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                    color: dakmode.isDark ? darkcolor : darkcolor,
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
+            // Text(
+            //   "${propertyModel.rooms} rooms - ${propertyModel.city}  - ${propertyModel.floor} floors",
+            //   style: Theme.of(context).textTheme.bodySmall!.copyWith(
+            //         color: dakmode.isDark ? darkcolor : darkcolor,
+            //         fontWeight: FontWeight.bold,
+            //       ),
+            // ),
             const SizedBox(
               height: 12,
             ),

@@ -7,19 +7,26 @@ import '../provider/favorite_provider.dart';
 import '../utils/theme.dart';
 
 class FavoritesScreen extends StatelessWidget {
+  const FavoritesScreen({Key? key});
+
   @override
   Widget build(BuildContext context) {
     final favoritesProvider = Provider.of<FavoritesProvider>(context);
-    final dakmode = Provider.of<DarkModeProvider>(context);
+    final darkMode = Provider.of<DarkModeProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: dakmode.isDark ? primary : secprimary,
+        backgroundColor: darkMode.isDark ? primary : secprimary,
         title: const Text('Favorites'),
         centerTitle: true,
       ),
       body: favoritesProvider.favorites.isEmpty
-          ? const Center(child: Text('No favorites yet'))
+          ? Center(
+              child: Image.asset(
+                'images/fav.png',
+                height: 600,
+              ),
+            )
           : ListView.builder(
               itemCount: favoritesProvider.favorites.length,
               itemBuilder: (BuildContext context, int index) {

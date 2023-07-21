@@ -23,11 +23,7 @@ class PropertyProvider with ChangeNotifier {
       var decodedData = jsonDecode(response.body);
       categories.clear();
       decodedData.forEach((x) => categories.add(CategoryModel.fromJson(x)));
-      // for (var x in decodedData) {
-      //   categories.add(CategoryModel.fromJson(x));
-      // }
-
-      // categories= decodedData.map((x) => CategoryModel.fromJson(x)).toList();
+      
       notifyListeners();
     }
   }
@@ -39,11 +35,7 @@ class PropertyProvider with ChangeNotifier {
       var decodedData = jsonDecode(response.body);
       properties.clear();
       decodedData.forEach((x) => properties.add(PropertyModel.fromJson(x)));
-      // for (var x in decodedData) {
-      //   categories.add(CategoryModel.fromJson(x));
-      // }
-
-      // categories= decodedData.map((x) => CategoryModel.fromJson(x)).toList();
+      
       notifyListeners();
     }
   }
@@ -56,11 +48,7 @@ class PropertyProvider with ChangeNotifier {
       var decodedData = jsonDecode(response.body);
       comments.clear();
       decodedData.forEach((x) => comments.add(RatingModel.fromJson(x)));
-      // for (var x in decodedData) {
-      //   categories.add(CategoryModel.fromJson(x));
-      // }
-
-      // categories= decodedData.map((x) => CategoryModel.fromJson(x)).toList();
+      
       notifyListeners();
     }
   }
@@ -107,7 +95,6 @@ class PropertyProvider with ChangeNotifier {
             title: Text(property.name),
             subtitle: Text('Price: ${property.price}'),
             onTap: () {
-              // TODO: Navigate to property details screen
             },
           );
         },

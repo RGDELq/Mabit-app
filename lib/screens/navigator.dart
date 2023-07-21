@@ -29,7 +29,7 @@ class _TabsScreenState extends State<TabsScreen> {
         child: currentIndex == 0
             ? const HomePage()
             : currentIndex == 1
-                ? FavoritesScreen()
+                ? const FavoritesScreen()
                 : currentIndex == 2
                     ? const PostsScreen()
                     : const ProfileScreen(),
@@ -63,7 +63,7 @@ class _TabsScreenState extends State<TabsScreen> {
               backgroundColor: dakmode.isDark ? darkcolor : secprimary,
               label: 'Fav',
               icon: Image.asset(
-                'assets/icons/heart.png',
+                'assets/icons/wishlist.png',
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,
@@ -73,7 +73,7 @@ class _TabsScreenState extends State<TabsScreen> {
               backgroundColor: dakmode.isDark ? darkcolor : secprimary,
               label: 'post',
               icon: Image.asset(
-                'assets/icons/edit.png',
+                'assets/icons/post.png',
                 width: size.width / 13,
                 height: size.width / 13,
                 fit: BoxFit.contain,

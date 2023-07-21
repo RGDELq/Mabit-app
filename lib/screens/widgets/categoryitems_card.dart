@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mabitt/utils/theme.dart';
-import 'package:provider/provider.dart';
 
 import '../../models/property_model.dart';
-import '../../provider/dark_mode_provider.dart';
 import '../../utils/my_string.dart';
 import '../details_screen.dart';
 
@@ -16,7 +14,7 @@ class ExpandedRecommendationCard extends StatelessWidget {
   final PropertyModel propertyModel;
   @override
   Widget build(BuildContext context) {
-    final dakmode = Provider.of<DarkModeProvider>(context);
+    // final dakmode = Provider.of<DarkModeProvider>(context);
 
     return GestureDetector(
       onTap: () => Navigator.push(

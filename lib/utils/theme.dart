@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 // import 'package:image_picker/image_picker.dart';
 class Colormanager {
-  Color primarys = const Color.fromARGB(255, 44, 73, 121);
 }
 
 Color primary = const Color.fromARGB(255, 44, 73, 121);

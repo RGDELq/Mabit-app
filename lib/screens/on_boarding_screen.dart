@@ -59,6 +59,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     // context related
     final ThemeData themeData = Theme.of(context);

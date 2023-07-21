@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mabitt/provider/auth_provider.dart';
 import 'package:mabitt/screens/navigator.dart';
+import 'package:mabitt/screens/welcome_screen.dart';
 import 'package:mabitt/screens/widgets/primary_btn.dart';
 import 'package:mabitt/screens/widgets/textfield.dart';
 import 'package:mabitt/utils/theme.dart';
@@ -46,7 +47,11 @@ class _LoginScreennState extends State<LoginScreenn> {
                     child: IconButton(
                         icon: const Icon(Icons.arrow_back_ios_sharp),
                         onPressed: () {
-                          Navigator.pop(context);
+                          Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: ((context) =>
+                                      const WelcomeScreen())));
                         }),
                   ),
                 ),
@@ -106,6 +111,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                       fillColor: dakmode.isDark ? darkcolor : Colors.white,
                       label: 'Password',
                       hintText: 'Enter your password',
+                      obSecureText: true,
                       controller: passwordController,
                       validator: (String? value) {
                         if (value!.isEmpty) {

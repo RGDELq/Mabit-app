@@ -22,6 +22,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
+  bool enableregisterBtn = false;
+  GlobalKey<FormState> registerFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -93,104 +95,116 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ))
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  TextFieldWidget(
-                    filled: true,
-                    fillColor: dakmode.isDark ? darkcolor : Colors.white,
-                    label: 'username',
-                    hintText: 'Enter username ',
-                    controller: usernameController,
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter the name';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFieldWidget(
+            Form(
+              key: registerFormKey,
+              onChanged: () {
+                setState(() {
+                  enableregisterBtn = registerFormKey.currentState!.validate();
+                });
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    TextFieldWidget(
                       filled: true,
                       fillColor: dakmode.isDark ? darkcolor : Colors.white,
-                      label: 'Email Address',
-                      controller: emailController,
-                      hintText: 'Ex: a@example.com',
+                      label: 'username',
+                      hintText: 'Enter username ',
+                      controller: usernameController,
                       validator: (String? value) {
                         if (value!.isEmpty) {
-                          return "Please enter your email address";
-                        }
-                        if (!value.contains('@') || !value.contains('.com')) {
-                          return "Enter a Valid Email";
+                          return 'Please enter the name';
                         }
                         return null;
-                      }),
-                  TextFieldWidget(
-                    filled: true,
-                    fillColor: dakmode.isDark ? darkcolor : Colors.white,
-                    label: 'Password',
-                    hintText: 'Enter your password',
-                    controller: passwordController,
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return 'Please enter your password';
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFieldWidget(
-                    filled: true,
-                    fillColor: dakmode.isDark ? darkcolor : Colors.white,
-                    label: 'Confrim  Password',
-                    hintText: 'Enter password to confirm',
-                    controller: confirmPasswordController,
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "Please enter your password";
-                      }
-                      if (value != passwordController.text) {
-                        return "Thhe password isn't match ";
-                      }
-                      return null;
-                    },
-                  ),
-                  SizedBox(
-                    height: size.height * 0.05,
-                  ),
-                  Primarybtn(
-                    text: "Sign up",
-                    withBorder: false,
-                    isloading: false,
-                    onPressed: () async {
-                      String? errorMessage = await authProvider.register({
-                        "name": usernameController.text.toString(),
-                        "email": emailController.text.toString(),
-                        "password": passwordController.text,
-                      });
-                      if (errorMessage != null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(errorMessage)),
-                        );
-                      } else {
-                        Navigator.pushReplacement(
-                          context,
-                          CupertinoPageRoute(
-                              builder: ((context) => const LoginScreenn())),
-                        );
-                      }
-                    },
-                  ),
-                  Primarybtn(
-                      text: "Have account? Login",
-                      withBorder: true,
+                      },
+                    ),
+                    TextFieldWidget(
+                        filled: true,
+                        fillColor: dakmode.isDark ? darkcolor : Colors.white,
+                        label: 'Email Address',
+                        controller: emailController,
+                        hintText: 'Ex: a@example.com',
+                        validator: (String? value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your email address";
+                          }
+                          if (!value.contains('@') || !value.contains('.com')) {
+                            return "Enter a Valid Email";
+                          }
+                          return null;
+                        }),
+                    TextFieldWidget(
+                      filled: true,
+                      obSecureText: true,
+                      fillColor: dakmode.isDark ? darkcolor : Colors.white,
+                      label: 'Password',
+                      hintText: 'Enter your password',
+                      controller: passwordController,
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your password';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFieldWidget(
+                      filled: true,
+                      obSecureText: true,
+                      fillColor: dakmode.isDark ? darkcolor : Colors.white,
+                      label: 'Confrim  Password',
+                      hintText: 'Enter password to confirm',
+                      controller: confirmPasswordController,
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
+                          return "Please enter your password";
+                        }
+                        if (value != passwordController.text) {
+                          return "Thhe password isn't match ";
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      height: size.height * 0.05,
+                    ),
+                    Primarybtn(
+                      text: "Sign up",
+                      withBorder: false,
+                      isActive: enableregisterBtn,
                       isloading: false,
-                      onPressed: () {
-                        Navigator.push(
+                      onPressed: () async {
+                        String? errorMessage = await authProvider.register({
+                          "name": usernameController.text.toString(),
+                          "email": emailController.text.toString(),
+                          "password": passwordController.text,
+                        });
+                        if (errorMessage != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(errorMessage)),
+                          );
+                        } else {
+                          Navigator.pushReplacement(
                             context,
                             CupertinoPageRoute(
-                                builder: ((context) => const LoginScreenn())));
-                      }),
-                ],
+                                builder: ((context) => const LoginScreenn())),
+                          );
+                        }
+                      },
+                    ),
+                    Primarybtn(
+                        text: "Have account? Login",
+                        withBorder: true,
+                        isloading: false,
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: ((context) =>
+                                      const LoginScreenn())));
+                        }),
+                  ],
+                ),
               ),
             )
           ],

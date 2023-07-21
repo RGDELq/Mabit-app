@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:mabitt/provider/dark_mode_provider.dart';
 import 'package:mabitt/provider/property_provider.dart';
 import 'package:mabitt/screens/search.dart';
@@ -102,21 +101,33 @@ class _HomePageState extends State<HomePage> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              SearchScreen()));
+                                              const SearchScreen()));
                                 },
                                 child: Container(
-                                  padding: const EdgeInsets.all(12),
-                                  decoration: BoxDecoration(
-                                    color: secprimary,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  height: 55,
-                                  width: 55,
-                                  child: const Icon(
-                                    LineIcons.search,
-                                  ),
-                                ),
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                      color: dakmode.isDark
+                                          ? secprimary
+                                          : secprimary,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    height: 55,
+                                    width: 50,
+                                    child: const Icon(
+                                      Icons.search_outlined,
+                                    )),
                               ),
+                            ),
+                            Text(
+                              "Categories",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                    color: dakmode.isDark ? white : primary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
                             ),
                             const SizedBox(
                               height: 30,
@@ -144,7 +155,14 @@ class _HomePageState extends State<HomePage> {
                             ),
                             Text(
                               "Recommendations",
-                              style: Theme.of(context).textTheme.titleLarge,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                    color: dakmode.isDark ? white : primary,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
                             ),
                             const SizedBox(
                               height: 30,
