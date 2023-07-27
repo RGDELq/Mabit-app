@@ -141,6 +141,8 @@ class MyDialog extends StatefulWidget {
 class MyDialogState extends State<MyDialog> {
   final TextEditingController commentController = TextEditingController();
   final TextEditingController usernameController = TextEditingController();
+  bool enablerateBtn = false;
+  GlobalKey<FormState> rateFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -165,61 +167,91 @@ class MyDialogState extends State<MyDialog> {
               ],
             ),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  'Add comment',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20.0,
+          child: Form(
+            key: rateFormKey,
+            onChanged: () {
+              setState(() {
+                enablerateBtn = rateFormKey.currentState!.validate();
+              });
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Text(
+                    'Add comment',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                    ),
                   ),
                 ),
-              ),
-              TextFieldWidget(
-                filled: true,
-                fillColor: darkMode.isDark ? Colors.grey[800]! : Colors.white,
-                label: 'comment ',
-                hintText: 'Enter comment ',
-                controller: commentController,
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter the comment';
-                  }
-                  return null;
-                },
-              ),
-              TextFieldWidget(
-                filled: true,
-                fillColor: darkMode.isDark ? Colors.grey[800]! : Colors.white,
-                label: 'your name ',
-                hintText: 'Enter name ',
-                controller: usernameController,
-                validator: (String? value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter the name';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(height: 16.0),
-              Primarybtn(
-                text: 'save',
-                withBorder: false,
-                isloading: false,
-                onPressed: () {
-                  ratingProvider.addcomment({
-                    "name": commentController.text.toString(),
-                    "username": usernameController.text.toString(),
-                    "status": '0',
-                    "property_id": widget.propertyId
-                  });
-                  Navigator.pop(context);
-                },
-              ),
-            ],
+                TextFieldWidget(
+                  filled: true,
+                  fillColor: darkMode.isDark ? Colors.grey[800]! : Colors.white,
+                  label: 'your name ',
+                  hintText: 'Enter name ',
+                  controller: usernameController,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter the name';
+                    }
+                    return null;
+                  },
+                ),
+                TextFieldWidget(
+                  filled: true,
+                  fillColor: darkMode.isDark ? Colors.grey[800]! : Colors.white,
+                  label: 'comment ',
+                  hintText: 'Enter comment ',
+                  controller: commentController,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter the comment';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16.0),
+                Primarybtn(
+                  text: 'save',
+                  withBorder: false,
+                  isActive: enablerateBtn,
+                  isloading: false,
+                  onPressed: () {
+                    ratingProvider.addcomment({
+                      "name": commentController.text.toString(),
+                      "username": usernameController.text.toString(),
+                      "status": '0',
+                      "property_id": widget.propertyId
+                    }).then((response) {
+                      Navigator.of(context).pop();
+
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text('success'),
+                              content: const Text(
+                                  'your information have been submitted successfully.'),
+                              actions: [
+                                TextButton(
+                                  child: const Text('OK'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          });
+                      // print(
+                      //     response.statusCode.toString() + " " + response.body);
+                    });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       );

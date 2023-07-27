@@ -13,7 +13,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Timer(const Duration(seconds: 6), () {
+    Timer(const Duration(seconds: 1), () {
       Navigator.pushReplacement(
           context, CupertinoPageRoute(builder: (_) => const OnBoardPage()));
     });
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(children: [
               const Spacer(),
               Image.asset(
-                height: 400,
+                height: 200,
                 fit: BoxFit.contain,
                 'assets/logo1.png',
               ),

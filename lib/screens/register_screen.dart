@@ -136,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         }),
                     TextFieldWidget(
                       filled: true,
-                      obSecureText: true,
+                      // obSecureText: true,
                       fillColor: dakmode.isDark ? darkcolor : Colors.white,
                       label: 'Password',
                       hintText: 'Enter your password',
@@ -150,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     TextFieldWidget(
                       filled: true,
-                      obSecureText: true,
+                      // obSecureText: true,
                       fillColor: dakmode.isDark ? darkcolor : Colors.white,
                       label: 'Confrim  Password',
                       hintText: 'Enter password to confirm',

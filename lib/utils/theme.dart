@@ -10,7 +10,6 @@ Color darkGrey = const Color(0xff737477);
 Color lightGrey = const Color(0xff9E9E9E);
 Color dColor = const Color(0xff000000);
 Color pistacho = const Color(0xffF5cef9);
-
 // new colors
 Color thirdPrimary = const Color(0xffF5CEBE);
 Color darkcolor = const Color(0xff121212);

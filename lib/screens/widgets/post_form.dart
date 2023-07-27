@@ -96,7 +96,7 @@ class _PostFormState extends State<PostForm> {
                     children: [
                       TextFieldWidget(
                         filled: true,
-                        fillColor: dakmode.isDark ? darkcolor : white,
+                        fillColor: dakmode.isDark ? white : darkcolor,
                         label: 'Property name',
                         hintText: 'Enter property name',
                         controller: properynameController,

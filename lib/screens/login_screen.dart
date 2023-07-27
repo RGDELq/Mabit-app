@@ -70,7 +70,7 @@ class _LoginScreennState extends State<LoginScreenn> {
                         children: [
                           Text("Welcome Back! Glad \nto see you again",
                               style: TextStyle(
-                                color: primary,
+                                color: dakmode.isDark ? white : primary,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               )),
@@ -107,11 +107,11 @@ class _LoginScreennState extends State<LoginScreenn> {
                       },
                     ),
                     TextFieldWidget(
+                      obSecureText: true,
                       filled: true,
                       fillColor: dakmode.isDark ? darkcolor : Colors.white,
                       label: 'Password',
                       hintText: 'Enter your password',
-                      obSecureText: true,
                       controller: passwordController,
                       validator: (String? value) {
                         if (value!.isEmpty) {
@@ -153,17 +153,33 @@ class _LoginScreennState extends State<LoginScreenn> {
                       isloading: false,
                       isActive: enableLoginBtn,
                       onPressed: () async {
-                        try {
-                          await authProvider.login({
-                            "email": emailController.text,
-                            "password": passwordController.text
-                          });
+                        String email = emailController.text.trim();
+                        String password = passwordController.text.trim();
+
+                        if (email.isEmpty || password.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text(
+                                    'Please enter your email and password')),
+                          );
+                          return;
+                        }
+
+                        bool loginSuccess = await authProvider.login({
+                          "email": email,
+                          "password": password,
+                        });
+
+                        if (loginSuccess) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Login verified')),
+                          );
                           Navigator.pushReplacement(
                             context,
                             CupertinoPageRoute(
                                 builder: ((context) => const TabsScreen())),
                           );
-                        } catch (e) {
+                        } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(content: Text('Invalid credentials')),
                           );

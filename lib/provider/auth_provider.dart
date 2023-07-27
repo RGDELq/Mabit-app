@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:mabitt/models/user_model.dart';
 import 'package:mabitt/services/api.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthProvider with ChangeNotifier {
   Api api = Api();
@@ -30,23 +31,55 @@ class AuthProvider with ChangeNotifier {
   //   }
 
   //   setloading(false);
+  // // }
+  // Future<bool> login(Map body) async {
+  //   try {
+  //     final response = await api.post('/api/login', body);
+
+  //     if (response.statusCode == 200) {
+  //       print('login successful');
+  //       return true;
+  //     } else {
+  //       print('login failed');
+  //       return false;
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //     return false;
+  //   }
   // }
+  Future<bool> login(Map body) async {
+    try {
+      final response = await api.post('/api/login', body);
 
-  Future<void> login(Map body) async {
-    print("body: " + body.toString());
-    setloading(true);
+      if (response.statusCode == 200) {
+        final email =
+            body['email']; // Get the email value from the request body
+        final password =
+            body['password']; // Get the password value from the request body
 
-    final response = await api.post('/api/login', body);
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setString('email', email);
+        prefs.setString('password', password);
 
-    if (response.statusCode == 200) {
-      print('login successful');
-      setloading(false);
-    } else {
-      setloading(false);
-      throw Exception('Failed to login');
+        print('login successful');
+        return true;
+      } else {
+        print('login failed');
+        return false;
+      }
+    } catch (e) {
+      print(e);
+      return false;
     }
   }
+
   /////////////////////////// GET  USER DATA////////////
+  Future<void> clearLoginInfo() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.remove('email');
+    prefs.remove('password');
+  }
 
   getserData() async {
     final response = await api.get('/api/getuserdata', {});

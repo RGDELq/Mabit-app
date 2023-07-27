@@ -23,6 +23,7 @@ class Api {
         'content-type': 'application/json',
       },
     );
+    print(response);
     if (response.statusCode == 401) {
       String? tok = prefs.getString("token");
       if (tok != null) {

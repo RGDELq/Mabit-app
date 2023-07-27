@@ -47,7 +47,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     children: [
                       Image.network(
                         baseUrl + '/img/' + widget.propertyModel.image,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                       ),
                       Positioned(
                         child: IconButton(
@@ -177,12 +177,10 @@ class _DetailsPageState extends State<DetailsPage> {
             ),
             ///////////////////////Rating dialog///////////////////////////
             Positioned(
-              
               bottom: 0,
               left: 0,
               right: 0,
               child: Padding(
-              
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Row(
                   children: [

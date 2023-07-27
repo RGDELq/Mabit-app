@@ -29,13 +29,13 @@ class _OnBoardPageState extends State<OnBoardPage> {
       pageIndex = nextIndex;
 
       if (nextIndex == 0) {
-        titleText = "Follow our tips\nto achieve success!";
+        titleText = "Find your home  \nwith  mabit application! ";
         animatedPositionWaveImageLeft = 40;
       } else if (nextIndex == 1) {
-        titleText = "Keep your\ninvestments safe!";
+        titleText = "Keep your \ninvestments safe!";
         animatedPositionWaveImageLeft = -350;
       } else {
-        titleText = "Start to invest\nfor your future!";
+        titleText = "Start to search \nwith all specfication ";
         animatedPositionWaveImageLeft = -750;
       }
     });
@@ -190,7 +190,7 @@ class _OnBoardPageState extends State<OnBoardPage> {
                       ),
                     ),
                     Text(
-                      "Ex totam praesentium incidunt aut.",
+                      "",
                       style: themeData.textTheme.bodySmall,
                     ),
                   ],

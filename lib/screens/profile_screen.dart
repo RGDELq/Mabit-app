@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mabitt/provider/auth_provider.dart';
 import 'package:mabitt/provider/dark_mode_provider.dart';
 import 'package:mabitt/screens/about_screen.dart';
 import 'package:mabitt/screens/welcome_screen.dart';
@@ -13,6 +14,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dakmode = Provider.of<DarkModeProvider>(context);
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -25,29 +27,29 @@ class ProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(
-                    Icons.language,
-                    size: 30,
-                  ),
-                  color: thirdprimary,
-                  onPressed: () {
-                    // Perform language change action
-                  },
-                ),
-                const SizedBox(width: 24), // add 24 pixels of horizontal space
-                Text(
-                  'Language',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w900,
-                    color: dakmode.isDark ? white : primary,
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     IconButton(
+            //       icon: const Icon(
+            //         Icons.language,
+            //         size: 30,
+            //       ),
+            //       color: thirdprimary,
+            //       onPressed: () {
+            //         // Perform language change action
+            //       },
+            //     ),
+            //     const SizedBox(width: 24), // add 24 pixels of horizontal space
+            //     Text(
+            //       'Language',
+            //       style: TextStyle(
+            //         fontWeight: FontWeight.w900,
+            //         color: dakmode.isDark ? white : primary,
+            //       ),
+            //     ),
+            //   ],
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -68,7 +70,7 @@ class ProfileScreen extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(width: 24), // add 24 pixels of horizontal space
+                const SizedBox(width: 24),
                 Text(
                   'Theme',
                   style: TextStyle(
@@ -113,7 +115,9 @@ class ProfileScreen extends StatelessWidget {
                     size: 30,
                   ),
                   color: thirdprimary,
-                  onPressed: () {
+                  onPressed: () async {
+                    await authProvider
+                        .clearLoginInfo(); // call the clearLoginInfo function that we defined earlier
                     Navigator.pushReplacement(
                         context,
                         CupertinoPageRoute(

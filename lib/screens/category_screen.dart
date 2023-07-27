@@ -91,7 +91,10 @@ class _CategoryPageState extends State<CategoryPage> {
                     ),
                     properties.isEmpty
                         ? const Center(
-                            child: Text("No properties found"),
+                            child: Text(
+                              "No properties found",
+                              style: TextStyle(),
+                            ),
                           )
                         : ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
